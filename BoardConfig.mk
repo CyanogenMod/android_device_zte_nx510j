@@ -7,6 +7,15 @@ ifeq ($(TARGET_ARCH),)
 TARGET_ARCH := arm
 endif
 
+ifeq ($(USES_KERNEL64),true)
+$(warning Compiling with experimental 64-bit kernel)
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+TARGET_KERNEL_DLKM_DISABLE := true
+TARGET_USES_UNCOMPRESSED_KERNEL := true
+endif
+
 BOARD_USES_GENERIC_AUDIO := true
 USE_CAMERA_STUB := true
 
@@ -63,7 +72,7 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
-BOARD_KERNEL_SEPARATED_DT := true
+#BOARD_KERNEL_SEPARATED_DT := true
 
 BOARD_EGL_CFG := device/qcom/$(TARGET_BOARD_PLATFORM)/egl.cfg
 
