@@ -3,11 +3,8 @@
 # Product-specific compile-time definitions.
 #
 
-ifeq ($(TARGET_ARCH),)
 TARGET_ARCH := arm
-endif
 
-ifeq ($(USES_KERNEL64),true)
 $(warning Compiling with experimental 64-bit kernel)
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm
@@ -15,7 +12,6 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_KERNEL_DLKM_DISABLE := true
 TARGET_KERNEL_DLKM_OVERRIDE := msm_watchdog_test_module.ko msm_ion_test_mod.ko
 TARGET_USES_UNCOMPRESSED_KERNEL := true
-endif
 
 BOARD_USES_GENERIC_AUDIO := true
 USE_CAMERA_STUB := true
@@ -42,7 +38,7 @@ TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_CPU_ABI  := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_CPU_VARIANT := krait
+TARGET_CPU_VARIANT := generic
 TARGET_CPU_SMP := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
