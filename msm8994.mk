@@ -1,48 +1,26 @@
-TARGET_USES_QCOM_BSP := true
+# Copyright (C) 2014 The Android Open Source Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 $(call inherit-product, device/qcom/common/common.mk)
 
-PRODUCT_NAME := plutonium
-PRODUCT_DEVICE := plutonium
+PRODUCT_NAME := msm8994
+PRODUCT_DEVICE := msm8994
+PRODUCT_BRAND := Android
+PRODUCT_MODEL := MSM8994 for arm64
 
-PRODUCT_BOOT_JARS += qcmediaplayer:WfdCommon:oem-services:qcom.fmradio:org.codeaurora.Performance
+# default is nosdcard, S/W button enabled in resource
+PRODUCT_CHARACTERISTICS := nosdcard
 
-PRODUCT_PACKAGES += \
-    libqcomvisualizer \
-    libqcomvoiceprocessing \
-    libqcompostprocbundle
-
-# Feature definition files for plutonium
-PRODUCT_COPY_FILES += \
-    system/bluetooth/data/main.le.conf:system/etc/bluetooth/main.conf \
-    frameworks/native/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
-    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml
-
-#battery_monitor
-PRODUCT_PACKAGES += \
-    battery_monitor \
-    battery_shutdown
-
-#fstab.qcom
-PRODUCT_PACKAGES += fstab.qcom
-
-#ANT stack
-PRODUCT_PACKAGES += \
-        AntHalService \
-        libantradio \
-        ANTRadioService \
-        antradio_app
-
-# Enable strict operation
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.strict_op_enable=false
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.whitelist=/system/etc/whitelist_appops.xml
-
-PRODUCT_COPY_FILES += \
-    device/qcom/plutonium/whitelist_appops.xml:system/etc/whitelist_appops.xml
+#Android EGL implementation
+PRODUCT_PACKAGES += libGLES_android

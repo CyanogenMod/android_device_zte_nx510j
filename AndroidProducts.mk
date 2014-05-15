@@ -1,2 +1,2 @@
 PRODUCT_MAKEFILES := \
-	$(LOCAL_DIR)/plutonium.mk
+	$(LOCAL_DIR)/msm8994.mk
