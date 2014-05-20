@@ -87,11 +87,11 @@ on post-fs-data
 #   group system
 #   disabled
 #
-#service thermal-engine /system/bin/thermal-engine
-#   class main
-#   user root
-#   group root
-#
+service thermal-engine /system/bin/thermal-engine
+   class main
+   user root
+   group root
+
 #service security-check1 /sbin/security_boot_check system
 #    class core
 #    oneshot
