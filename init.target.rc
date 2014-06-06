@@ -44,6 +44,10 @@ on post-fs-data
     mkdir /tombstones/wcnss 0771 system system
     mkdir /tombstones/dsps 0771 system system
 
+on boot
+    start rmt_storage
+    start rfs_access
+
 ## Allow usb charging to be disabled persistently
 #on property:persist.usb.chgdisabled=1
 #    write /sys/class/power_supply/battery/charging_enabled 0
