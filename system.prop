@@ -18,8 +18,8 @@ DEVICE_PROVISIONED=1
 # Start in global mode
 ro.telephony.default_network=10
 
-debug.sf.hw=0
-debug.egl.hw=0
+debug.sf.hw=1
+debug.egl.hw=1
 debug.composition.type=c2d
 persist.hwc.mdpcomp.enable=true
 debug.mdpcomp.logs=0
@@ -33,7 +33,7 @@ qcom.hw.aac.encoder=true
 #
 # system props for the cne module
 #
-persist.cne.feature=0
+persist.cne.feature=1
 
 #system props for the MM modules
 
@@ -117,4 +117,3 @@ av.offload.enable=true
 
 #Set composition for USB
 persist.sys.usb.config=diag,adb
-ro.kernel.qemu=1
