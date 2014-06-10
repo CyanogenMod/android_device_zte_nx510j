@@ -87,6 +87,9 @@ bluetooth.hfp.client=1
 #
 persist.fuse_sdcard=true
 
+#system prop for Bluetooth SOC type
+qcom.bluetooth.soc=rome
+
 #
 #snapdragon value add features
 #
