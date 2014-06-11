@@ -20,7 +20,7 @@ TARGET_2ND_CPU_VARIANT := cortex-a9
 
 TARGET_NO_BOOTLOADER := false
 TARGET_NO_KERNEL := false
-
+-include $(QCPATH)/common/msm8994/BoardConfigVendor.mk
 MINIMAL_FONT_FOOTPRINT := true
 # Some framework code requires this to enable BT
 BOARD_HAVE_BLUETOOTH := true
