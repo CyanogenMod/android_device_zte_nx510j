@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-$(call inherit-product, device/qcom/common/common.mk)
+$(call inherit-product, device/qcom/common/common64.mk)
 
 PRODUCT_NAME := msm8994
 PRODUCT_DEVICE := msm8994
