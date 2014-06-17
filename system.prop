@@ -117,3 +117,6 @@ audio.offload.buffer.size.kbytes=32
 
 #Enable offload audio video playback by default
 av.offload.enable=true
+
+#property to enable VDS WFD solution
+persist.hwc.enable_vds=1
