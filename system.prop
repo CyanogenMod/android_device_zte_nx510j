@@ -117,6 +117,3 @@ audio.offload.buffer.size.kbytes=32
 
 #Enable offload audio video playback by default
 av.offload.enable=true
-
-#Set composition for USB
-persist.sys.usb.config=diag,adb
