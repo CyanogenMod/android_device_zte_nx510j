@@ -12,6 +12,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
+# copy customized media_profiles and media_codecs xmls for 8994
+ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS), true)
+PRODUCT_COPY_FILES += device/qcom/msm8994/media_profiles.xml:system/etc/media_profiles.xml \
+                      device/qcom/msm8994/media_codecs.xml:system/etc/media_codecs.xml
+endif  #TARGET_ENABLE_QC_AV_ENHANCEMENTS
+
 $(call inherit-product, device/qcom/common/common64.mk)
 
 PRODUCT_NAME := msm8994
