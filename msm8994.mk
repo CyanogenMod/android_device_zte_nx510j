@@ -37,3 +37,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/qcom/msm8994/listen_platform_info.xml:system/etc/listen_platform_info.xml
 
+# WLAN driver configuration files
+PRODUCT_COPY_FILES += \
+    device/qcom/msm8994/WCNSS_cfg.dat:system/etc/firmware/wlan/qca_cld/WCNSS_cfg.dat \
+    device/qcom/msm8994/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    device/qcom/msm8994/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin
+
+PRODUCT_PACKAGES += \
+    wpa_supplicant \
+    wpa_supplicant_overlay.conf \
+    p2p_supplicant_overlay.conf
+
