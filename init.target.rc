@@ -92,6 +92,11 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
 #   user root
 #   disabled
 #
+service per_mgr /system/bin/pm-service
+    class core
+    user system
+    group system net_raw
+
 #service qosmgrd /system/bin/qosmgr /system/etc/qosmgr_rules.xml
 #   user system
 #   group system
