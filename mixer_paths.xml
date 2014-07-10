@@ -1239,6 +1239,19 @@
         <path name="speaker" />
     </path>
 
+    <path name="speaker-ext-1-liquid">
+        <ctl name="SLIM RX1 MUX" value="AIF1_PB" />
+        <ctl name="SLIM RX2 MUX" value="AIF1_PB" />
+        <ctl name="SLIM_0_RX Channels" value="Two" />
+        <ctl name="RX3 MIX1 INP1" value="RX1" />
+        <ctl name="RX5 MIX1 INP1" value="RX2" />
+        <ctl name="RX3 Digital Volume" value="68" />
+        <ctl name="RX5 Digital Volume" value="68" />
+        <ctl name="LINEOUT1 Volume" value="84" />
+        <ctl name="LINEOUT2 Volume" value="84" />
+        <ctl name="COMP2 Switch" value="1" />
+    </path>
+
    <path name="sidetone-iir">
         <ctl name="IIR1 Enable Band1" value="1" />
         <ctl name="IIR1 Enable Band2" value="1" />
@@ -1383,6 +1396,17 @@
         <ctl name="RX7 Digital Volume" value="84" />
         <ctl name="RX8 Digital Volume" value="84" />
         <ctl name="COMP0 Switch" value="1" />
+    </path>
+
+    <path name="speaker-and-headphones-ext-1-liquid">
+        <path name="headphones" />
+        <ctl name="RX3 MIX1 INP1" value="RX1" />
+        <ctl name="RX5 MIX1 INP1" value="RX2" />
+        <ctl name="RX3 Digital Volume" value="68" />
+        <ctl name="RX5 Digital Volume" value="68" />
+        <ctl name="LINEOUT1 Volume" value="84" />
+        <ctl name="LINEOUT2 Volume" value="84" />
+        <ctl name="COMP2 Switch" value="1" />
     </path>
 
     <path name="usb-headphones">
