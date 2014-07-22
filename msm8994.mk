@@ -29,6 +29,7 @@ PRODUCT_MODEL := MSM8994 for arm64
 
 PRODUCT_BOOT_JARS += qcmediaplayer
 
+PRODUCT_BOOT_JARS += WfdCommon
 # default is nosdcard, S/W button enabled in resource
 PRODUCT_CHARACTERISTICS := nosdcard
 
