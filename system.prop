@@ -121,3 +121,6 @@ av.offload.enable=true
 
 #property to enable VDS WFD solution
 persist.hwc.enable_vds=1
+
+# enable navigation bar
+qemu.hw.mainkeys=0
