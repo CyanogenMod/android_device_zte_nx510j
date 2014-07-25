@@ -1,4 +1,4 @@
-# Copyright (c) 2012, The Linux Foundation. All rights reserved.
+# Copyright (c) 2014, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -25,13 +25,36 @@
 # OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#filename				device
+# filename              partition
 
-NON-HLOS.bin			/dev/block/platform/msm_sdcc.1/by-name/modem
-sbl1.mbn				/dev/block/platform/msm_sdcc.1/by-name/sbl1
-sbl2.mbn				/dev/block/platform/msm_sdcc.1/by-name/sbl2
-sbl3.mbn				/dev/block/platform/msm_sdcc.1/by-name/sbl3
-tz.mbn					/dev/block/platform/msm_sdcc.1/by-name/tz
-rpm.mbn					/dev/block/platform/msm_sdcc.1/by-name/rpm
-emmc_appsboot.mbn		/dev/block/platform/msm_sdcc.1/by-name/aboot
+NON-HLOS.bin            /dev/block/bootdevice/by-name/modem
 
+sbl1.mbn                /dev/block/bootdevice/by-name/sbl1
+tz.mbn                  /dev/block/bootdevice/by-name/tz
+rpm.mbn                 /dev/block/bootdevice/by-name/rpm
+emmc_appsboot.mbn       /dev/block/bootdevice/by-name/aboot
+hyp.mbn                 /dev/block/bootdevice/by-name/hyp
+pmic.mbn                 /dev/block/bootdevice/by-name/pmic
+
+# filename + .bak       backup partition
+
+sbl1.mbn.bak            /dev/block/bootdevice/by-name/sbl1bak
+tz.mbn.bak              /dev/block/bootdevice/by-name/tzbak
+rpm.mbn.bak             /dev/block/bootdevice/by-name/rpmbak
+emmc_appsboot.mbn.bak   /dev/block/bootdevice/by-name/abootbak
+hyp.mbn.bak             /dev/block/bootdevice/by-name/hypbak
+pmic.mbn.bak             /dev/block/bootdevice/by-name/pmicbak
+
+# For multiple file firmware images that differ from *.mbn and *.bin
+# you can specify filename.* to direct all files to the same location.
+# For example for modem.mdt, modem.b00, modem.b01,... modem.bxx files
+# writting 'modem.*   location' will direct all files to 'location'.
+# If still some files need to go to different location give the full
+# file name also, for example 'modem.b01   other_location'
+
+# filename              location
+
+modem.*                 /dev/block/bootdevice/by-name/modem
+wcnss.*                 /dev/block/bootdevice/by-name/modem
+widevine.*              /dev/block/bootdevice/by-name/modem
+adsp.*                  /dev/block/bootdevice/by-name/modem
