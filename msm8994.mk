@@ -86,10 +86,10 @@ NFC_D := true
 
 ifeq ($(NFC_D), true)
     PRODUCT_PACKAGES += \
-        libnfcD-nci \
-        libnfcD_nci_jni \
+        libqnfc-nci \
+        libqnfc_nci_jni \
         nfc_nci.msm8994 \
-        NfcDNci \
+        QNfc \
         Tag \
         com.android.nfc_extras \
         com.android.nfc.helper \
