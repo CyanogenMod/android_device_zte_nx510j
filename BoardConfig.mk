@@ -73,9 +73,3 @@ TARGET_LDPRELOAD := libNimsWrap.so
 #Add NON-HLOS files for ota upgrade
 ADD_RADIO_FILES := true
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_msm
-
-ifeq ($(HOST_OS),linux)
-  ifeq ($(WITH_DEXPREOPT),)
-    WITH_DEXPREOPT := true
-  endif
-endif
