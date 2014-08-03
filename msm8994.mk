@@ -74,3 +74,6 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     libqcompostprocbundle
 
+# MSM IRQ Balancer configuration file
+PRODUCT_COPY_FILES += \
+    device/qcom/msm8994/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
