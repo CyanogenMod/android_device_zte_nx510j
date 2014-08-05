@@ -73,3 +73,6 @@ TARGET_LDPRELOAD := libNimsWrap.so
 #Add NON-HLOS files for ota upgrade
 ADD_RADIO_FILES := true
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_msm
+
+# Added to indicate that protobuf-c is supported in this build
+PROTOBUF_SUPPORTED := true
