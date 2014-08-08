@@ -33,6 +33,8 @@ PRODUCT_BOOT_JARS += qcmediaplayer \
                      qcom.fmradio
 
 PRODUCT_BOOT_JARS += WfdCommon
+PRODUCT_BOOT_JARS += extendedmediaextractor
+
 # default is nosdcard, S/W button enabled in resource
 PRODUCT_CHARACTERISTICS := nosdcard
 
