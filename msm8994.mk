@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+TARGET_USES_QCA_NFC := true
 TARGET_USES_QCOM_BSP := true
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
@@ -79,3 +80,40 @@ PRODUCT_PACKAGES += \
 # MSM IRQ Balancer configuration file
 PRODUCT_COPY_FILES += \
     device/qcom/msm8994/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
+
+ifeq ($(TARGET_USES_QCA_NFC),true)
+NFC_D := true
+
+ifeq ($(NFC_D), true)
+    PRODUCT_PACKAGES += \
+        libnfcD-nci \
+        libnfcD_nci_jni \
+        nfc_nci.msm8994 \
+        NfcDNci \
+        Tag \
+        com.android.nfc_extras \
+        com.android.nfc.helper \
+        SmartcardService \
+        org.simalliance.openmobileapi \
+        org.simalliance.openmobileapi.xml \
+        libassd
+else
+    PRODUCT_PACKAGES += \
+    libnfc-nci \
+    libnfc_nci_jni \
+    nfc_nci.msm8994 \
+    NfcNci \
+    Tag \
+    com.android.nfc_extras
+endif
+
+# file that declares the MIFARE NFC constant
+# Commands to migrate prefs from com.android.nfc3 to com.android.nfc
+# NFC access control + feature files + configuration
+PRODUCT_COPY_FILES += \
+        packages/apps/Nfc/migrate_nfc.txt:system/etc/updatecmds/migrate_nfc.txt \
+        frameworks/native/data/etc/com.nxp.mifare.xml:system/etc/permissions/com.nxp.mifare.xml \
+        frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
+        frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
+        frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml
+endif # TARGET_USES_QCA_NFC
