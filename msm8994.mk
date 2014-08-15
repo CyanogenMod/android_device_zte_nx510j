@@ -43,8 +43,15 @@ PRODUCT_CHARACTERISTICS := nosdcard
 PRODUCT_PACKAGES += libGLES_android
 
 # Audio configuration file
+ifeq ($(TARGET_USES_AOSP), true)
 PRODUCT_COPY_FILES += \
-    device/qcom/msm8994/audio_policy.conf:system/etc/audio_policy.conf \
+    device/qcom/common/media/audio_policy.conf:system/etc/audio_policy.conf
+else
+PRODUCT_COPY_FILES += \
+    device/qcom/msm8994/audio_policy.conf:system/etc/audio_policy.conf
+endif
+
+PRODUCT_COPY_FILES += \
     device/qcom/msm8994/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
     device/qcom/msm8994/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     device/qcom/msm8994/mixer_paths.xml:system/etc/mixer_paths.xml \
