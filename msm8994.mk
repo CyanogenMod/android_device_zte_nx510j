@@ -35,6 +35,7 @@ PRODUCT_BOOT_JARS += qcmediaplayer \
 
 PRODUCT_BOOT_JARS += WfdCommon
 PRODUCT_BOOT_JARS += extendedmediaextractor
+PRODUCT_BOOT_JARS += org.codeaurora.Performance
 
 # default is nosdcard, S/W button enabled in resource
 PRODUCT_CHARACTERISTICS := nosdcard
