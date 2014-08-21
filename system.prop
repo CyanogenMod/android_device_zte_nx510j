@@ -54,6 +54,12 @@ mm.enable.qcom_parser=3183219
 # Default to AwesomePlayer
 media.stagefright.use-awesome=true
 
+# Enable AwesomePlayer stats
+persist.debug.sf.statistics=1
+
+# Print clip name being played
+media.stagefright.log-uri=1
+
 # VIDC: debug_levels
 # 1:ERROR 2:HIGH 4:LOW 0:NOLOGS 7:AllLOGS
 vidc.debug.level=1
