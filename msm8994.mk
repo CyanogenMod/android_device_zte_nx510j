@@ -89,6 +89,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     device/qcom/msm8994/msm_irqbalance.conf:system/vendor/etc/msm_irqbalance.conf
 
+#ANT+ stack
+PRODUCT_PACKAGES += \
+    AntHalService \
+    libantradio \
+    antradio_app
+
 ifeq ($(TARGET_USES_QCA_NFC),true)
 NFC_D := true
 
