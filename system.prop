@@ -144,3 +144,6 @@ qemu.hw.mainkeys=0
 
 #enable voice path for PCM VoIP by default
 use.voice.path.for.pcm.voip=true
+
+#selects CoreSight configuration to enable
+persist.debug.coresight.config=stm-events
