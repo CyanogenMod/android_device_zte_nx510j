@@ -89,6 +89,11 @@ service qseecomd /system/bin/qseecomd
    user root
    group root
 
+service qmpd /system/bin/qmpd
+   class core
+   user system
+   group system
+
 service perfd /system/bin/perfd
    user root
    disabled
