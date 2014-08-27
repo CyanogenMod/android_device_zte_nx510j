@@ -117,14 +117,14 @@ service thermal-engine /system/bin/thermal-engine
    user root
    group root
 
-#service security-check1 /sbin/security_boot_check system
-#    class core
-#    oneshot
-#
-#service security-check2 /sbin/security_boot_check recovery
-#    class core
-#    oneshot
-#
+service security-check1 /sbin/security_boot_check system
+    class core
+    oneshot
+
+service security-check2 /sbin/security_boot_check recovery
+    class core
+    oneshot
+
 service time_daemon /system/bin/time_daemon
    class late_start
    user root
@@ -219,3 +219,8 @@ service ppd /system/bin/mm-pp-daemon
 
 on property:init.svc.surfaceflinger=stopped
     stop ppd
+
+service ml_daemon /system/bin/ml_daemon
+    class core
+    user root
+    group root

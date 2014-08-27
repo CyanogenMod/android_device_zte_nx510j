@@ -36,6 +36,8 @@ PRODUCT_BOOT_JARS += qcmediaplayer \
 PRODUCT_BOOT_JARS += WfdCommon
 PRODUCT_BOOT_JARS += extendedmediaextractor
 PRODUCT_BOOT_JARS += org.codeaurora.Performance
+PRODUCT_BOOT_JARS += security-bridge
+PRODUCT_BOOT_JARS += qsb-port
 
 # default is nosdcard, S/W button enabled in resource
 PRODUCT_CHARACTERISTICS := nosdcard
