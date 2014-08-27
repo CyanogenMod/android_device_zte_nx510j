@@ -11,9 +11,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
+ifneq ($(TARGET_USES_AOSP),true)
 TARGET_USES_QCA_NFC := true
 TARGET_USES_QCOM_BSP := true
+endif
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # copy customized media_profiles and media_codecs xmls for 8994
