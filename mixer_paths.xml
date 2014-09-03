@@ -1390,8 +1390,8 @@
 
     <path name="speaker-and-headphones">
         <path name="headphones" />
-        <ctl name="DAC1 Switch" value="1" />
         <ctl name="RX7 MIX1 INP1" value="RX1" />
+        <ctl name="RX8 MIX1 INP1" value="RX2" />
         <ctl name="COMP0 Switch" value="1" />
     </path>
 
