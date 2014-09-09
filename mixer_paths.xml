@@ -811,6 +811,12 @@
         <ctl name="MultiMedia2 Mixer PRI_MI2S_TX" value="1" />
     </path>
 
+    <path name="afe-proxy-playback afe-proxy">
+    </path>
+
+    <path name="afe-proxy-record afe-proxy">
+    </path>
+
     <path name="voice-call">
         <ctl name="SLIM_0_RX_Voice Mixer CSVoice" value="1" />
         <ctl name="Voice_Tx Mixer SLIM_0_TX_Voice" value="1" />
@@ -829,6 +835,11 @@
     <path name="voice-call bt-sco-wb">
         <ctl name="AUX PCM SampleRate" value="16000" />
         <path name="voice-call bt-sco" />
+    </path>
+
+    <path name="voice-call afe-proxy">
+        <ctl name="AFE_PCM_RX_Voice Mixer CSVoice" value="1" />
+        <ctl name="Voice_Tx Mixer AFE_PCM_TX_Voice" value="1" />
     </path>
 
     <path name="voice-call usb-headphones">
@@ -854,6 +865,11 @@
     <path name="voice2-call bt-sco-wb">
         <ctl name="AUX PCM SampleRate" value="16000" />
         <path name="voice2-call bt-sco" />
+    </path>
+
+    <path name="voice2-call afe-proxy">
+        <ctl name="AFE_PCM_RX_Voice Mixer Voice2" value="1" />
+        <ctl name="Voice2_Tx Mixer AFE_PCM_TX_Voice2" value="1" />
     </path>
 
     <path name="voice2-call usb-headphones">
@@ -980,6 +996,10 @@
         <path name="incall_music_uplink" />
     </path>
 
+    <path name="incall_music_uplink afe-proxy">
+        <path name="incall_music_uplink" />
+    </path>
+
     <path name="incall_music_uplink usb-headphones">
         <path name="incall_music_uplink" />
     </path>
@@ -997,6 +1017,10 @@
     </path>
 
     <path name="incall_music_uplink2 bt-sco-wb">
+        <path name="incall_music_uplink2" />
+    </path>
+
+    <path name="incall_music_uplink2 afe-proxy">
         <path name="incall_music_uplink2" />
     </path>
 
@@ -1041,6 +1065,11 @@
         <path name="volte-call bt-sco" />
     </path>
 
+    <path name="volte-call afe-proxy">
+        <ctl name="AFE_PCM_RX_Voice Mixer VoLTE" value="1" />
+        <ctl name="VoLTE_Tx Mixer AFE_PCM_TX_VoLTE" value="1" />
+    </path>
+
     <path name="volte-call usb-headphones">
         <ctl name="AFE_PCM_RX_Voice Mixer VoLTE" value="1" />
         <ctl name="VoLTE_Tx Mixer AFE_PCM_TX_VoLTE" value="1" />
@@ -1062,6 +1091,11 @@
     <path name="compress-voip-call bt-sco-wb">
         <ctl name="AUX PCM SampleRate" value="16000" />
         <path name="compress-voip-call bt-sco" />
+    </path>
+
+    <path name="compress-voip-call afe-proxy">
+        <ctl name="AFE_PCM_RX_Voice Mixer Voip" value="1" />
+        <ctl name="Voip_Tx Mixer AFE_PCM_TX_Voip" value="1" />
     </path>
 
     <path name="compress-voip-call usb-headphones">
@@ -1145,6 +1179,11 @@
     <path name="vowlan-call bt-sco-wb">
         <ctl name="AUX PCM SampleRate" value="16000" />
         <path name="vowlan-call bt-sco" />
+    </path>
+
+    <path name="vowlan-call afe-proxy">
+        <ctl name="AFE_PCM_RX_Voice Mixer VoWLAN" value="1" />
+        <ctl name="VoWLAN_Tx Mixer AFE_PCM_TX_VoWLAN" value="1" />
     </path>
 
     <path name="vowlan-call usb-headphones">
@@ -1822,6 +1861,12 @@
     <!-- Added for ADSP testfwk -->
     <path name="ADSP testfwk">
         <ctl name="SLIMBUS_DL_HL Switch" value="1" />
+    </path>
+
+    <path name="voice-rx">
+    </path>
+
+    <path name="voice-tx">
     </path>
 
 </mixer>
