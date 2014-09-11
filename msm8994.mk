@@ -63,7 +63,8 @@ PRODUCT_COPY_FILES += \
     device/qcom/msm8994/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
     device/qcom/msm8994/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
     device/qcom/msm8994/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
-    device/qcom/msm8994/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml
+    device/qcom/msm8994/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
+    device/qcom/msm8994/audio_platform_info.xml:system/etc/audio_platform_info.xml
 
 # Camera configuration
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
