@@ -114,6 +114,10 @@
     <ctl name="MultiMedia6 Mixer SLIM_0_TX" value="0" />
     <ctl name="IIR1 INP1 MUX" value="ZERO" />
     <ctl name="SLIM0_RX_VI_FB_LCH_MUX" value="ZERO" />
+    <ctl name="SLIM0_RX_VI_FB_RCH_MUX" value="ZERO" />
+    <ctl name="VI_FEED_TX Channels" value="Two" />
+    <ctl name="AIF4_VI Mixer SPKR_VI_1" value="0" />
+    <ctl name="AIF4_VI Mixer SPKR_VI_2" value="0" />
     <ctl name="SLIM TX10 MUX" value="ZERO" />
     <ctl name="SLIM TX9 MUX" value="ZERO" />
     <ctl name="SLIM TX8 MUX" value="ZERO" />
@@ -354,10 +358,6 @@
     <!-- ADSP testfwk -->
     <ctl name="SLIMBUS_DL_HL Switch" value="0" />
     <!-- ADSP testfwk end-->
-
-    <!-- VI feedback-->
-    <ctl name="VIONOFF Switch" value="0" />
-    <!-- VI feedback end-->
 
     <!-- These are audio route (FE to BE) specific mixer settings -->
     <path name="deep-buffer-playback">
@@ -836,9 +836,6 @@
         <ctl name="Voice_Tx Mixer AFE_PCM_TX_Voice" value="1" />
     </path>
 
-    <path name="voice-call speaker-protected">
-    </path>
-
     <path name="voice2-call">
         <ctl name="SLIM_0_RX_Voice Mixer Voice2" value="1" />
         <ctl name="Voice2_Tx Mixer SLIM_0_TX_Voice2" value="1" />
@@ -1113,7 +1110,6 @@
     </path>
 
     <path name="spkr-vi-record">
-        <ctl name="SLIM0_RX_VI_FB_LCH_MUX"  value="SLIM4_TX" />
     </path>
 
     <path name="qchat-call">
@@ -1293,6 +1289,18 @@
     </path>
 
     <path name="speaker-protected">
+        <ctl name="AIF4_VI Mixer SPKR_VI_1" value="1" />
+        <ctl name="AIF4_VI Mixer SPKR_VI_2" value="1" />
+        <path name="speaker" />
+        <ctl name="VI_FEED_TX Channels" value="Two" />
+        <ctl name="SLIM0_RX_VI_FB_LCH_MUX"  value="SLIM4_TX" />
+        <ctl name="SLIM0_RX_VI_FB_RCH_MUX"  value="SLIM4_TX" />
+    </path>
+
+    <path name="vi-feedback">
+    </path>
+
+    <path name="speaker-mono">
         <ctl name="SLIM RX1 MUX" value="AIF1_PB" />
         <ctl name="SLIM_0_RX Channels" value="One" />
         <ctl name="RX7 MIX1 INP1" value="RX1" />
@@ -1300,8 +1308,11 @@
         <ctl name="RX7 Digital Volume" value="84" />
     </path>
 
-    <path name="vi-feedback">
-        <ctl name="VIONOFF Switch" value="1" />
+    <path name="voice-speaker-protected">
+        <ctl name="AIF4_VI Mixer SPKR_VI_1" value="1" />
+        <path name="speaker-mono" />
+        <ctl name="VI_FEED_TX Channels" value="One" />
+        <ctl name="SLIM0_RX_VI_FB_LCH_MUX"  value="SLIM4_TX" />
     </path>
 
     <path name="handset">
@@ -1371,7 +1382,7 @@
     </path>
 
     <path name="voice-speaker">
-        <path name="speaker" />
+        <path name="speaker-mono" />
     </path>
 
     <path name="voice-speaker-mic">
