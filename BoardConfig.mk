@@ -85,3 +85,6 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
+
+#Enable HW based full disk encryption
+TARGET_HW_DISK_ENCRYPTION := true
