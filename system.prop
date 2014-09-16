@@ -125,7 +125,7 @@ ro.qc.sdk.camera.facialproc=false
 persist.debug.wfd.enable=1
 #property to choose between virtual/external wfd display
 persist.sys.wfd.virtual=0
-tunnel.audio.encode = true
+tunnel.audio.encode = false
 
 #use VERY_HIGH_QUALITY for audio resampler
 af.resampler.quality=4
