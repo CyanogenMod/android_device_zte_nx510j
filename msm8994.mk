@@ -40,6 +40,7 @@ PRODUCT_BOOT_JARS += org.codeaurora.Performance
 PRODUCT_BOOT_JARS += security-bridge
 PRODUCT_BOOT_JARS += qsb-port
 PRODUCT_BOOT_JARS += oem-services
+PRODUCT_BOOT_JARS += vcard
 
 # default is nosdcard, S/W button enabled in resource
 PRODUCT_CHARACTERISTICS := nosdcard
