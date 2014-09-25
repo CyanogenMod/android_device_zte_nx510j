@@ -36,5 +36,6 @@
     <ctrl name="max_ape_phrases" value="10" />
     <ctrl name="max_ape_users" value="10" />
     <ctrl name="enable_failure_detection" value="false" />
+    <ctrl name="enable_transition" value="false" />
 </sound_trigger_platform_info>
 
