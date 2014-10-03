@@ -267,9 +267,9 @@
 
     <EncoderProfile quality="timelapsehigh" fileFormat="mp4" duration="30">
       <Video codec="h264"
-             bitRate="20000000"
-             width="1920"
-             height="1080"
+             bitRate="100000000"
+             width="3840"
+             height="2160"
              frameRate="30" />
 
       <!-- audio setting is ignored -->
