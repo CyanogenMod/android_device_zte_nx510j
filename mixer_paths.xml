@@ -1440,8 +1440,8 @@
         <ctl name="ANC2 MUX" value="ADC4" />
 	<ctl name="ADC3 Volume" value="8" />
         <ctl name="ADC4 Volume" value="8" />
-        <ctl name="HPHL Volume" value="14" />
-        <ctl name="HPHR Volume" value="14" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
         <ctl name="SLIM RX1 MUX" value="AIF1_PB" />
         <ctl name="SLIM RX2 MUX" value="AIF1_PB" />
         <ctl name="SLIM_0_RX Channels" value="Two" />
@@ -1478,8 +1478,8 @@
         <ctl name="ANC2 MUX" value="ADC4" />
         <ctl name="ADC3 Volume" value="8" />
         <ctl name="ADC4 Volume" value="8" />
-        <ctl name="HPHL Volume" value="14" />
-        <ctl name="HPHR Volume" value="14" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
         <ctl name="SLIM RX1 MUX" value="AIF1_PB" />
         <ctl name="SLIM RX2 MUX" value="AIF1_PB" />
         <ctl name="SLIM_0_RX Channels" value="Two" />
@@ -1507,8 +1507,8 @@
         <ctl name="ANC2 MUX" value="ADC4" />
         <ctl name="ADC3 Volume" value="8" />
         <ctl name="ADC4 Volume" value="8" />
-        <ctl name="HPHL Volume" value="14" />
-        <ctl name="HPHR Volume" value="14" />
+        <ctl name="HPHL Volume" value="20" />
+        <ctl name="HPHR Volume" value="20" />
         <ctl name="SLIM RX1 MUX" value="AIF1_PB" />
         <ctl name="SLIM RX2 MUX" value="AIF1_PB" />
         <ctl name="SLIM_0_RX Channels" value="Two" />
