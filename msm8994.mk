@@ -130,6 +130,8 @@ ifeq ($(NFC_D), true)
         SmartcardService \
         org.simalliance.openmobileapi \
         org.simalliance.openmobileapi.xml \
+        com.vzw.nfc\
+        com.vzw.nfc.xml\
         libassd
 else
     PRODUCT_PACKAGES += \
