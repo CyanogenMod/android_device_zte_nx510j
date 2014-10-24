@@ -78,6 +78,11 @@ TARGET_LDPRELOAD := libNimsWrap.so
 ADD_RADIO_FILES := true
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_msm
 
+#Peripheral manager is enabled on this target
+#This flag means that peripheral manager is enabled
+#is controlling the power on/off on certain peripherals.
+TARGET_PER_MGR_ENABLED := true
+
 # Force camera module to be compiled only in 32-bit mode on 64-bit systems
 # Once camera module can run in the native mode of the system (either
 # 32-bit or 64-bit), the following line should be deleted
