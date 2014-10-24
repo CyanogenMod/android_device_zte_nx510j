@@ -122,6 +122,7 @@ ifeq ($(NFC_D), true)
         Tag \
         GsmaNfcService \
         com.gsma.services.nfc \
+        com.gsma.services.utils \
         com.gsma.services.nfc.xml \
         com.android.nfc_extras \
         com.android.qcom.nfc_extras \
