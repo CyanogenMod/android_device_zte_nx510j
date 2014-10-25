@@ -50,9 +50,11 @@ media.stagefright.enable-scan=true
 mmp.enable.3g2=true
 mm.enable.smoothstreaming=true
 media.aac_51_output_enabled=true
+
+#3314291: Decimal sum after adding FLAC parser flag 131072
 #37491 is decimal sum of supported codecs in AAL
 #codecs: DivX DivXHD AVI AC3 ASF AAC QCP DTS 3G2 MP2TS
-mm.enable.qcom_parser=3183219
+mm.enable.qcom_parser=3314291
 
 # Default to AwesomePlayer
 media.stagefright.use-awesome=true
@@ -136,6 +138,9 @@ audio.offload.buffer.size.kb=32
 
 #Enable offload audio video playback by default
 av.offload.enable=true
+
+#Enable PCM offload by default
+audio.offload.pcm.enable=true
 
 #property to enable VDS WFD solution
 persist.hwc.enable_vds=1
