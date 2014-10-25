@@ -23,6 +23,7 @@ debug.egl.hw=1
 debug.composition.type=c2d
 persist.hwc.mdpcomp.enable=true
 persist.mdpcomp.4k2kSplit=1
+persist.hwc.mdpcomp.maxpermixer=5
 debug.mdpcomp.logs=0
 persist.hwc.ptor.enable=true
 dalvik.vm.heapsize=36m
