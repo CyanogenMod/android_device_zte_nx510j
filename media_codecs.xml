@@ -113,7 +113,6 @@ Only the three quirks included above are recognized at this point:
             <Quirk name="requires-allocate-on-output-ports" />
         </MediaCodec>
         <!-- Audio Software  -->
-        <MediaCodec name="AACEncoder" type="audio/mp4a-latm" />
         <!-- Video Hardware  -->
         <MediaCodec name="OMX.qcom.video.encoder.avc" type="video/avc" >
             <Quirk name="requires-allocate-on-input-ports" />
@@ -181,17 +180,7 @@ Only the three quirks included above are recognized at this point:
         <MediaCodec name="OMX.qcom.audio.decoder.amrwbplus" type="audio/amr-wb-plus" >
         </MediaCodec>
         <!-- Audio Software  -->
-        <MediaCodec name="MP3Decoder" type="audio/mpeg" />
         <MediaCodec name="OMX.google.aac.decoder" type="audio/mp4a-latm" />
-        <MediaCodec name="AACDecoder" type="audio/mp4a-latm" />
-        <MediaCodec name="FLACDecoder" type="audio/flac" />
-        <!--
-            Use Google's RAW decoder to support ACodec path for FLAC clips as
-            FLACDecoder is non-OMX component based. A component can be used to
-            support several mimetypes, so existing raw decoder usecases will not
-            be affected by this.
-        -->
-        <MediaCodec name="OMX.google.raw.decoder" type="audio/flac" />
         <MediaCodec name="OMX.qcom.audio.decoder.Qcelp13" type="audio/qcelp" >
             <Quirk name="requires-global-flush" />
         </MediaCodec>
