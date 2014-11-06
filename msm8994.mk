@@ -68,10 +68,6 @@ PRODUCT_COPY_FILES += \
     device/qcom/msm8994/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
     device/qcom/msm8994/audio_platform_info.xml:system/etc/audio_platform_info.xml
 
-# Camera configuration
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    camera.disable_zsl_mode=1
-
 # Listen configuration file
 PRODUCT_COPY_FILES += \
     device/qcom/msm8994/listen_platform_info.xml:system/etc/listen_platform_info.xml
