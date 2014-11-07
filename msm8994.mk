@@ -41,6 +41,7 @@ PRODUCT_BOOT_JARS += security-bridge
 PRODUCT_BOOT_JARS += qsb-port
 PRODUCT_BOOT_JARS += oem-services
 PRODUCT_BOOT_JARS += vcard
+PRODUCT_BOOT_JARS += tcmiface
 
 # default is nosdcard, S/W button enabled in resource
 PRODUCT_CHARACTERISTICS := nosdcard
