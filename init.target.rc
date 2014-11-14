@@ -60,8 +60,6 @@ on post-fs-data
 on boot
     start rmt_storage
     start rfs_access
-    write /sys/bus/i2c/devices/2-004a/update_fw 1
-    write /sys/bus/i2c/devices/2-004a/update_cfg 1
     write /sys/bus/i2c/devices/2-0020/input/input0/update_fw 1
 
 #start camera server as daemon
