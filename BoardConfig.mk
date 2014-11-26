@@ -87,7 +87,7 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 PROTOBUF_SUPPORTED := true
 
 #Enable HW based full disk encryption
-TARGET_HW_DISK_ENCRYPTION := true
+TARGET_HW_DISK_ENCRYPTION := false
 
 # Enable dex pre-opt to speed up initial boot
 ifneq ($(TARGET_USES_AOSP),true)
