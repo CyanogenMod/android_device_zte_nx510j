@@ -1340,8 +1340,8 @@
         <ctl name="SLIM_0_RX Channels" value="Two" />
         <ctl name="RX3 MIX1 INP1" value="RX1" />
         <ctl name="RX5 MIX1 INP1" value="RX2" />
-        <ctl name="RX3 Digital Volume" value="68" />
-        <ctl name="RX5 Digital Volume" value="68" />
+        <ctl name="RX3 Digital Volume" value="84" />
+        <ctl name="RX5 Digital Volume" value="84" />
         <ctl name="LINEOUT1 Volume" value="84" />
         <ctl name="LINEOUT2 Volume" value="84" />
         <ctl name="COMP2 Switch" value="1" />
