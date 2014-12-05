@@ -144,8 +144,11 @@ audio.offload.buffer.size.kb=32
 #Enable offload audio video playback by default
 av.offload.enable=true
 
-#Enable PCM offload by default
-audio.offload.pcm.enable=true
+#Disable 16 bit PCM offload by default
+audio.offload.pcm.16bit.enable=false
+
+#Enable 24 bit PCM offload by default
+audio.offload.pcm.24bit.enable=true
 
 #property to enable VDS WFD solution
 persist.hwc.enable_vds=1
