@@ -170,7 +170,7 @@ qemu.hw.mainkeys=0
 use.voice.path.for.pcm.voip=true
 
 #selects CoreSight configuration to enable
-persist.debug.coresight.config=stm-events
+persist.debug.coresight.config=none
 
 #System property for FM transmitter
 ro.fm.transmitter=false
