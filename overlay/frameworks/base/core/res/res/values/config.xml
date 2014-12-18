@@ -52,4 +52,13 @@
    <integer name="launchboost_cpuboost_param">0x20D</integer>
    <integer name="launchboost_pcdisbl_param">0</integer>
    <integer name="launchboost_ksmboost_param">0</integer>
+
+   <!-- monitor locale change -->
+   <bool name="config_monitor_locale_change">true</bool>
+
+   <!-- display for radio tech -->
+   <bool name="config_display_rat">true</bool>
+
+   <!-- spn display control -->
+   <bool name="config_spn_display_control">true</bool>
 </resources>
