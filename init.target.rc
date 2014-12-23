@@ -269,3 +269,4 @@ service seald /system/bin/seald
     class late_start
     user root
     group system
+    oneshot
