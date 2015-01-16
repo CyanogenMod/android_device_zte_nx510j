@@ -45,11 +45,12 @@
    <integer name="scrollboost_pcdisbl_param">0</integer>
    <integer name="scrollboost_ksmboost_param">0</integer>
 
-   <!-- Whether cpu boost is enabled for application's 1st launch. -->
+   <!-- Whether cpu boost is enabled for application's 1st launch,subsequent launch and in-app-activity, -->
    <bool name="config_enableCpuBoostForAppLaunch">true</bool>
    <integer name="launchboost_timeout_param">2000</integer>
    <integer name="launchboost_schedboost_param">0</integer>
    <integer name="launchboost_cpuboost_param">0x20D</integer>
+   <integer name="launchboost_cpu_6_7_offline_param">0x3DFD</integer>
    <integer name="launchboost_pcdisbl_param">0</integer>
    <integer name="launchboost_ksmboost_param">0</integer>
 
