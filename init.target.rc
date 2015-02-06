@@ -57,6 +57,7 @@ on post-fs-data
     mkdir /persist/data/sfs 0700 system system
     mkdir /persist/data/tz 0700 system system
     mkdir /data/usf 0700 system system
+    mkdir /data/misc/dts 0770 media audio
 
 on boot
     start rmt_storage
@@ -279,5 +280,11 @@ service ml_daemon /system/bin/ml_daemon
 service seald /system/bin/seald
     class late_start
     user root
+    group system
+    oneshot
+
+service dts_configurator /system/bin/dts_configurator
+    class main
+    user system
     group system
     oneshot
