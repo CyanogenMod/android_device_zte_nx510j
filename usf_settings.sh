@@ -107,6 +107,3 @@ if [ ! -e $trigger_file ]; then
 
    ln -s $sc_dir/sw_calib_"$type".dat $sc_dir/sw_calib.dat
 fi
-
-# Set enabled properties for daemon
-setprop ro.qc.sdk.us.digitalpen 1
