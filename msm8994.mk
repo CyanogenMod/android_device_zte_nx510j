@@ -33,17 +33,18 @@ PRODUCT_DEVICE := msm8994
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := MSM8994 for arm64
 
-PRODUCT_BOOT_JARS += qcmediaplayer \
-                     qcom.fmradio
-
+PRODUCT_BOOT_JARS += qcmediaplayer
+PRODUCT_BOOT_JARS += org.codeaurora.Performance
+PRODUCT_BOOT_JARS += vcard
+PRODUCT_BOOT_JARS += tcmiface
+ifneq ($(strip $(QCPATH)),)
+PRODUCT_BOOT_JARS += qcom.fmradio
 PRODUCT_BOOT_JARS += WfdCommon
 PRODUCT_BOOT_JARS += extendedmediaextractor
-PRODUCT_BOOT_JARS += org.codeaurora.Performance
 PRODUCT_BOOT_JARS += security-bridge
 PRODUCT_BOOT_JARS += qsb-port
 PRODUCT_BOOT_JARS += oem-services
-PRODUCT_BOOT_JARS += vcard
-PRODUCT_BOOT_JARS += tcmiface
+endif
 
 # default is nosdcard, S/W button enabled in resource
 PRODUCT_CHARACTERISTICS := nosdcard
