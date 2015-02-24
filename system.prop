@@ -32,6 +32,10 @@ dalvik.vm.heapsize=36m
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 
+#CEC settings
+ro.hdmi.device_type=4
+persist.sys.hdmi.addr.playback=4
+
 ro.hdmi.enable=true
 persist.speaker.prot.enable=false
 #0 is default(30 min)
