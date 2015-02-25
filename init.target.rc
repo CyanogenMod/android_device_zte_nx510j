@@ -1,4 +1,4 @@
-# Copyright (c) 2011-2014, The Linux Foundation. All rights reserved.
+# Copyright (c) 2011-2015, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are
@@ -73,6 +73,8 @@ on boot
     chown system drmrpc /sys/devices/soc.0/f9924000.i2c/i2c-2/2-004a/secure_touch_enable
     chown system drmrpc /sys/devices/soc.0/f9924000.i2c/i2c-2/2-004a/secure_touch
     write /proc/sys/kernel/sched_boost 1
+    write /proc/sys/vm/dirty_ratio 5
+    write /proc/sys/vm/dirty_background_ratio 1
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
