@@ -155,6 +155,9 @@ audio.offload.pcm.24bit.enable=true
 #property to enable VDS WFD solution
 persist.hwc.enable_vds=1
 
+#property for vendor specific library
+ro.vendor.gt_library=libqti-gt.so
+
 #hwui properties
 ro.hwui.texture_cache_size=72
 ro.hwui.layer_cache_size=48
