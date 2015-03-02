@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2014, The Linux Foundation. All rights reserved.
+# Copyright (c) 2014-2015, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -30,8 +30,15 @@ target=`getprop ro.board.platform`
 action=`getprop sys.usb_uicc.enabled`
 uicc_loading=`getprop sys.usb_uicc.loading`
 
+# Set platform variables
+if [ -f /sys/devices/soc0/hw_platform ]; then
+    soc_hwplatform=`cat /sys/devices/soc0/hw_platform` 2> /dev/null
+else
+    soc_hwplatform=`cat /sys/devices/system/soc/soc0/hw_platform` 2> /dev/null
+fi
+
 # Perfom uicc_insert/uicc_remove only when usb uicc client says so
-if [ $uicc_loading != "1" ]; then
+if [ ("$soc_hwplatform" != "MTP") -o ($uicc_loading != "1") ]; then
     action=""
 fi
 
