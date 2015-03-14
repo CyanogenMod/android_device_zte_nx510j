@@ -291,3 +291,9 @@ service dts_configurator /system/bin/dts_configurator
     user system
     group system
     oneshot
+
+service energy-awareness /system/bin/energy-awareness
+    class main
+    user root
+    group system
+    oneshot
