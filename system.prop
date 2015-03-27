@@ -162,7 +162,6 @@ persist.hwc.enable_vds=1
 #property for vendor specific library
 ro.vendor.at_library=libqti-at.so
 ro.vendor.gt_library=libqti-gt.so
-sys.games.gt.prof=1
 
 #hwui properties
 ro.hwui.texture_cache_size=72
