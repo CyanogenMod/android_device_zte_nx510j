@@ -102,7 +102,6 @@ ro.qualcomm.cabl=2
 # System prop to turn on CdmaLTEPhone always
 telephony.lteOnCdmaDevice=1
 persist.radio.rat_on=combine
-persist.env.contacts.autosync=true
 
 #
 # System props for bluetooth
