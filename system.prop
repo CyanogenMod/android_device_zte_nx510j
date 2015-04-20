@@ -107,6 +107,9 @@ persist.env.contacts.autosync=true
 # System prop to turn on hfp client
 bluetooth.hfp.client=1
 
+# Set Bluetooth transport
+# initialization timeout
+bluetooth.enable_timeout_ms=12000
 
 #Simulate sdcard on /data/media
 #
