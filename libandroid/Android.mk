@@ -14,7 +14,7 @@ LOCAL_SRC_FILES_arm64 := ../../../../$(PRODUCT_OUT)/obj/PACKAGING/pdk_fusion_int
 LOCAL_MULTILIB := both
 include $(BUILD_PREBUILT)
 
-$(LOCAL_PATH)/../../../../out/target/product/msm8992/obj/PACKAGING/pdk_fusion_intermediates/system/lib/libandroid.so : $(PRODUCT_OUT)/obj/PACKAGING/pdk_fusion_intermediates/pdk_fusion.stamp
-$(LOCAL_PATH)/../../../../out/target/product/msm8992/obj/PACKAGING/pdk_fusion_intermediates/system/lib64/libandroid.so : $(PRODUCT_OUT)/obj/PACKAGING/pdk_fusion_intermediates/pdk_fusion.stamp
+$(LOCAL_PATH)/../../../../out/target/product/msm8994/obj/PACKAGING/pdk_fusion_intermediates/system/lib/libandroid.so : $(PRODUCT_OUT)/obj/PACKAGING/pdk_fusion_intermediates/pdk_fusion.stamp
+$(LOCAL_PATH)/../../../../out/target/product/msm8994/obj/PACKAGING/pdk_fusion_intermediates/system/lib64/libandroid.so : $(PRODUCT_OUT)/obj/PACKAGING/pdk_fusion_intermediates/pdk_fusion.stamp
 endif
 endif
