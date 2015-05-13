@@ -190,6 +190,9 @@ on boot
     chown radio radio /data/misc/radio/copy_complete
     chmod 0660 /data/misc/radio/copy_complete
 
+    # Socket location for RIDL
+    mkdir /dev/socket/RIDL 2770 system system
+
 # msm specific files that need to be created on /data
 on post-fs-data
     # Create directory for TZ Apps
@@ -304,6 +307,12 @@ service qfintverify /sbin/qfintverify
     class core
     seclabel u:r:qfips:s0
     oneshot
+
+    # RIDL data
+    mkdir /data/misc/SelfHost/ 0710 system shell
+    mkdir /data/misc/SelfHost/QCLogs/ 2750 system shell
+    mkdir /data/misc/SelfHost/QCLogs/temp/ 0700 system shell
+    mkdir /data/misc/SelfHost/storage/ 0700 system shell
 
 service qcomsysd /system/bin/qcom-system-daemon
     class main
@@ -954,3 +963,11 @@ service wfdservice /system/bin/wfdservice
     class main
     user system
     group graphics audio camera inet net_bt net_bt_admin net_bt_stack drmrpc bluetooth media_rw media
+
+service RIDL /system/vendor/bin/RIDLClient.exe
+    class late_start
+    oneshot
+    user system
+    group system inet log sdcard_r sdcard_rw
+    # removed for security team - misc bluetooth radio gps wifi diag media_rw
+    # limited to 12 groups.  Unused: audio usb qcom_diag net_bt_admin net_bt_stac net_raw net_admin
