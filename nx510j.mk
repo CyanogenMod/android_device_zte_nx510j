@@ -323,7 +323,8 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     qcmediaplayer \
     libqcmediaplayer \
-    libextmedia_jni
+    libextmedia_jni \
+    libstagefright_soft_flacdec
 
 # Power
 PRODUCT_PACKAGES += \
