@@ -20,10 +20,12 @@ import re
 import sha
 
 def FullOTA_Assertions(info):
-  print "FullOTA_Assertions not implemented"
+  AddBasebandAssertion(info)
+  return
 
 def IncrementalOTA_Assertions(info):
-  print "IncrementalOTA_Assertions not implemented"
+  AddBasebandAssertion(info)
+  return
 
 def InstallImage(img_name, img_file, partition, info):
   common.ZipWriteStr(info.output_zip, img_name, img_file)
@@ -64,3 +66,13 @@ def IncrementalOTA_InstallEnd(info):
         print k + " image unchanged; skipping"
     except KeyError:
       print "warning: " + k + " image missing from target; not flashing " + k
+
+def AddBasebandAssertion(info):
+  android_info = info.input_zip.read("OTA/android-info.txt")
+  m = re.search(r'require\s+version-baseband\s*=\s*(\S+)', android_info)
+  if m:
+    versions = m.group(1).split('|')
+    if len(versions) and '*' not in versions:
+      cmd = 'assert(nx510j.verify_baseband(' + ','.join(['"%s"' % baseband for baseband in versions]) + ') == "1");'
+      info.script.AppendExtra(cmd)
+  return
