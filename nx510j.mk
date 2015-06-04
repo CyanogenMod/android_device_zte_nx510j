@@ -306,6 +306,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8994
 
+# Recovery
+PRODUCT_PACKAGES += \
+    librecovery_updater_nx510j
+
 # Ril
 PRODUCT_PACKAGES += \
     libxml2
