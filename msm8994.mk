@@ -13,7 +13,6 @@
 # limitations under the License.
 DEVICE_PACKAGE_OVERLAYS := device/qcom/msm8994/overlay
 
-$(call inherit-product, hardware/qcom/msm8994/msm8994.mk)
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, device/qcom/common/common64.mk)
 
