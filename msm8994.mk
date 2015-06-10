@@ -25,6 +25,8 @@ PRODUCT_COPY_FILES += device/qcom/msm8994/media_profiles.xml:system/etc/media_pr
                       device/qcom/msm8994/media_codecs.xml:system/etc/media_codecs.xml
 endif  #TARGET_ENABLE_QC_AV_ENHANCEMENTS
 
+PRODUCT_COPY_FILES += device/qcom/msm8994/whitelistedapps.xml:system/etc/whitelistedapps.xml
+
 # Override heap growth limit due to high display density on device
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapgrowthlimit=256m
