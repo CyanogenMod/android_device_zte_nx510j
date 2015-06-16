@@ -13,6 +13,21 @@
 # limitations under the License.
 DEVICE_PACKAGE_OVERLAYS := device/qcom/msm8994/overlay
 
+ifneq ($(TARGET_USES_AOSP),true)
+TARGET_USES_QCA_NFC := true
+TARGET_USES_QCOM_BSP := false
+endif
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
+# copy customized media_profiles and media_codecs xmls for 8994
+ifeq ($(TARGET_ENABLE_QC_AV_ENHANCEMENTS), true)
+PRODUCT_COPY_FILES += device/qcom/msm8994/media_profiles.xml:system/etc/media_profiles.xml \
+                      device/qcom/msm8994/media_codecs.xml:system/etc/media_codecs.xml
+endif  #TARGET_ENABLE_QC_AV_ENHANCEMENTS
+
+# Override heap growth limit due to high display density on device
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapgrowthlimit=256m
 $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, device/qcom/common/common64.mk)
 
