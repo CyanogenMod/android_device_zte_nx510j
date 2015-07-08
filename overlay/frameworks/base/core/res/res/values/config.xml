@@ -29,30 +29,6 @@
 -->
 
 <resources>
-   <!-- Whether cpu boost is enabled for overscroller fling. -->
-   <bool name="config_enableCpuBoostForOverScrollerFling">false</bool>
-   <integer name="flingboost_timeout_param">0</integer>
-   <integer name="flingboost_schedboost_param">0</integer>
-   <integer name="flingboost_cpuboost_param">0</integer>
-   <integer name="flingboost_pcdisbl_param">0</integer>
-   <integer name="flingboost_ksmboost_param">0</integer>
-
-   <!-- Whether cpu boost is enabled for horizontal scroll. -->
-   <bool name="config_enableCpuBoostForScroller">false</bool>
-   <integer name="scrollboost_timeout_param">0</integer>
-   <integer name="scrollboost_schedboost_param">0</integer>
-   <integer name="scrollboost_cpuboost_param">0</integer>
-   <integer name="scrollboost_pcdisbl_param">0</integer>
-   <integer name="scrollboost_ksmboost_param">0</integer>
-
-   <!-- Whether cpu boost is enabled for application's 1st launch. -->
-   <bool name="config_enableCpuBoostForAppLaunch">true</bool>
-   <integer name="launchboost_timeout_param">2000</integer>
-   <integer name="launchboost_schedboost_param">0x1E01</integer>
-   <integer name="launchboost_cpuboost_param">0x20D</integer>
-   <integer name="launchboost_pcdisbl_param">0</integer>
-   <integer name="launchboost_ksmboost_param">0</integer>
-
    <!-- monitor locale change -->
    <bool name="config_monitor_locale_change">true</bool>
 
