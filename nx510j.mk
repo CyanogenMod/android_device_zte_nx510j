@@ -88,6 +88,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/gps.conf:system/etc/gps.conf
 
+# Sensors
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
+
 # file that declares the MIFARE NFC constant
 # Commands to migrate prefs from com.android.nfc3 to com.android.nfc
 # NFC access control + feature files + configuration
