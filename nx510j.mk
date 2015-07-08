@@ -12,6 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Inherit proprietary blobs
+$(call inherit-product-if-exists, vendor/zte/nx510j/nx510j-vendor.mk)
+
 LOCAL_PATH := device/zte/nx510j
 
 DEVICE_PACKAGE_OVERLAYS := $(LOCAL_PATH)/overlay
