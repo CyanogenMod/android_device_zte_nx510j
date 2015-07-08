@@ -110,6 +110,9 @@ BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 #is controlling the power on/off on certain peripherals.
 TARGET_PER_MGR_ENABLED := true
 
+# Qualcomm support
+BOARD_USES_QCOM_HARDWARE := true
+
 # Ril
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
