@@ -116,3 +116,6 @@ BOARD_USES_QCOM_HARDWARE := true
 # Ril
 # Added to indicate that protobuf-c is supported in this build
 PROTOBUF_SUPPORTED := true
+
+# Time services
+BOARD_USES_QC_TIME_SERVICES := true
