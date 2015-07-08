@@ -61,6 +61,9 @@ ifneq ($(TARGET_USES_AOSP),true)
   endif
 endif
 
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+
 # Font
 MINIMAL_FONT_FOOTPRINT := true
 
