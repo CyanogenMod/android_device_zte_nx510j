@@ -370,4 +370,5 @@ PRODUCT_BOOT_JARS += \
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
-    persist.radio.apm_sim_not_pwdn=1
+    persist.radio.apm_sim_not_pwdn=1 \
+    ro.sf.lcd_density=480
