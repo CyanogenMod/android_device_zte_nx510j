@@ -1,5 +1,7 @@
 LOCAL_PATH := $(call my-dir)
 
+include kernel/zte/msm8994/AndroidKernel.mk
+
 #----------------------------------------------------------------------
 # Copy additional target-specific files
 #----------------------------------------------------------------------

@@ -125,8 +125,8 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_USES_UNCOMPRESSED_KERNEL := true
 BOARD_CUSTOM_BOOTIMG_MK := $(LOCAL_PATH)/mkbootimg.mk
 BOARD_KERNEL_IMAGE_NAME := Image
-TARGET_KERNEL_SOURCE := kernel/zte/msm8994
-TARGET_KERNEL_CONFIG := cyanogenmod_nx510j_defconfig
+#TARGET_KERNEL_SOURCE := kernel/zte/msm8994
+#TARGET_KERNEL_CONFIG := cyanogenmod_nx510j_defconfig
 
 WLAN_MODULES:
 	mkdir -p $(KERNEL_MODULES_OUT)/qca_cld
