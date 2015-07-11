@@ -312,3 +312,12 @@ service fidodaemon /system/vendor/bin/fidodaemon
     class late_start
     user system
     group system
+
+service tp_workaround /system/bin/sh /tp_workaround.sh
+    user root
+    group root
+    oneshot
+    disabled
+
+on property:sys.boot_completed=1
+    start tp_workaround

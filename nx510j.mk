@@ -277,7 +277,8 @@ PRODUCT_PACKAGES += \
     hcidump.sh \
     usf_post_boot.sh \
     usf_settings.sh \
-    init.recovery.qcom.rc
+    init.recovery.qcom.rc \
+    tp_workaround.sh
 
 # IPv6
 PRODUCT_PACKAGES += \
