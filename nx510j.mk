@@ -366,8 +366,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_BOOT_JARS += \
     qcmediaplayer \
-    qcom.fmradio \
-    security-bridge
+    qcom.fmradio
 
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
