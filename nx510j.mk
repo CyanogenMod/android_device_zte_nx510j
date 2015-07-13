@@ -186,7 +186,6 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     audio.r_submix.default \
     audio.primary.msm8994 \
-    audio_policy.msm8994 \
     tinymix
 
 PRODUCT_PACKAGES += \
