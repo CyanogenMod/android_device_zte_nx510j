@@ -1,3 +1,9 @@
+# Bluetooth
+bin/btnvtool
+bin/hci_qcomm_init
+vendor/lib64/libbtnv.so
+vendor/lib/libbtnv.so
+
 # QMI / Modem
 bin/ATFWD-daemon
 bin/imscmservice
