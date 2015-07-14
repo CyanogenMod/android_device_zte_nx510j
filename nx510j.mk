@@ -224,13 +224,6 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
-# FM
-PRODUCT_PACKAGES += \
-    qcom.fmradio \
-    libqcomfm_jni \
-    FM2 \
-    FMRecord
-
 # GPS
 #PRODUCT_PACKAGES += \
 #    gps.msm8994
@@ -366,8 +359,7 @@ PRODUCT_PACKAGES += \
     hostapd.accept
 
 PRODUCT_BOOT_JARS += \
-    qcmediaplayer \
-    qcom.fmradio
+    qcmediaplayer
 
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
