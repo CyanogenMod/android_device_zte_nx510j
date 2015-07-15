@@ -21,13 +21,10 @@
 
 #ifndef _BDROID_BUILDCFG_H
 #define _BDROID_BUILDCFG_H
-#define BTM_DEF_LOCAL_NAME   "QCOM-BTD"
-// Disables read remote device feature
-#define BTA_SKIP_BLE_READ_REMOTE_FEAT FALSE
-#define MAX_ACL_CONNECTIONS    7
-#define MAX_L2CAP_CHANNELS    16
-#define BLE_VND_INCLUDED   TRUE
+#define BTM_DEF_LOCAL_NAME   "nubia Z9 max"
+#define BLUETOOTH_QTI_SW                TRUE
 // skips conn update at conn completion
-#define BTA_BLE_SKIP_CONN_UPD  FALSE
-#define BLE_PERIPHERAL_ADV_NAME  FALSE
+#define BTA_BLE_SKIP_CONN_UPD  TRUE
+// Enables interleaved scan
+#define BTA_HOST_INTERLEAVE_SEARCH TRUE
 #endif
