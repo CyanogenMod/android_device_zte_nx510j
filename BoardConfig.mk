@@ -190,6 +190,9 @@ include device/qcom/sepolicy/sepolicy.mk
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
+#Use dlmalloc instead of jemalloc for mallocs
+MALLOC_IMPL := dlmalloc
+
 # Wifi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HAS_QCOM_WLAN_SDK := true
