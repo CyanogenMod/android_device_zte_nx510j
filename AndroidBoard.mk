@@ -115,3 +115,11 @@ LOCAL_MODULE_CLASS := ETC
 LOCAL_SRC_FILES    := $(LOCAL_MODULE)
 LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)
 include $(BUILD_PREBUILT)
+
+$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wcd9320; \
+        ln -sf /data/misc/audio/wcd9320_anc.bin \
+        $(TARGET_OUT_ETC)/firmware/wcd9320/wcd9320_anc.bin; \
+        ln -sf /data/misc/audio/wcd9320_mad_audio.bin \
+        $(TARGET_OUT_ETC)/firmware/wcd9320/wcd9320_mad_audio.bin; \
+        ln -sf /data/misc/audio/mbhc.bin \
+        $(TARGET_OUT_ETC)/firmware/wcd9320/wcd9320_mbhc.bin)
