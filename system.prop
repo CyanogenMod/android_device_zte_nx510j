@@ -125,11 +125,9 @@ ro.bluetooth.wipower=true
 #
 #snapdragon value add features
 #
-ro.qc.sdk.audio.ssr=false
 ##fluencetype can be "fluence" or "fluencepro" or "none"
-ro.qc.sdk.audio.fluencetype=none
+ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
-persist.audio.fluence.voicerec=false
 persist.audio.fluence.speaker=true
 
 ro.qc.sdk.sensors.gestures=true
@@ -176,8 +174,8 @@ ro.hwui.text_small_cache_height=1024
 ro.hwui.text_large_cache_width=2048
 ro.hwui.text_large_cache_height=1024
 
-#enable voice path for PCM VoIP by default
-use.voice.path.for.pcm.voip=true
+#disable voice path for PCM VoIP by default
+use.voice.path.for.pcm.voip=false
 
 #selects CoreSight configuration to enable
 persist.debug.coresight.config=none
