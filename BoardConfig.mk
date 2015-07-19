@@ -5,6 +5,8 @@
 
 LOCAL_PATH := device/zte/nx510j
 
+PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl , $(PRODUCT_COPY_FILES))
+
 # Platform
 TARGET_BOARD_PLATFORM := msm8994
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno430
