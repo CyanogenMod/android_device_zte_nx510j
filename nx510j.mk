@@ -156,6 +156,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/audio/acdb/MTP/MTP_Headset_cal.acdb:system/etc/acdbdata/MTP/MTP_Headset_cal.acdb \
     $(LOCAL_PATH)/audio/acdb/MTP/MTP_Speaker_cal.acdb:system/etc/acdbdata/MTP/MTP_Speaker_cal.acdb
 
+# Dolby
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/dolby/ds1-default.xml:system/vendor/etc/dolby/ds1-default.xml
+
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/Generic.kl:system/usr/keylayout/Generic.kl
