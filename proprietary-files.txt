@@ -227,6 +227,8 @@ vendor/lib64/egl/libq3dtools_esx.so
 vendor/lib64/egl/libQTapGLES.so
 
 # Audio
+lib/soundfx/libhwdap.so
+lib/soundfx/libswdap.so
 vendor/bin/audioflacapp
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
@@ -235,7 +237,8 @@ vendor/lib/libacdbrtac.so
 vendor/lib/libadiertac.so
 vendor/lib/libaudcal.so
 vendor/lib/libaudioalsa.so
-vendor/lib/hw/sound_trigger.primary.msm8994.so
+vendor/lib/libhwdaphal.so
+vendor/lib/libqct_resampler.so
 vendor/lib/soundfx/libqcbassboost.so
 vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
@@ -247,6 +250,7 @@ vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
 vendor/lib64/libaudioalsa.so
 vendor/lib64/libhwdaphal.so
+vendor/lib/libqct_resampler.so
 
 # Camera
 bin/mm-qcamera-app
@@ -624,6 +628,7 @@ vendor/lib64/libmmparser.so
 vendor/lib64/libOmxAacDec.so
 vendor/lib64/libOmxAmrwbplusDec.so
 vendor/lib64/libOmxWmaDec.so
+vendor/lib64/libOmxMux.so
 vendor/lib64/libSHIMDivxDrm.so
 vendor/lib/libDivxDrm.so
 vendor/lib/libExtendedExtractor.so
@@ -637,6 +642,7 @@ vendor/lib/libOmxAmrwbplusDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxWmaDec.so
+vendor/lib/libOmxMux.so
 vendor/lib/libSHIMDivxDrm.so
 
 # GPS
