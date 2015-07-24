@@ -101,8 +101,8 @@ char const*const BREATH_LED_OUTN
 char const*const BATTERY_CAPACITY
         = "/sys/class/power_supply/battery/capacity";
 
-char const*const BATTERY_IS_CHARGING
-        = "/sys/class/power_supply/battery/charging_enabled";
+char const*const BATTERY_CHARGING_STATUS
+        = "/sys/class/power_supply/battery/status";
 
 /**
  * device methods
@@ -275,7 +275,14 @@ set_breath_light_locked(int event_source,
 	// can't get battery info from state, getting it from sysfs
 	int is_charging = 0;
 	int capacity = 0;
-	read_int(BATTERY_IS_CHARGING, &is_charging);
+	char charging_status[15];
+	FILE* fp = fopen(BATTERY_CHARGING_STATUS, "rb");
+	fgets(charging_status, 14, fp);
+	fclose(fp);
+	if (strstr(charging_status, "Discharging") != NULL)
+		is_charging = 0;
+	else
+		is_charging = 1;
 	read_int(BATTERY_CAPACITY, &capacity);
 	if(is_charging == 0) {
 	    // battery low
