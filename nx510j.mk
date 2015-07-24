@@ -366,7 +366,7 @@ PRODUCT_PACKAGES += \
     p2p_supplicant_overlay.conf \
     hostapd \
     hostapd_cli \
-    hostapd.conf \
+    hostapd_default.conf \
     hostapd.deny \
     hostapd.accept
 
