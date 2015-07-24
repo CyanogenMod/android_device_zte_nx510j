@@ -210,6 +210,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     appops_policy.xml
 
+# Bson
+PRODUCT_PACKAGES += \
+    libbson
+
 # Cec
 PRODUCT_PACKAGES += \
     hdmi_cec.msm8994
@@ -230,6 +234,11 @@ PRODUCT_PACKAGES += \
     regulatory.bin \
     init.crda.sh
 
+# Curl
+PRODUCT_PACKAGES += \
+    libcurl \
+    curl
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     e2fsck \
@@ -246,7 +255,8 @@ PRODUCT_PACKAGES += \
     gralloc.msm8994 \
     hwcomposer.msm8994 \
     memtrack.msm8994 \
-    liboverlay
+    liboverlay \
+    libtinyxml
 
 # Init scripts
 PRODUCT_PACKAGES += \
@@ -288,7 +298,8 @@ PRODUCT_PACKAGES += \
 # IPv6
 PRODUCT_PACKAGES += \
     ebtables \
-    ethertypes
+    ethertypes \
+    libebtc
 
 # Keypad
 PRODUCT_PACKAGES += \
