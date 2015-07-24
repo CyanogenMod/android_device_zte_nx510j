@@ -88,9 +88,6 @@ endif
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
-# Font
-MINIMAL_FONT_FOOTPRINT := true
-
 # GPS
 TARGET_NO_RPC := true
 
