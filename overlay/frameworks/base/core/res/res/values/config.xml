@@ -290,4 +290,5 @@
     <!-- Minimum screen brightness allowed by the power manager. -->
     <integer name="config_screenBrightnessDim">5</integer>
 
+    <string name="config_connectivity_check_url">download.mokeedev.com</string>
 </resources>
