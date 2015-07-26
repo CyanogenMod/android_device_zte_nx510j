@@ -17,8 +17,10 @@ persist.radio.rat_on=combine
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 # Start in global mode
-ro.telephony.default_network=22
+ro.telephony.default_network=22,22
 persist.radio.multisim.config=dsds
+persist.dsds.enabled=true
+ro.config.dsds_mode=cdma_gsm
 
 debug.sf.hw=1
 debug.egl.hw=1
@@ -104,6 +106,8 @@ ro.qualcomm.cabl=0
 # System prop to turn on CdmaLTEPhone always
 telephony.lteOnCdmaDevice=1
 persist.radio.rat_on=combine
+ro.cdma.home.operator.numeric=46003
+ro.config.cdma.globalMode=true
 
 #
 # System props for bluetooth
