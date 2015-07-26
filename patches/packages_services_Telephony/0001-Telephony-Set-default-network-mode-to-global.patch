@@ -1,0 +1,26 @@
+From 77e825cb8f8dbaf6b5541d3b646eb21303584fd3 Mon Sep 17 00:00:00 2001
+From: dianlujitao <dianlujitao@gmail.com>
+Date: Sun, 26 Jul 2015 18:26:54 +0800
+Subject: [PATCH] Telephony: Set default network mode to global
+
+Change-Id: If83a64ec8cfd8d53928ac14644b2f4af00129061
+---
+ src/com/android/phone/MobileNetworkSettings.java | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/com/android/phone/MobileNetworkSettings.java b/src/com/android/phone/MobileNetworkSettings.java
+index 6dbd608..e5af42f 100644
+--- a/src/com/android/phone/MobileNetworkSettings.java
++++ b/src/com/android/phone/MobileNetworkSettings.java
+@@ -858,7 +858,7 @@ public class MobileNetworkSettings extends PreferenceActivity
+             for (int i = 0; i < tm.getPhoneCount(); i++) {
+                 if (mPhone.getPhoneId() != i) {
+                     Phone phone = PhoneFactory.getPhone(i);
+-                    phone.setPreferredNetworkType(Phone.NT_MODE_GSM_ONLY, mHandler
++                    phone.setPreferredNetworkType(Phone.NT_MODE_TD_SCDMA_LTE_CDMA_EVDO_GSM_WCDMA, mHandler
+                             .obtainMessage(MyHandler.MESSAGE_SET_PREFERRED_NETWORK_TYPE_OTHER_SIM));
+                 }
+             }
+-- 
+1.9.1
+
