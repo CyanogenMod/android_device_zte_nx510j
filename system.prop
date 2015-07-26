@@ -17,7 +17,7 @@ persist.radio.rat_on=combine
 ril.subscription.types=NV,RUIM
 DEVICE_PROVISIONED=1
 # Start in global mode
-ro.telephony.default_network=10
+ro.telephony.default_network=22
 persist.radio.multisim.config=dsds
 
 debug.sf.hw=1
