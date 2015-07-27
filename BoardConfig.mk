@@ -82,6 +82,10 @@ USE_DEVICE_SPECIFIC_CAMERA := true
 # 32-bit or 64-bit), the following line should be deleted
 BOARD_QTI_CAMERA_32BIT_ONLY := true
 
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+
 # DPM NSRM Feature
 TARGET_LDPRELOAD := libNimsWrap.so
 
