@@ -201,7 +201,7 @@ audio.ds1.metainfo.key=273
 audio.dolby.ds2.hardbypass=true
 
 audio.offload.passthrough=false
-audio.offload.multiple.enabled=true
+audio.offload.multiple.enabled=false
 
 #set primary card enabled
 persist.radio.primarycard=true
