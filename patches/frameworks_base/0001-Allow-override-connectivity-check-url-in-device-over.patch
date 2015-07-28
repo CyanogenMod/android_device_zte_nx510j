@@ -1,0 +1,74 @@
+From c7402a535c029e4643d733340ab5ef31fbfa9bee Mon Sep 17 00:00:00 2001
+From: dianlujitao <dianlujitao@gmail.com>
+Date: Sun, 26 Jul 2015 15:54:29 +0800
+Subject: [PATCH] Allow override connectivity check url in device overlay
+
+ * Google is blocked in some countries(e.g.: China), for users in these
+   countries, the check never succeed.
+ * Allow override the server in device overlay, so that developers can
+   use other working servers.
+
+Change-Id: I1c09fb543ae397b86c61bcb48399fe9e1913f987
+---
+ core/res/res/values/config.xml                                       | 3 +++
+ core/res/res/values/symbols.xml                                      | 1 +
+ .../core/java/com/android/server/connectivity/NetworkMonitor.java    | 5 +++--
+ 3 files changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/core/res/res/values/config.xml b/core/res/res/values/config.xml
+index e8f4203..f5a3154 100755
+--- a/core/res/res/values/config.xml
++++ b/core/res/res/values/config.xml
+@@ -2335,4 +2335,7 @@
+     <string name="config_defaultQuickSettingsTiles">wifi,bt,cell,airplane,rotation,flashlight,location,cast,visualizer,hotspot,live_display</string>
+ 
+     <string-array name="config_externalCMServices"></string-array>
++
++    <!-- URL to the connectivity check server -->
++    <string name="config_connectivity_check_url">connectivitycheck.android.com</string>
+ </resources>
+diff --git a/core/res/res/values/symbols.xml b/core/res/res/values/symbols.xml
+index cbc367f..e97c6e0 100644
+--- a/core/res/res/values/symbols.xml
++++ b/core/res/res/values/symbols.xml
+@@ -1063,6 +1063,7 @@
+   <java-symbol type="string" name="lockscreen_transport_pause_description" />
+   <java-symbol type="string" name="config_ethernet_tcp_buffers" />
+   <java-symbol type="string" name="config_wifi_tcp_buffers" />
++  <java-symbol type="string" name="config_connectivity_check_url" />
+ 
+   <java-symbol type="plurals" name="abbrev_in_num_days" />
+   <java-symbol type="plurals" name="abbrev_in_num_hours" />
+diff --git a/services/core/java/com/android/server/connectivity/NetworkMonitor.java b/services/core/java/com/android/server/connectivity/NetworkMonitor.java
+index 87f78c1..42a4a8e 100644
+--- a/services/core/java/com/android/server/connectivity/NetworkMonitor.java
++++ b/services/core/java/com/android/server/connectivity/NetworkMonitor.java
+@@ -51,6 +51,7 @@ import android.telephony.CellInfoWcdma;
+ import android.telephony.TelephonyManager;
+ import android.util.Log;
+ 
++import com.android.internal.R;
+ import com.android.internal.util.Protocol;
+ import com.android.internal.util.State;
+ import com.android.internal.util.StateMachine;
+@@ -69,7 +70,6 @@ import java.util.Random;
+ public class NetworkMonitor extends StateMachine {
+     private static final boolean DBG = true;
+     private static final String TAG = "NetworkMonitor";
+-    private static final String DEFAULT_SERVER = "connectivitycheck.android.com";
+     private static final int SOCKET_TIMEOUT_MS = 10000;
+     public static final String ACTION_NETWORK_CONDITIONS_MEASURED =
+             "android.net.conn.NETWORK_CONDITIONS_MEASURED";
+@@ -286,7 +286,8 @@ public class NetworkMonitor extends StateMachine {
+ 
+         mServer = Settings.Global.getString(mContext.getContentResolver(),
+                 Settings.Global.CAPTIVE_PORTAL_SERVER);
+-        if (mServer == null) mServer = DEFAULT_SERVER;
++        if (mServer == null) mServer = mContext.getResources().getString(
++                com.android.internal.R.string.config_connectivity_check_url);
+ 
+         mLingerDelayMs = SystemProperties.getInt(LINGER_DELAY_PROPERTY, DEFAULT_LINGER_DELAY_MS);
+         mReevaluateDelayMs = SystemProperties.getInt(REEVALUATE_DELAY_PROPERTY,
+-- 
+1.9.1
+
