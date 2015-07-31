@@ -49,9 +49,6 @@ PRODUCT_BOOT_JARS += qsb-port
 PRODUCT_BOOT_JARS += oem-services
 endif
 
-# default is nosdcard, S/W button enabled in resource
-PRODUCT_CHARACTERISTICS := nosdcard
-
 #Android EGL implementation
 PRODUCT_PACKAGES += libGLES_android
 
