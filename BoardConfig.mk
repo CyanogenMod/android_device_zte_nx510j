@@ -94,6 +94,8 @@ TARGET_HW_DISK_ENCRYPTION := false
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+
 # Enable dex pre-opt to speed up initial boot
 ifeq ($(HOST_OS),linux)
   ifeq ($(WITH_DEXPREOPT),)
