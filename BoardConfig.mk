@@ -212,6 +212,22 @@ PROTOBUF_SUPPORTED := true
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
 
+BOARD_SEPOLICY_DIRS += device/zte/nx510j/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    bluetooth.te \
+    file.te \
+    healthd.te \
+    mediaserver.te \
+    qmuxd.te \
+    sensors.te \
+    surfaceflinger.te \
+    thermal-engine.te \
+    ueventd.te \
+    vold.te \
+    wcnss_filter.te
+
+
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 

@@ -1,0 +1,49 @@
+#
+## Contexts
+#
+
+# Bluetooth
+/dev/ttyHS0                                                         u:object_r:hci_attach_dev:s0
+/persist/.bt_nv.bin                                                 u:object_r:bluetooth_data_file:s0
+
+# Proximity sensor
+/sys/class/proximity/proximity/prox_offset_cal_start                u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_data_safe_range_min             u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_data_safe_range_max             u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_data_max                        u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_offset_cal                      u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_offset_cal_verify               u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_thres_min                       u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_thres_max                       u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/threshold                            u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_thres                           u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_calibrate_start                 u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_calibrate_verify                u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_offset_cal_start      u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_data_safe_range_min   u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_data_safe_range_max   u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_data_max              u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_offset_cal            u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_offset_cal_verify     u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_thres_min             u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_thres_max             u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/threshold                  u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_thres                 u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_calibrate_start       u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_calibrate_verify      u:object_r:sysfs_prox_cal:s0
+
+/persist/proxdata/threshold			                    u:object_r:persist_proxcal_file:s0
+
+# Modem
+/dev/block/bootdevice/by-name/tz 		                    u:object_r:modem_efs_partition_device:s0
+
+# Nfc
+/dev/bcm2079x                                                       u:object_r:nfc_device:s0
+
+# Wifi
+/persist/.genmac                                                    u:object_r:wifi_data_file:s0
+
+#
+## Executables
+#
+/system/bin/wcnss_filter                                            u:object_r:wcnss_filter_exec:s0

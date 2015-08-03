@@ -1,0 +1,2 @@
+allow vold mmc_block_device:blk_file rw_file_perms;
+allow vold persist_file:dir { read getattr open ioctl };
