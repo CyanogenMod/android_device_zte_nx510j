@@ -80,23 +80,6 @@ on boot
 
 # ADDED BY ZTEMT ZhuBing
 # add the sensor sysfs permission
-    #gesture
-    chown system system /sys/class/gesture/gesture/enable
-    chown system system /sys/class/gesture/gesture/gesture_offset_init
-    chown system system /sys/class/gesture/gesture/gesture_data_safe_range_max
-    chown system system /sys/class/gesture/gesture/gesture_data_safe_range_min
-    chown system system /sys/class/gesture/gesture/gesture_offset_cal
-    chown system system /sys/class/gesture/gesture/gesture_offset_cal_start
-    chown system system /sys/class/gesture/gesture/gesture_channel_data_max
-
-    chmod 0644 /sys/class/gesture/gesture/enable
-    chmod 0644 /sys/class/gesture/gesture/gesture_offset_init
-    chmod 0644 /sys/class/gesture/gesture/gesture_data_safe_range_max
-    chmod 0644 /sys/class/gesture/gesture/gesture_data_safe_range_min
-    chmod 0644 /sys/class/gesture/gesture/gesture_offset_cal
-    chmod 0644 /sys/class/gesture/gesture/gesture_offset_cal_start
-    chmod 0644 /sys/class/gesture/gesture/gesture_channel_data_max
-
     #hall_device
     chown system system /sys/class/hall_device/hall_device/enable
     chmod 0644 /sys/class/hall_device/hall_device/enable
@@ -162,25 +145,6 @@ on boot
 
     chmod 0644 system system /sys/class/light/light/enable
     chmod 0644 system system /sys/class/light/light/delay
-
-    #temperature
-    chown system system /sys/class/temperature/temperature/enable
-    chown system system /sys/class/temperature/temperature/temperature_poll_time
-
-    chmod 0644 system /sys/class/temperature/temperature/enable
-    chmod 0644 /sys/class/temperature/temperature/temperature_data
-
-
-    #humidity
-    chown system system /sys/class/humidity/humidity/enable
-    chown system system /sys/class/humidity/humidity/humidity_poll_time
-
-    chmod 0644 system /sys/class/humidity/humidity/enable
-    chmod 0644 /sys/class/humidity/humidity/humidity_data
-
-    #sensor_common
-    chown system system /sys/class/sensor/temp_humidity/raw_humidity
-    chown system system /sys/class/sensor/temp_humidity/raw_temp
     
 # ADDED BY ZTEMT ZhuBing END
 
