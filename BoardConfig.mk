@@ -218,15 +218,23 @@ BOARD_SEPOLICY_UNION += \
     bluetooth.te \
     file.te \
     healthd.te \
+    init_shell.te \
+    irsc_util.te \
     mediaserver.te \
+    netmgrd.te \
+    nfc.te \
     qmuxd.te \
+    radio.te \
     sensors.te \
+    shared_relro.te \
     surfaceflinger.te \
+    system_app.te \
+    system_server.te \
     thermal-engine.te \
+    time_daemon.te \
     ueventd.te \
     vold.te \
     wcnss_filter.te
-
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true

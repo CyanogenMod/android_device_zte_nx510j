@@ -1,0 +1,1 @@
+allow init_shell uicc_prop:property_service set;

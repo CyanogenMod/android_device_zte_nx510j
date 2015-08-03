@@ -1,1 +1,2 @@
-allow mediaserver system_data_file:file { open append };
+allow mediaserver system_data_file:file { open append create };
+allow mediaserver system_data_file:dir { write add_name };

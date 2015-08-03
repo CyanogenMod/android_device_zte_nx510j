@@ -1,0 +1,1 @@
+allow nfc zygote:netlink_selinux_socket getopt;
