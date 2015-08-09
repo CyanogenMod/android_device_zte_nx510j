@@ -292,7 +292,4 @@
 
     <!-- URL to the connectivity check server -->
     <string name="config_connectivity_check_url">g.cn</string>
-
-    <!-- set this value to true to set network mode as global during boot up -->
-    <bool name="config_global_phone_enabled">true</bool>
 </resources>
