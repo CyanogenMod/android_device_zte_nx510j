@@ -216,6 +216,7 @@ BOARD_SEPOLICY_DIRS += device/zte/nx510j/sepolicy
 
 BOARD_SEPOLICY_UNION += \
     bluetooth.te \
+    bootanim.te \
     file.te \
     healthd.te \
     init_shell.te \
@@ -223,6 +224,7 @@ BOARD_SEPOLICY_UNION += \
     mediaserver.te \
     netmgrd.te \
     nfc.te \
+    platform_app.te \
     qmuxd.te \
     radio.te \
     sensors.te \
