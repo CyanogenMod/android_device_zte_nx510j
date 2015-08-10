@@ -321,7 +321,9 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libOmxVidcCommon \
     libstagefrighthw \
-    qcmediaplayer
+    qcmediaplayer \
+    libqcmediaplayer \
+    libextmedia_jni
 
 # Power
 PRODUCT_PACKAGES += \
