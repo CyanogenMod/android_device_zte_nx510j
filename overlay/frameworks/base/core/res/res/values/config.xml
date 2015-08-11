@@ -289,7 +289,4 @@
 
     <!-- Minimum screen brightness allowed by the power manager. -->
     <integer name="config_screenBrightnessDim">5</integer>
-
-    <!-- URL to the connectivity check server -->
-    <string name="config_connectivity_check_url">g.cn</string>
 </resources>
