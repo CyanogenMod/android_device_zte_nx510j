@@ -184,4 +184,16 @@ qemu.hw.mainkeys=0
 use.voice.path.for.pcm.voip=true
 
 #selects CoreSight configuration to enable
-persist.debug.coresight.config=stm-events
+persist.debug.coresight.config=none
+
+#System property for FM transmitter
+ro.fm.transmitter=false
+
+#Enable property to enable ds2
+audio.dolby.ds2.enabled=true
+
+#enable property for hard bypass
+audio.dolby.ds2.hardbypass=true
+
+audio.offload.passthrough=false
+audio.offload.multiple.enabled=false
