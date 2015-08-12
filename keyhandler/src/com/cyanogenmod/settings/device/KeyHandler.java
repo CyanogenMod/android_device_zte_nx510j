@@ -19,18 +19,22 @@ package com.cyanogenmod.settings.device;
 import android.app.ActivityManagerNative;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Resources;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 
@@ -53,6 +57,8 @@ public class KeyHandler implements DeviceKeyHandler {
     private SensorManager mSensorManager;
     private Sensor mProximitySensor;
     WakeLock mProximityWakeLock;
+    private int mProximityTimeOut;
+    private boolean mProximityWakeSupported;
 
     public KeyHandler(Context context) {
         mContext = context;
@@ -64,10 +70,19 @@ public class KeyHandler implements DeviceKeyHandler {
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         context.registerReceiver(mReceiver, filter);
         mHandler = new Handler();
-        mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
-        mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-        mProximityWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
-                "ProximityWakeLock");
+
+        final Resources resources = mContext.getResources();
+        mProximityTimeOut = resources.getInteger(
+                com.android.internal.R.integer.config_proximityCheckTimeout);
+        mProximityWakeSupported = resources.getBoolean(
+                com.android.internal.R.bool.config_proximityCheckOnWake);
+
+        if (mProximityWakeSupported) {
+            mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+            mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+            mProximityWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                    "ProximityWakeLock");
+        }
     }
 
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -102,8 +117,12 @@ public class KeyHandler implements DeviceKeyHandler {
                 return true;
             }
             Message msg = getMessageForKeyEvent(event);
-            if (mProximitySensor != null) {
-                mHandler.sendMessageDelayed(msg, 200);
+            boolean defaultProximity = mContext.getResources().getBoolean(
+                com.android.internal.R.bool.config_proximityCheckOnWakeEnabledByDefault);
+            boolean proximityWakeCheckEnabled = Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.PROXIMITY_ON_WAKE, defaultProximity ? 1 : 0) == 1;
+            if (mProximityWakeSupported && proximityWakeCheckEnabled && mProximitySensor != null) {
+                mHandler.sendMessageDelayed(msg, mProximityTimeOut);
                 processEvent(event);
             } else {
                 mHandler.sendMessage(msg);
