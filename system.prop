@@ -19,8 +19,6 @@ DEVICE_PROVISIONED=1
 # Start in global mode
 ro.telephony.default_network=22,22
 persist.radio.multisim.config=dsds
-persist.dsds.enabled=true
-ro.config.dsds_mode=cdma_gsm
 
 debug.sf.hw=1
 debug.egl.hw=1
@@ -106,8 +104,6 @@ ro.qualcomm.cabl=0
 # System props for telephony
 # System prop to turn on CdmaLTEPhone always
 telephony.lteOnCdmaDevice=1
-ro.cdma.home.operator.numeric=46003
-ro.config.cdma.globalMode=true
 ril.ecclist=112,911,110,122,119,120,000,118
 ril.ecclist1=112,911,110,122,119,120,000,118
 
