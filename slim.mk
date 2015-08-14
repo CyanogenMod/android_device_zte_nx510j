@@ -21,6 +21,8 @@ $(call inherit-product, vendor/slim/config/nfc_enhanced.mk)
 # Inherit some common SLIM stuff.
 $(call inherit-product, vendor/slim/config/common_full_phone.mk)
 
+DEVICE_PACKAGE_OVERLAYS += device/zte/nx510j/overlay-slim
+
 PRODUCT_NAME := slim_nx510j
 PRODUCT_DEVICE := nx510j
 PRODUCT_MANUFACTURER := nubia
