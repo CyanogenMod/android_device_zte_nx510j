@@ -422,6 +422,7 @@ vendor/lib/libchromatix_imx234_hfr_90.so
 vendor/lib/libchromatix_imx234_liveshot.so
 vendor/lib/libchromatix_imx234_postproc.so
 vendor/lib/libchromatix_imx234_preview.so
+vendor/lib/libchromatix_imx234_slowshutter.so
 vendor/lib/libchromatix_imx234_snapshot_hdr.so
 vendor/lib/libchromatix_imx234_snapshot_nightmode_1.so
 vendor/lib/libchromatix_imx234_snapshot_nightmode.so

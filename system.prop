@@ -180,7 +180,7 @@ ro.hwui.text_large_cache_width=2048
 ro.hwui.text_large_cache_height=1024
 
 #enable voice path for PCM VoIP by default
-use.voice.path.for.pcm.voip=true
+use.voice.path.for.pcm.voip=false
 
 #selects CoreSight configuration to enable
 persist.debug.coresight.config=none

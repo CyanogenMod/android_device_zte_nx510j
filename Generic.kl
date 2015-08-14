@@ -200,7 +200,7 @@ key 168   MEDIA_REWIND
 key 169   CALL
 # key 170 "KEY_ISO"
 key 171   MUSIC
-key 172   HOME
+key 172   HOME              VIRTUAL
 # key 173 "KEY_REFRESH"
 # key 174 "KEY_EXIT"
 # key 175 "KEY_MOVE"
