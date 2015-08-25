@@ -1,2 +1,1 @@
-allow bluetooth wcnss_filter:unix_stream_socket connectto;
 allow bluetooth zygote:netlink_selinux_socket getopt;

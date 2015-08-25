@@ -42,8 +42,3 @@
 
 # Wifi
 /persist/.genmac                                                    u:object_r:wifi_data_file:s0
-
-#
-## Executables
-#
-/system/bin/wcnss_filter                                            u:object_r:wcnss_filter_exec:s0

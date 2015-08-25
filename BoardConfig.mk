@@ -234,8 +234,7 @@ BOARD_SEPOLICY_UNION += \
     thermal-engine.te \
     time_daemon.te \
     ueventd.te \
-    vold.te \
-    wcnss_filter.te
+    vold.te
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
