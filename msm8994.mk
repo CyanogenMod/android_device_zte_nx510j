@@ -48,6 +48,8 @@ PRODUCT_BOOT_JARS += com.qti.dpmframework
 PRODUCT_BOOT_JARS += dpmapi
 endif
 
+PRODUCT_BOOT_JARS += qcmediaplayer
+
 #Android EGL implementation
 PRODUCT_PACKAGES += libGLES_android
 
