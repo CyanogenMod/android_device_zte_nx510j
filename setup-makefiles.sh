@@ -70,7 +70,8 @@ PRODUCT_PACKAGES += \\
     libTimeService \\
     libtime_genoff \\
     libmdmdetect \\
-    libFlacSwDec
+    libFlacSwDec \\
+    libmm-abl
 
 \$(call inherit-product, vendor/$VENDOR/$DEVICE/$DEVICE-vendor-blobs.mk)
 EOF
@@ -115,26 +116,6 @@ LOCAL_PATH := \$(call my-dir)
 ifneq (\$(filter nx510j,\$(TARGET_DEVICE)),)
 
 include \$(CLEAR_VARS)
-LOCAL_MODULE        := com.qualcomm.location
-LOCAL_MODULE_CLASS  := APPS
-LOCAL_MODULE_OWNER  := qcom
-LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_MODULE_TAGS   := optional
-LOCAL_CERTIFICATE   := platform
-LOCAL_SRC_FILES     := proprietary/app/com.qualcomm.location/com.qualcomm.location.apk
-include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE        := com.qualcomm.services.location
-LOCAL_MODULE_CLASS  := APPS
-LOCAL_MODULE_OWNER  := qcom
-LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_MODULE_TAGS   := optional
-LOCAL_CERTIFICATE   := platform
-LOCAL_SRC_FILES     := proprietary/app/com.qualcomm.services.location/com.qualcomm.services.location.apk
-include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
 LOCAL_MODULE        := TimeService
 LOCAL_MODULE_CLASS  := APPS
 LOCAL_MODULE_OWNER  := qcom
@@ -142,46 +123,6 @@ LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS   := optional
 LOCAL_CERTIFICATE   := platform
 LOCAL_SRC_FILES     := proprietary/app/TimeService/TimeService.apk
-include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE        := qcrilmsgtunnel
-LOCAL_MODULE_CLASS  := APPS
-LOCAL_MODULE_OWNER  := qcom
-LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_MODULE_TAGS   := optional
-LOCAL_CERTIFICATE   := platform
-LOCAL_SRC_FILES     := proprietary/app/qcrilmsgtunnel/qcrilmsgtunnel.apk
-include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE        := shutdownlistener
-LOCAL_MODULE_CLASS  := APPS
-LOCAL_MODULE_OWNER  := qcom
-LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
-LOCAL_MODULE_TAGS   := optional
-LOCAL_CERTIFICATE   := platform
-LOCAL_SRC_FILES     := proprietary/app/shutdownlistener/shutdownlistener.apk
-include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE        := qcnvitems
-LOCAL_MODULE_CLASS  := JAVA_LIBRARIES
-LOCAL_MODULE_OWNER  := qcom
-LOCAL_MODULE_SUFFIX := \$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_MODULE_TAGS   := optional
-LOCAL_CERTIFICATE   := PRESIGNED
-LOCAL_SRC_FILES     := proprietary/framework/qcnvitems.jar
-include \$(BUILD_PREBUILT)
-
-include \$(CLEAR_VARS)
-LOCAL_MODULE        := qcrilhook
-LOCAL_MODULE_CLASS  := JAVA_LIBRARIES
-LOCAL_MODULE_OWNER  := qcom
-LOCAL_MODULE_SUFFIX := \$(COMMON_JAVA_PACKAGE_SUFFIX)
-LOCAL_MODULE_TAGS   := optional
-LOCAL_CERTIFICATE   := PRESIGNED
-LOCAL_SRC_FILES     := proprietary/framework/qcrilhook.jar
 include \$(BUILD_PREBUILT)
 
 include \$(CLEAR_VARS)
@@ -270,6 +211,28 @@ LOCAL_MODULE_SUFFIX := .so
 LOCAL_MODULE_TAGS   := optional
 LOCAL_MULTILIB      := 64
 LOCAL_SRC_FILES     := proprietary/vendor/lib64/libTimeService.so
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE        := libmm-abl
+LOCAL_MODULE_CLASS  := SHARED_LIBRARIES
+LOCAL_MODULE_OWNER  := qcom
+LOCAL_MODULE_PATH   := \$(PRODUCT_OUT)/system/vendor/lib
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MULTILIB      := 32
+LOCAL_SRC_FILES     := proprietary/vendor/lib/libmm-abl.so
+include \$(BUILD_PREBUILT)
+
+include \$(CLEAR_VARS)
+LOCAL_MODULE        := libmm-abl
+LOCAL_MODULE_CLASS  := SHARED_LIBRARIES
+LOCAL_MODULE_OWNER  := qcom
+LOCAL_MODULE_PATH   := \$(PRODUCT_OUT)/system/vendor/lib64
+LOCAL_MODULE_SUFFIX := .so
+LOCAL_MODULE_TAGS   := optional
+LOCAL_MULTILIB      := 64
+LOCAL_SRC_FILES     := proprietary/vendor/lib64/libmm-abl.so
 include \$(BUILD_PREBUILT)
 
 \$(shell mkdir -p \$(PRODUCT_OUT)/system/vendor/lib/egl && pushd \$(PRODUCT_OUT)/system/vendor/lib > /dev/null && ln -s egl/libEGL_adreno.so libEGL_adreno.so && popd > /dev/null)
