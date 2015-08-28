@@ -90,13 +90,19 @@ char const*const BREATH_LED_DUTY_PCTS
         = "/sys/class/leds/red/duty_pcts";
 
 char const*const LEFT_LED
-        = "/sys/class/leds/green/bgbrightness";
+        = "/sys/class/leds/green/brightness";
+
+char const*const RIGHT_LED
+        = "/sys/class/leds/blue/brightness";
 
 char const*const BREATH_LED
-        = "/sys/class/leds/red/zbrightness";
+        = "/sys/class/leds/red/brightness";
 
 char const*const BREATH_LED_OUTN
         = "/sys/class/leds/red/outn";
+
+char const*const BREATH_LED_BLINK_MODE
+        = "/sys/class/leds/red/blink_mode";
 
 char const*const BATTERY_CAPACITY
         = "/sys/class/power_supply/battery/capacity";
@@ -326,8 +332,9 @@ set_breath_light_locked(int event_source,
 
     if (!have_init) {
         have_init = 1;
+        write_int(BREATH_LED_BLINK_MODE, (int)2);
         write_int(BREATH_LED_OUTN, (int)16);
-        write_int(BREATH_LED, (int)6);
+        write_int(BREATH_LED, (int)255);
     }
 
     ALOGV("writing values: pause_lo=%d, pause_hi=%d, lut_flags=%d\n", offMS, onMS, lut_flags);
@@ -386,7 +393,8 @@ set_light_buttons(struct light_device_t* dev,
     }
     pthread_mutex_lock(&g_lock);
     g_buttons = *state;
-    err = write_int(LEFT_LED, brightness?6:0);
+    err = write_int(LEFT_LED, brightness?255:0);
+    err = write_int(RIGHT_LED, brightness?255:0);
     err = set_breath_light_locked(BREATH_SOURCE_BUTTONS, &g_buttons);
     pthread_mutex_unlock(&g_lock);
     return err;
