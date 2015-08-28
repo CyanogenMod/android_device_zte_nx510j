@@ -148,13 +148,19 @@ audio.offload.gapless.enabled=true
 audio.offload.buffer.size.kb=32
 
 #Enable offload audio video playback by default
-av.offload.enable=true
+audio.offload.video=true
 
 #Disable 16 bit PCM offload by default
 audio.offload.pcm.16bit.enable=false
 
+audio.offload.passthrough=false
+audio.offload.multiple.enabled=false
+
 #Enable 24 bit PCM offload by default
 audio.offload.pcm.24bit.enable=true
+
+#Enable music through deep buffer
+audio.deep_buffer.media=true
 
 #property to enable VDS WFD solution
 persist.hwc.enable_vds=1
@@ -194,6 +200,3 @@ audio.dolby.ds2.enabled=true
 
 #enable property for hard bypass
 audio.dolby.ds2.hardbypass=true
-
-audio.offload.passthrough=false
-audio.offload.multiple.enabled=false
