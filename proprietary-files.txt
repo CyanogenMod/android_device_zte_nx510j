@@ -287,6 +287,7 @@ lib/libmorpho_image_converter.so
 lib/libmorpho_jpeg_io.so
 lib/libmorpho_memory_allocator.so
 lib/libqomx_core.so
+lib/libImageAlogrithm.so
 vendor/lib64/libmmcamera2_q3a_core.so
 vendor/lib64/libmmcamera2_sensor_debug.so
 vendor/lib64/libmmcamera2_stats_algorithm.so
