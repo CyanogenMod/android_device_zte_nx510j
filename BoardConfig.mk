@@ -232,6 +232,7 @@ BOARD_SEPOLICY_UNION += \
     qmuxd.te \
     radio.te \
     sensors.te \
+    servicemanager.te \
     shared_relro.te \
     surfaceflinger.te \
     system_app.te \
