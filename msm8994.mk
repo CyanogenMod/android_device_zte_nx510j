@@ -15,7 +15,7 @@ DEVICE_PACKAGE_OVERLAYS := device/qcom/msm8994/overlay
 
 ifneq ($(TARGET_USES_AOSP),true)
 TARGET_USES_QCA_NFC := true
-TARGET_USES_QCOM_BSP := false
+TARGET_USES_QCOM_BSP := true
 endif
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
