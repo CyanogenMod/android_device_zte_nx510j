@@ -38,6 +38,7 @@ image_partitions = {
    'pmic.mbn'          : 'pmic',
    'BTFM.bin'          : 'bluetooth',
    'NON-HLOS.bin'      : 'modem',
+   'splash.img'        : 'splash',
    'sbl1.mbn'          : 'sbl1'
 }
 
