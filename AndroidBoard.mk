@@ -134,6 +134,7 @@ $(call add-radio-file,images/sdi.mbn)
 $(call add-radio-file,images/tz.mbn)
 $(call add-radio-file,images/hyp.mbn)
 $(call add-radio-file,images/pmic.mbn)
+$(call add-radio-file,images/splash.img)
 endif
 
 #----------------------------------------------------------------------
