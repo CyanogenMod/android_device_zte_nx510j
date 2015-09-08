@@ -154,7 +154,7 @@ on property:sys.shutdown.requested=*
 #   group system
 #   disabled
 #
-service thermal-engine /system/bin/thermal-engine
+service thermal-engine /system/vendor/bin/thermal-engine
    class main
    user root
    socket thermal-send-client stream 0666 system system
