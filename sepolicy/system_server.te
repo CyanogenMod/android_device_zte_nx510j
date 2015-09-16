@@ -2,3 +2,4 @@ allow system_server sensors_persist_file:dir search;
 allow system_server sensors_persist_file:file { open read };
 allow system_server persist_proxcal_file:file { read write open };
 allow system_server surfaceflinger:unix_stream_socket getopt;
+allow system_server default_prop:property_service set;
