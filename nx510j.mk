@@ -32,22 +32,10 @@ PRODUCT_COPY_FILES += \
 
 # Audio configuration file
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio_policy.conf:system/etc/audio_policy.conf
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio_output_policy.conf:system/vendor/etc/audio_output_policy.conf \
+    $(LOCAL_PATH)/audio_policy.conf:system/etc/audio_policy.conf \
     $(LOCAL_PATH)/audio_effects.conf:system/vendor/etc/audio_effects.conf \
     $(LOCAL_PATH)/mixer_paths.xml:system/etc/mixer_paths.xml \
-    $(LOCAL_PATH)/mixer_paths_i2s.xml:system/etc/mixer_paths_i2s.xml \
-    $(LOCAL_PATH)/aanc_tuning_mixer.txt:system/etc/aanc_tuning_mixer.txt \
-    $(LOCAL_PATH)/audio_platform_info_i2s.xml:system/etc/audio_platform_info_i2s.xml \
-    $(LOCAL_PATH)/sound_trigger_mixer_paths.xml:system/etc/sound_trigger_mixer_paths.xml \
-    $(LOCAL_PATH)/sound_trigger_platform_info.xml:system/etc/sound_trigger_platform_info.xml \
     $(LOCAL_PATH)/audio_platform_info.xml:system/etc/audio_platform_info.xml
-
-# Listen configuration file
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/listen_platform_info.xml:system/etc/listen_platform_info.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
@@ -118,10 +106,6 @@ PRODUCT_COPY_FILES += \
 #FEATURE_OPENGLES_EXTENSION_PACK support string config file
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml
-
-#HDMI CEC
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.hdmi.cec.xml:system/etc/permissions/android.hardware.hdmi.cec.xml
 
 # Qualcomm
 PRODUCT_COPY_FILES += \
@@ -215,29 +199,13 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessing \
     libqcompostprocbundle
 
-#APPOPS_POLICY
-PRODUCT_PACKAGES += \
-    appops_policy.xml
-
 # Bson
 PRODUCT_PACKAGES += \
     libbson
 
-# Cec
-PRODUCT_PACKAGES += \
-    hdmi_cec.msm8994
-
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
-
-# CRDA
-PRODUCT_PACKAGES += \
-    crda \
-    linville.key.pub.pem \
-    regdbdump \
-    regulatory.bin \
-    init.crda.sh
 
 # Curl
 PRODUCT_PACKAGES += \
@@ -267,36 +235,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     init.target.rc \
     init.qcom.bt.sh \
-    hsic.control.bt.sh \
-    init.qcom.coex.sh \
-    init.qcom.fm.sh \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
-    init.qcom.syspart_fixup.sh \
     init.qcom.rc \
-    init.qcom.factory.sh \
-    init.qcom.sdio.sh \
     init.qcom.sh \
-    init.qcom.class_core.sh \
     init.class_main.sh \
-    init.qcom.wifi.sh \
     vold.fstab \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
-    usf_post_boot.sh \
-    init.qcom.efs.sync.sh \
     ueventd.qcom.rc \
-    init.ath3k.bt.sh \
-    qca6234-service.sh \
-    init.qcom.audio.sh \
-    init.mdm.sh \
     init.qcom.uicc.sh \
     fstab.qcom \
-    init.qcom.debug.sh \
-    init.qcom.zram.sh \
-    hcidump.sh \
-    usf_post_boot.sh \
-    usf_settings.sh \
     init.recovery.qcom.rc \
     tp_workaround.sh
 
@@ -321,9 +270,6 @@ PRODUCT_PACKAGES += \
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
-    LiveWallpapers \
-    LiveWallpapersPicker \
-    VisualizationWallpapers \
     librs_jni
 
 # Nfc
@@ -361,10 +307,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libxml2
 
-# Stk
-PRODUCT_PACKAGES += \
-    Stk
-
 # USB
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
@@ -384,7 +326,8 @@ PRODUCT_PACKAGES += \
     hostapd_cli \
     hostapd_default.conf \
     hostapd.deny \
-    hostapd.accept
+    hostapd.accept \
+    dhcpcd.conf
 
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
@@ -394,7 +337,5 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
     persist.radio.apm_sim_not_pwdn=1 \
     ro.sf.lcd_density=480 \
-    ro.com.android.dataroaming=true
-
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+    ro.com.android.dataroaming=true \
     persist.sys.usb.config=mtp
