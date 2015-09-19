@@ -89,6 +89,12 @@ char const*const BREATH_LED_RAMP_STEP_MS
 char const*const BREATH_LED_DUTY_PCTS
         = "/sys/class/leds/red/duty_pcts";
 
+char const*const LEFT_LED_DUTY_PCTS
+        = "/sys/class/leds/green/duty_pcts";
+
+char const*const RIGHT_LED_DUTY_PCTS
+        = "/sys/class/leds/blue/duty_pcts";
+
 char const*const LEFT_LED
         = "/sys/class/leds/green/brightness";
 
@@ -394,7 +400,9 @@ set_light_buttons(struct light_device_t* dev,
     pthread_mutex_lock(&g_lock);
     g_buttons = *state;
     err = write_int(LEFT_LED, brightness?255:0);
+    err = write_int(LEFT_LED_DUTY_PCTS, brightness);
     err = write_int(RIGHT_LED, brightness?255:0);
+    err = write_int(RIGHT_LED_DUTY_PCTS, brightness);
     err = set_breath_light_locked(BREATH_SOURCE_BUTTONS, &g_buttons);
     pthread_mutex_unlock(&g_lock);
     return err;
