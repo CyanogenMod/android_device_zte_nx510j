@@ -47,7 +47,7 @@
 #define PM_PWM_LUT_USE_RAW_VALUE	0x40
 
 #define BREATH_LED_BRIGHTNESS_NOTIFICATION	"0,5,10,15,20,26,31,36,41,46,51,56,61,66,71,77,82,87,92,97,102,107,112,117,122,128,133,138,143,148,153,158,163,168,173,179,184,189,194,199,204,209,214,219,224,230,235,240,245,250,255"
-#define BREATH_LED_BRIGHTNESS_BUTTONS		"0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+#define BREATH_LED_BRIGHTNESS_BUTTONS		"0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60"
 #define BREATH_LED_BRIGHTNESS_BATTERY		"0,50"
 #define BREATH_LED_BRIGHTNESS_CHARGING		"20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60"
 
@@ -77,22 +77,46 @@ char const*const LCD_FILE
 char const*const BREATH_LED_LUT_FLAGS
         = "/sys/class/leds/red/lut_flags";
 
+char const*const LEFT_LED_LUT_FLAGS
+        = "/sys/class/leds/green/lut_flags";
+
+char const*const RIGHT_LED_LUT_FLAGS
+        = "/sys/class/leds/blue/lut_flags";
+
 char const*const BREATH_LED_PAUSE_HI
         = "/sys/class/leds/red/pause_hi";
+
+char const*const LEFT_LED_PAUSE_HI
+        = "/sys/class/leds/green/pause_hi";
+
+char const*const RIGHT_LED_PAUSE_HI
+        = "/sys/class/leds/blue/pause_hi";
 
 char const*const BREATH_LED_PAUSE_LO
         = "/sys/class/leds/red/pause_lo";
 
+char const*const LEFT_LED_PAUSE_LO
+        = "/sys/class/leds/green/pause_lo";
+
+char const*const RIGHT_LED_PAUSE_LO
+        = "/sys/class/leds/blue/pause_lo";
+
 char const*const BREATH_LED_RAMP_STEP_MS
         = "/sys/class/leds/red/ramp_step_ms";
 
-char const*const BREATH_LED_DUTY_PCTS
+char const*const LEFT_LED_RAMP_STEP_MS
+        = "/sys/class/leds/green/ramp_step_ms";
+
+char const*const RIGHT_LED_RAMP_STEP_MS
+        = "/sys/class/leds/blue/ramp_step_ms";
+
+char const*const BREATH_RED_LED_DUTY_PCTS
         = "/sys/class/leds/red/duty_pcts";
 
-char const*const LEFT_LED_DUTY_PCTS
+char const*const BREATH_GREEN_LED_DUTY_PCTS
         = "/sys/class/leds/green/duty_pcts";
 
-char const*const RIGHT_LED_DUTY_PCTS
+char const*const BREATH_BLUE_LED_DUTY_PCTS
         = "/sys/class/leds/blue/duty_pcts";
 
 char const*const LEFT_LED
@@ -244,6 +268,8 @@ set_breath_light_locked(int event_source,
 	if(active_states == 0) {
 	    ALOGV("disabling buttons backlight\n");
 	    write_int(BREATH_LED_LUT_FLAGS, (int)PM_PWM_LUT_NO_TABLE); // smoothly turn led off
+            write_int(LEFT_LED_LUT_FLAGS, (int)PM_PWM_LUT_NO_TABLE); // smoothly turn led off
+            write_int(RIGHT_LED_LUT_FLAGS, (int)PM_PWM_LUT_NO_TABLE); // smoothly turn led off
 	    last_state = BREATH_SOURCE_NONE;
 	    return 0;
 	}
@@ -303,11 +329,19 @@ set_breath_light_locked(int event_source,
 	    onMS = 300;
 	    offMS = 1500;
 	} else {
-	    // charging & battery full
-	    light_template = BREATH_LED_BRIGHTNESS_BATTERY;
-	    lut_flags = PM_PWM_LUT_RAMP_UP;
-	    onMS = 0;
-	    offMS = 0;
+	    if(capacity < 90) { // see batteryService.java:978
+		// battery chagring
+		light_template = BREATH_LED_BRIGHTNESS_CHARGING;
+		lut_flags = PM_PWM_LUT_LOOP|PM_PWM_LUT_RAMP_UP|PM_PWM_LUT_REVERSE|PM_PWM_LUT_PAUSE_HI_EN|PM_PWM_LUT_PAUSE_LO_EN;
+		onMS = 500;
+		offMS = 500;
+	    } else {
+		// battery full
+		light_template = BREATH_LED_BRIGHTNESS_BATTERY;
+		lut_flags = PM_PWM_LUT_RAMP_UP;
+		onMS = 0;
+		offMS = 0;
+	    }
 	}
 	last_state = BREATH_SOURCE_BATTERY;
     } else if(active_states & BREATH_SOURCE_BUTTONS) {
@@ -333,16 +367,33 @@ set_breath_light_locked(int event_source,
         write_int(BREATH_LED_BLINK_MODE, (int)2);
         write_int(BREATH_LED_OUTN, (int)16);
         write_int(BREATH_LED, (int)255);
+        write_int(LEFT_LED, (int)255);
+        write_int(RIGHT_LED, (int)255);
     }
 
     ALOGV("writing values: pause_lo=%d, pause_hi=%d, lut_flags=%d\n", offMS, onMS, lut_flags);
-    write_str(BREATH_LED_DUTY_PCTS, light_template);
-    write_int(BREATH_LED_RAMP_STEP_MS, (int)20);
+    write_str(BREATH_RED_LED_DUTY_PCTS, light_template);
+    if ((active_states & BREATH_SOURCE_BATTERY) & !(active_states & BREATH_SOURCE_NOTIFICATION)) {
+	write_int(BREATH_GREEN_LED_DUTY_PCTS, (int)0);
+        write_int(BREATH_BLUE_LED_DUTY_PCTS, (int)0);
+    } else if (!(active_states & BREATH_SOURCE_BATTERY) & (!(active_states & BREATH_SOURCE_NOTIFICATION) | strcmp(light_template,BREATH_LED_BRIGHTNESS_NOTIFICATION) != 0)) {
+	write_str(BREATH_GREEN_LED_DUTY_PCTS, BREATH_LED_BRIGHTNESS_BUTTONS);
+        write_str(BREATH_BLUE_LED_DUTY_PCTS, BREATH_LED_BRIGHTNESS_BUTTONS);
+        write_int(LEFT_LED_RAMP_STEP_MS, (int)20);
+        write_int(RIGHT_LED_RAMP_STEP_MS, (int)20);
+	write_int(BREATH_LED_RAMP_STEP_MS, (int)20);
+    } 
     if(offMS > 0)
 	write_int(BREATH_LED_PAUSE_LO, (int)offMS);
+	//write_int(LEFT_LED_PAUSE_LO, (int)offMS);
+	//write_int(RIGHT_LED_PAUSE_LO, (int)offMS);
     if(onMS > 0)
 	write_int(BREATH_LED_PAUSE_HI, (int)onMS);
+	//write_int(LEFT_LED_PAUSE_HI, (int)onMS);
+	//write_int(RIGHT_LED_PAUSE_HI, (int)onMS);
     write_int(BREATH_LED_LUT_FLAGS, lut_flags);
+    write_int(LEFT_LED_LUT_FLAGS, (int)PM_PWM_LUT_RAMP_UP);
+    write_int(RIGHT_LED_LUT_FLAGS, (int)PM_PWM_LUT_RAMP_UP);
 
     return 0;
 }
@@ -400,11 +451,15 @@ set_light_buttons(struct light_device_t* dev,
     }
     pthread_mutex_lock(&g_lock);
     g_buttons = *state;
-    err = write_int(LEFT_LED, brightness?255:0);
-    err = write_int(LEFT_LED_DUTY_PCTS, brightness);
-    err = write_int(RIGHT_LED, brightness?255:0);
-    err = write_int(RIGHT_LED_DUTY_PCTS, brightness);
+    if (brightness != 0) {
+    err = write_int(BREATH_GREEN_LED_DUTY_PCTS, (int)60);
+    err = write_int(BREATH_BLUE_LED_DUTY_PCTS, (int)60);
+    }
     err = set_breath_light_locked(BREATH_SOURCE_BUTTONS, &g_buttons);
+    if (brightness == 0) {
+    err = write_int(BREATH_GREEN_LED_DUTY_PCTS, (int)0);
+    err = write_int(BREATH_BLUE_LED_DUTY_PCTS, (int)0);
+    }
     pthread_mutex_unlock(&g_lock);
     return err;
 }
