@@ -303,19 +303,11 @@ set_breath_light_locked(int event_source,
 	    onMS = 300;
 	    offMS = 1500;
 	} else {
-	    if(capacity < 90) { // see batteryService.java:978
-		// battery chagring
-		light_template = BREATH_LED_BRIGHTNESS_CHARGING;
-		lut_flags = PM_PWM_LUT_LOOP|PM_PWM_LUT_RAMP_UP|PM_PWM_LUT_REVERSE;
-		onMS = 0;
-		offMS = 0;
-	    } else {
-		// battery full
-		light_template = BREATH_LED_BRIGHTNESS_BATTERY;
-		lut_flags = PM_PWM_LUT_RAMP_UP;
-		onMS = 0;
-		offMS = 0;
-	    }
+	    // charging & battery full
+	    light_template = BREATH_LED_BRIGHTNESS_BATTERY;
+	    lut_flags = PM_PWM_LUT_RAMP_UP;
+	    onMS = 0;
+	    offMS = 0;
 	}
 	last_state = BREATH_SOURCE_BATTERY;
     } else if(active_states & BREATH_SOURCE_BUTTONS) {
