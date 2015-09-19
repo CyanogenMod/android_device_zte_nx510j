@@ -359,6 +359,9 @@ static int
 set_light_battery(struct light_device_t* dev,
         struct light_state_t const* state)
 {
+    if(!dev) {
+        return -1;
+    }
     pthread_mutex_lock(&g_lock);
     g_battery = *state;
     set_breath_light_locked(BREATH_SOURCE_BATTERY, &g_battery);
@@ -370,6 +373,9 @@ static int
 set_light_notifications(struct light_device_t* dev,
         struct light_state_t const* state)
 {
+    if(!dev) {
+        return -1;
+    }
     pthread_mutex_lock(&g_lock);
     g_notification = *state;
     set_breath_light_locked(BREATH_SOURCE_NOTIFICATION, &g_notification);
@@ -381,6 +387,9 @@ static int
 set_light_attention(struct light_device_t* dev,
         struct light_state_t const* state)
 {
+    if(!dev) {
+        return -1;
+    }
     pthread_mutex_lock(&g_lock);
     g_attention = *state;
     //set_breath_light_locked(BREATH_SOURCE_ATTENTION, &g_attention);
