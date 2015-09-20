@@ -376,7 +376,7 @@ set_breath_light_locked(int event_source,
     if ((active_states & BREATH_SOURCE_BATTERY) & !(active_states & BREATH_SOURCE_NOTIFICATION)) {
 	write_int(BREATH_GREEN_LED_DUTY_PCTS, (int)0);
         write_int(BREATH_BLUE_LED_DUTY_PCTS, (int)0);
-    } else if (!(active_states & BREATH_SOURCE_BATTERY) & (!(active_states & BREATH_SOURCE_NOTIFICATION) | strcmp(light_template,BREATH_LED_BRIGHTNESS_NOTIFICATION) != 0)) {
+    } else if ((!(active_states & BREATH_SOURCE_BATTERY)) & (!(active_states & BREATH_SOURCE_NOTIFICATION) | (strcmp(light_template,BREATH_LED_BRIGHTNESS_NOTIFICATION) != 0))) {
 	write_str(BREATH_GREEN_LED_DUTY_PCTS, BREATH_LED_BRIGHTNESS_BUTTONS);
         write_str(BREATH_BLUE_LED_DUTY_PCTS, BREATH_LED_BRIGHTNESS_BUTTONS);
         write_int(LEFT_LED_RAMP_STEP_MS, (int)20);
