@@ -337,7 +337,7 @@ set_breath_light_locked(int event_source,
 		offMS = 500;
 	    } else {
 		// battery full
-		light_template = BREATH_LED_BRIGHTNESS_BATTERY;
+		light_template = BREATH_LED_BRIGHTNESS_CHARGING;
 		lut_flags = PM_PWM_LUT_RAMP_UP;
 		onMS = 0;
 		offMS = 0;
@@ -350,7 +350,7 @@ set_breath_light_locked(int event_source,
 	}
 	state = &g_buttons;
 	light_template = BREATH_LED_BRIGHTNESS_BUTTONS;
-	lut_flags = PM_PWM_LUT_RAMP_UP;
+	lut_flags = PM_PWM_LUT_REVERSE;
 	last_state = BREATH_SOURCE_BUTTONS;
     } else if(active_states & BREATH_SOURCE_ATTENTION) {
 	state = &g_attention;
@@ -392,8 +392,8 @@ set_breath_light_locked(int event_source,
 	//write_int(LEFT_LED_PAUSE_HI, (int)onMS);
 	//write_int(RIGHT_LED_PAUSE_HI, (int)onMS);
     write_int(BREATH_LED_LUT_FLAGS, lut_flags);
-    write_int(LEFT_LED_LUT_FLAGS, (int)PM_PWM_LUT_RAMP_UP);
-    write_int(RIGHT_LED_LUT_FLAGS, (int)PM_PWM_LUT_RAMP_UP);
+    write_int(LEFT_LED_LUT_FLAGS, (int)PM_PWM_LUT_REVERSE);
+    write_int(RIGHT_LED_LUT_FLAGS, (int)PM_PWM_LUT_REVERSE);
 
     return 0;
 }
@@ -452,8 +452,8 @@ set_light_buttons(struct light_device_t* dev,
     pthread_mutex_lock(&g_lock);
     g_buttons = *state;
     if (brightness != 0) {
-    err = write_int(BREATH_GREEN_LED_DUTY_PCTS, (int)60);
-    err = write_int(BREATH_BLUE_LED_DUTY_PCTS, (int)60);
+    err = write_str(BREATH_GREEN_LED_DUTY_PCTS, BREATH_LED_BRIGHTNESS_BUTTONS);
+    err = write_str(BREATH_BLUE_LED_DUTY_PCTS, BREATH_LED_BRIGHTNESS_BUTTONS);
     }
     err = set_breath_light_locked(BREATH_SOURCE_BUTTONS, &g_buttons);
     if (brightness == 0) {
