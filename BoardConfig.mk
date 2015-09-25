@@ -218,6 +218,7 @@ include device/qcom/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += device/zte/nx510j/sepolicy
 
 BOARD_SEPOLICY_UNION += \
+    atfwd.te \
     bluetooth.te \
     bootanim.te \
     file.te \
