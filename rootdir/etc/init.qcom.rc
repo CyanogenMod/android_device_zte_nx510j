@@ -303,12 +303,6 @@ on post-fs-data
     mkdir /data/system/perfd 0770 root system
     chmod 2770 /data/system/perfd
 
-service qfintverify /sbin/qfintverify
-    user root
-    class core
-    seclabel u:r:qfips:s0
-    oneshot
-
     # RIDL data
     mkdir /data/misc/SelfHost/ 0710 system shell
     mkdir /data/misc/SelfHost/QCLogs/ 2750 system shell
@@ -316,6 +310,12 @@ service qfintverify /sbin/qfintverify
     mkdir /data/misc/SelfHost/storage/ 0700 system shell
     mkdir /data/misc/SelfHost/Running/ 2750 system shell
     mkdir /data/misc/SelfHost/socket/ 2770 system system
+
+service qfintverify /sbin/qfintverify
+    user root
+    class core
+    seclabel u:r:qfips:s0
+    oneshot
 
 service qcomsysd /system/bin/qcom-system-daemon
     class main
