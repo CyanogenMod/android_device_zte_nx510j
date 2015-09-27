@@ -170,6 +170,8 @@ on post-fs-data
 
     mkdir /data/misc/ipa 0700 net_admin net_admin
 
+    mkdir /data/misc/ipa 0700 net_admin net_admin
+
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
     # Create the directories used by the Wireless subsystem
@@ -535,6 +537,17 @@ service sensors /system/bin/sensors.qcom
     user root
     group root
     disabled
+
+service ipacm-diag /system/bin/ipacm-diag
+    class main
+    user system
+    socket ipacm_log_file dgram 660 system net_admin
+    group net_admin qcom_diag
+
+service ipacm /system/bin/ipacm
+    class main
+    user net_admin
+    group net_admin inet
 
 on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
