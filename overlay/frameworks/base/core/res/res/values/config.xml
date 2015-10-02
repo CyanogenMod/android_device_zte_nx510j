@@ -40,6 +40,9 @@
         <item>0x1300</item>     <!-- CPUBOOST MIN_FREQ resource value-->
      </integer-array>
 
+   <!-- Operating volatage for bluetooth controller. 0 by default-->
+   <integer translatable="false" name="config_bluetooth_operating_voltage_mv">3300</integer>
+
    <!-- Whether cpu boost is enabled for horizontal scroll. -->
 <!--   <bool name="config_enableCpuBoostForScroller">false</bool>
    <integer name="scrollboost_timeout_param">0</integer>
