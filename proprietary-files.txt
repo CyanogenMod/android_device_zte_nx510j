@@ -131,8 +131,10 @@ vendor/lib64/libthermalioctl.so
 bin/msm_irqbalance
 bin/perfd
 vendor/lib/libqti-perfd-client.so
+vendor/lib/libqti-at.so
 vendor/lib/libqti-gt.so
 vendor/lib64/libqti-perfd-client.so
+vendor/lib64/libqti-at.so
 vendor/lib64/libqti-gt.so
 vendor/etc/perf-profile0.conf
 vendor/etc/perf-profile1.conf
@@ -150,7 +152,6 @@ bin/time_daemon
 -vendor/lib64/libTimeService.so
 
 # Widevine
-vendor/lib/mediadrm/libdrmclearkeyplugin.so
 vendor/lib/qcdrm/playready/lib/libprdrmdecrypt_customer.so
 vendor/lib/qcdrm/playready/lib/libtzplayready_customer.so
 vendor/lib/qcdrm/playready/lib/drm/libdrmprplugin_customer.so
@@ -247,6 +248,8 @@ vendor/lib64/egl/libq3dtools_esx.so
 vendor/lib64/egl/libQTapGLES.so
 
 # Audio
+lib/soundfx/libhwdap.so
+lib/soundfx/libswdap.so
 vendor/bin/audioflacapp
 vendor/lib/libacdb-fts.so
 vendor/lib/libacdbloader.so
@@ -268,7 +271,6 @@ vendor/lib64/libadiertac.so
 vendor/lib64/libaudcal.so
 vendor/lib64/libaudioalsa.so
 vendor/lib64/libhwdaphal.so
-vendor/lib/libqct_resampler.so
 
 # Camera
 bin/mm-qcamera-app
@@ -281,6 +283,7 @@ etc/firmware/cpp_firmware_v1_6_0.fw
 etc/firmware/cpp_firmware_v1_8_0.fw
 lib/hw/camera.msm8994.so
 lib/libmmcamera_interface.so
+lib/libmmcamera_nubiacustpro.so
 lib/libmmjpeg_interface.so
 lib/libmm-qcamera.so
 lib/libmorpho_image_converter.so
@@ -524,6 +527,10 @@ vendor/lib/libchromatix_imx234_cpp_hfr_120.so
 vendor/lib/libchromatix_imx230_cpp_hfr_120.so
 vendor/lib/libchromatix_s5k3m2xx_cpp_hfr_120.so
 vendor/lib/libchromatix_imx258_postproc.so
+vendor/lib/libchromatix_imx234_af_cpp_startrack.so
+vendor/lib/libchromatix_imx234_af_startrack.so
+vendor/lib/libchromatix_imx234_cpp_startrack.so
+vendor/lib/libchromatix_imx234_startrack.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegdmahw.so
@@ -782,7 +789,6 @@ vendor/lib/libvendorconn.so
 vendor/lib/libwqe.so
 
 # Postprocessing
-bin/mm-pp-daemon
 vendor/lib64/libdisp-aba.so
 -vendor/lib64/libmm-abl.so
 vendor/lib64/libmm-abl-oem.so
