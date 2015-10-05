@@ -148,69 +148,14 @@ on boot
     
 # ADDED BY ZTEMT ZhuBing END
 
-    chown system system /sys/class/leds/red/fade_parameter
-    chown system system /sys/class/leds/red/grade_parameter
-    chown system system /sys/class/leds/red/outn
-    chown system system /sys/class/leds/blue/fade_parameter
-    chown system system /sys/class/leds/blue/grade_parameter
-    chown system system /sys/class/leds/blue/outn
-    chown system system /sys/class/leds/green/fade_parameter
-    chown system system /sys/class/leds/green/grade_parameter
-    chown system system /sys/class/leds/green/outn
-
-    chown system system /sys/class/leds/red/duty_pcts
-    chmod 0666 /sys/class/leds/red/duty_pcts
-
-    chown system system /sys/class/leds/green/duty_pcts
-    chmod 0666 /sys/class/leds/green/duty_pcts
-
-    chown system system /sys/class/leds/blue/duty_pcts
-    chmod 0666 /sys/class/leds/blue/duty_pcts
-
-    chown system system /sys/class/leds/red/lut_flags
-    chmod 0666 /sys/class/leds/red/lut_flags
-
-    chown system system /sys/class/leds/green/lut_flags
-    chmod 0666 /sys/class/leds/green/lut_flags
-
-    chown system system /sys/class/leds/blue/lut_flags
-    chmod 0666 /sys/class/leds/blue/lut_flags
-
-    chown system system /sys/class/leds/red/pause_hi
-    chmod 0666 /sys/class/leds/red/pause_hi
-
-    chown system system /sys/class/leds/green/pause_hi
-    chmod 0666 /sys/class/leds/green/pause_hi
-
-    chown system system /sys/class/leds/blue/pause_hi
-    chmod 0666 /sys/class/leds/blue/pause_hi
-
-    chown system system /sys/class/leds/red/pause_lo
-    chmod 0666 /sys/class/leds/red/pause_lo
-
-    chown system system /sys/class/leds/green/pause_lo
-    chmod 0666 /sys/class/leds/green/pause_lo
-
-    chown system system /sys/class/leds/blue/pause_lo
-    chmod 0666 /sys/class/leds/blue/pause_lo
-
-    chown system system /sys/class/leds/red/ramp_step_ms
-    chmod 0666 /sys/class/leds/red/ramp_step_ms
-
-    chown system system /sys/class/leds/green/ramp_step_ms
-    chmod 0666 /sys/class/leds/green/ramp_step_ms
-
-    chown system system /sys/class/leds/blue/ramp_step_ms
-    chmod 0666 /sys/class/leds/blue/ramp_step_ms
-
-    chown system system /sys/class/leds/red/start_idx
-    chmod 0666 /sys/class/leds/red/start_idx
-
-    chown system system /sys/class/leds/green/start_idx
-    chmod 0666 /sys/class/leds/green/start_idx
-
-    chown system system /sys/class/leds/blue/start_idx
-    chmod 0666 /sys/class/leds/blue/start_idx
+    chown system system /sys/class/leds/nubia_led/brightness
+    chown system system /sys/class/leds/nubia_led/lut_flags
+    chown system system /sys/class/leds/nubia_led/pause_hi
+    chown system system /sys/class/leds/nubia_led/pause_lo
+    chown system system /sys/class/leds/nubia_led/ramp_step_ms
+    chown system system /sys/class/leds/nubia_led/duty_pcts
+    chown system system /sys/class/leds/nubia_led/outn
+    chown system system /sys/class/leds/nubia_led/blink_mode
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon

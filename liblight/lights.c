@@ -1,6 +1,6 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
- * Copyright (C) 2014 The  Linux Foundation. All rights reserved.
+ * Copyright (C) 2014 The Linux Foundation. All rights reserved.
  * Copyright (C) 2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -75,64 +75,28 @@ char const*const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
 
 char const*const BREATH_LED_LUT_FLAGS
-        = "/sys/class/leds/red/lut_flags";
-
-char const*const LEFT_LED_LUT_FLAGS
-        = "/sys/class/leds/green/lut_flags";
-
-char const*const RIGHT_LED_LUT_FLAGS
-        = "/sys/class/leds/blue/lut_flags";
+        = "/sys/class/leds/nubia_led/lut_flags";
 
 char const*const BREATH_LED_PAUSE_HI
-        = "/sys/class/leds/red/pause_hi";
-
-char const*const LEFT_LED_PAUSE_HI
-        = "/sys/class/leds/green/pause_hi";
-
-char const*const RIGHT_LED_PAUSE_HI
-        = "/sys/class/leds/blue/pause_hi";
+        = "/sys/class/leds/nubia_led/pause_hi";
 
 char const*const BREATH_LED_PAUSE_LO
-        = "/sys/class/leds/red/pause_lo";
-
-char const*const LEFT_LED_PAUSE_LO
-        = "/sys/class/leds/green/pause_lo";
-
-char const*const RIGHT_LED_PAUSE_LO
-        = "/sys/class/leds/blue/pause_lo";
+        = "/sys/class/leds/nubia_led/pause_lo";
 
 char const*const BREATH_LED_RAMP_STEP_MS
-        = "/sys/class/leds/red/ramp_step_ms";
+        = "/sys/class/leds/nubia_led/ramp_step_ms";
 
-char const*const LEFT_LED_RAMP_STEP_MS
-        = "/sys/class/leds/green/ramp_step_ms";
-
-char const*const RIGHT_LED_RAMP_STEP_MS
-        = "/sys/class/leds/blue/ramp_step_ms";
-
-char const*const BREATH_RED_LED_DUTY_PCTS
-        = "/sys/class/leds/red/duty_pcts";
-
-char const*const BREATH_GREEN_LED_DUTY_PCTS
-        = "/sys/class/leds/green/duty_pcts";
-
-char const*const BREATH_BLUE_LED_DUTY_PCTS
-        = "/sys/class/leds/blue/duty_pcts";
-
-char const*const LEFT_LED
-        = "/sys/class/leds/green/brightness";
-
-char const*const RIGHT_LED
-        = "/sys/class/leds/blue/brightness";
+char const*const BREATH_LED_DUTY_PCTS
+        = "/sys/class/leds/nubia_led/duty_pcts";
 
 char const*const BREATH_LED
-        = "/sys/class/leds/red/brightness";
+        = "/sys/class/leds/nubia_led/brightness";
 
 char const*const BREATH_LED_OUTN
-        = "/sys/class/leds/red/outn";
+        = "/sys/class/leds/nubia_led/outn";
 
 char const*const BREATH_LED_BLINK_MODE
-        = "/sys/class/leds/red/blink_mode";
+        = "/sys/class/leds/nubia_led/blink_mode";
 
 char const*const BATTERY_CAPACITY
         = "/sys/class/power_supply/battery/capacity";
@@ -268,8 +232,6 @@ set_breath_light_locked(int event_source,
 	if(active_states == 0) {
 	    ALOGV("disabling buttons backlight\n");
 	    write_int(BREATH_LED_LUT_FLAGS, (int)PM_PWM_LUT_NO_TABLE); // smoothly turn led off
-            write_int(LEFT_LED_LUT_FLAGS, (int)PM_PWM_LUT_NO_TABLE); // smoothly turn led off
-            write_int(RIGHT_LED_LUT_FLAGS, (int)PM_PWM_LUT_NO_TABLE); // smoothly turn led off
 	    last_state = BREATH_SOURCE_NONE;
 	    return 0;
 	}
@@ -367,33 +329,16 @@ set_breath_light_locked(int event_source,
         write_int(BREATH_LED_BLINK_MODE, (int)2);
         write_int(BREATH_LED_OUTN, (int)16);
         write_int(BREATH_LED, (int)255);
-        write_int(LEFT_LED, (int)255);
-        write_int(RIGHT_LED, (int)255);
     }
 
     ALOGV("writing values: pause_lo=%d, pause_hi=%d, lut_flags=%d\n", offMS, onMS, lut_flags);
-    write_str(BREATH_RED_LED_DUTY_PCTS, light_template);
-    if ((active_states & BREATH_SOURCE_BATTERY) & !(active_states & BREATH_SOURCE_NOTIFICATION)) {
-	write_int(BREATH_GREEN_LED_DUTY_PCTS, (int)0);
-        write_int(BREATH_BLUE_LED_DUTY_PCTS, (int)0);
-    } else if ((!(active_states & BREATH_SOURCE_BATTERY)) & (!(active_states & BREATH_SOURCE_NOTIFICATION) | (strcmp(light_template,BREATH_LED_BRIGHTNESS_NOTIFICATION) != 0))) {
-	write_str(BREATH_GREEN_LED_DUTY_PCTS, BREATH_LED_BRIGHTNESS_BUTTONS);
-        write_str(BREATH_BLUE_LED_DUTY_PCTS, BREATH_LED_BRIGHTNESS_BUTTONS);
-        write_int(LEFT_LED_RAMP_STEP_MS, (int)20);
-        write_int(RIGHT_LED_RAMP_STEP_MS, (int)20);
-	write_int(BREATH_LED_RAMP_STEP_MS, (int)20);
-    } 
+    write_str(BREATH_LED_DUTY_PCTS, light_template);
+    write_int(BREATH_LED_RAMP_STEP_MS, (int)20);
     if(offMS > 0)
 	write_int(BREATH_LED_PAUSE_LO, (int)offMS);
-	//write_int(LEFT_LED_PAUSE_LO, (int)offMS);
-	//write_int(RIGHT_LED_PAUSE_LO, (int)offMS);
     if(onMS > 0)
 	write_int(BREATH_LED_PAUSE_HI, (int)onMS);
-	//write_int(LEFT_LED_PAUSE_HI, (int)onMS);
-	//write_int(RIGHT_LED_PAUSE_HI, (int)onMS);
     write_int(BREATH_LED_LUT_FLAGS, lut_flags);
-    write_int(LEFT_LED_LUT_FLAGS, (int)PM_PWM_LUT_REVERSE);
-    write_int(RIGHT_LED_LUT_FLAGS, (int)PM_PWM_LUT_REVERSE);
 
     return 0;
 }
@@ -451,15 +396,7 @@ set_light_buttons(struct light_device_t* dev,
     }
     pthread_mutex_lock(&g_lock);
     g_buttons = *state;
-    if (brightness != 0) {
-    err = write_str(BREATH_GREEN_LED_DUTY_PCTS, BREATH_LED_BRIGHTNESS_BUTTONS);
-    err = write_str(BREATH_BLUE_LED_DUTY_PCTS, BREATH_LED_BRIGHTNESS_BUTTONS);
-    }
     err = set_breath_light_locked(BREATH_SOURCE_BUTTONS, &g_buttons);
-    if (brightness == 0) {
-    err = write_int(BREATH_GREEN_LED_DUTY_PCTS, (int)0);
-    err = write_int(BREATH_BLUE_LED_DUTY_PCTS, (int)0);
-    }
     pthread_mutex_unlock(&g_lock);
     return err;
 }
