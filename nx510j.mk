@@ -77,6 +77,14 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/sec_config:system/etc/sec_config
 
+# GPS
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/gps/etc/flp.conf:system/etc/flp.conf \
+    $(LOCAL_PATH)/gps/etc/gps.conf:system/etc/gps.conf \
+    $(LOCAL_PATH)/gps/etc/izat.conf:system/etc/izat.conf \
+    $(LOCAL_PATH)/gps/etc/quipc.conf:system/etc/quipc.conf \
+    $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf
+
 # Sensors
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/sensor_def_qcomdev.conf:system/etc/sensors/sensor_def_qcomdev.conf
@@ -220,8 +228,8 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # GPS
-#PRODUCT_PACKAGES += \
-#    gps.msm8994
+PRODUCT_PACKAGES += \
+    gps.msm8994
 
 # Graphics
 PRODUCT_PACKAGES += \
