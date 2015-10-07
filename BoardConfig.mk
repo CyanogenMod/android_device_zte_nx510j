@@ -218,31 +218,6 @@ include device/qcom/sepolicy/sepolicy.mk
 
 BOARD_SEPOLICY_DIRS += device/zte/nx510j/sepolicy
 
-BOARD_SEPOLICY_UNION += \
-    atfwd.te \
-    bluetooth.te \
-    bootanim.te \
-    file.te \
-    healthd.te \
-    init_shell.te \
-    irsc_util.te \
-    mediaserver.te \
-    netmgrd.te \
-    nfc.te \
-    platform_app.te \
-    qmuxd.te \
-    radio.te \
-    sensors.te \
-    servicemanager.te \
-    shared_relro.te \
-    surfaceflinger.te \
-    system_app.te \
-    system_server.te \
-    thermal-engine.te \
-    time_daemon.te \
-    ueventd.te \
-    vold.te
-
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true
 
