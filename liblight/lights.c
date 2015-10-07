@@ -326,8 +326,8 @@ set_breath_light_locked(int event_source,
 
     if (!have_init) {
         have_init = 1;
-        write_int(BREATH_LED_BLINK_MODE, (int)2);
-        write_int(BREATH_LED_OUTN, (int)16);
+        write_int(BREATH_LED_OUTN, (int)8);
+        write_int(BREATH_LED_BLINK_MODE, (int)6);
         write_int(BREATH_LED, (int)255);
     }
 
@@ -396,6 +396,7 @@ set_light_buttons(struct light_device_t* dev,
     }
     pthread_mutex_lock(&g_lock);
     g_buttons = *state;
+    err = write_int(BREATH_LED_BLINK_MODE, brightness?6:2);
     err = set_breath_light_locked(BREATH_SOURCE_BUTTONS, &g_buttons);
     pthread_mutex_unlock(&g_lock);
     return err;
