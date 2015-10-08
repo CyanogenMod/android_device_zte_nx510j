@@ -23,4 +23,6 @@ $(call inherit-product, vendor/slim/config/common_full_phone.mk)
 
 DEVICE_PACKAGE_OVERLAYS += device/zte/nx510j/overlay-slim
 
+BOARD_HARDWARE_CLASS := device/zte/nx510j/cmhw
+
 PRODUCT_NAME := slim_nx510j

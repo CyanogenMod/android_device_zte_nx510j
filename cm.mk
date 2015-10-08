@@ -21,4 +21,6 @@ $(call inherit-product, vendor/cm/config/nfc_enhanced.mk)
 # Inherit some common CM stuff.
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
+BOARD_HARDWARE_CLASS := device/zte/nx510j/cmhw
+
 PRODUCT_NAME := cm_nx510j
