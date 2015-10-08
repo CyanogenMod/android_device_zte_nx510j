@@ -46,7 +46,7 @@ public class TapToWake {
      * disabled.
      */
     public static boolean isEnabled() {
-	    return !FileUtils.readOneLine(WAKEUP_GESTURE_FILE).equals("0");
+	    return !(FileUtils.readOneLine(WAKEUP_GESTURE_FILE).equals("0") || FileUtils.readOneLine(WAKEUP_GESTURE_FILE).equals("0x00"));
     }
 
     /**
