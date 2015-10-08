@@ -393,11 +393,8 @@ service fidodaemon /system/vendor/bin/fidodaemon
     user system
     group system
 
-service tp_workaround /system/bin/sh /tp_workaround.sh
+service tp_node /system/bin/sh /tp_node.sh
+    class main
     user root
     group root
     oneshot
-    disabled
-
-on property:sys.boot_completed=1
-    start tp_workaround

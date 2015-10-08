@@ -256,7 +256,7 @@ PRODUCT_PACKAGES += \
     init.qcom.uicc.sh \
     fstab.qcom \
     init.recovery.qcom.rc \
-    tp_workaround.sh
+    tp_node.sh
 
 # IPv6
 PRODUCT_PACKAGES += \
