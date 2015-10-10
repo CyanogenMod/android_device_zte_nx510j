@@ -767,8 +767,6 @@ vendor/lib/libmm-qdcm.so
 vendor/lib/libsd_sdk_display.so
 
 # CNE / DPM
-lib64/libcnefeatureconfig.so
-lib/libcnefeatureconfig.so
 vendor/lib64/libcneapiclient.so
 vendor/lib64/libcneconn.so
 vendor/lib64/libcneqmiutils.so
