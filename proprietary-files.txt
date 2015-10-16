@@ -675,13 +675,18 @@ vendor/lib/libextendedmediaextractor.so
 # GPS
 bin/location-mq
 bin/loc_launcher
+bin/lowi-server
 bin/quipc_igsn
+bin/quipc_main
+bin/xtwifi-client
+bin/xtwifi-inet-agent
 etc/permissions/com.qualcomm.location.xml
 -lib64/libloc_api_v02.so
 -lib64/libloc_ds_api.so
 -lib/libloc_api_v02.so
 -lib/libloc_ds_api.so
 -priv-app/com.qualcomm.location/com.qualcomm.location.apk
+vendor/bin/slim_ap_daemon
 vendor/lib64/hw/flp.default.so
 vendor/lib64/libgeofence.so
 vendor/lib64/libizat_core.so
@@ -694,6 +699,9 @@ vendor/lib64/libxtadapter.so
 vendor/lib64/libxtwifi_ulp_adaptor.so
 vendor/lib64/libxtwifi_zpp_adaptor.so
 vendor/lib64/libalarmservice_jni.so
+vendor/lib64/libasn1cper.so
+vendor/lib64/libasn1crt.so
+vendor/lib64/libasn1crtx.so
 vendor/lib/hw/flp.default.so
 vendor/lib/libgeofence.so
 vendor/lib/libizat_core.so
@@ -706,6 +714,9 @@ vendor/lib/libxtadapter.so
 vendor/lib/libxtwifi_ulp_adaptor.so
 vendor/lib/libxtwifi_zpp_adaptor.so
 vendor/lib/libalarmservice_jni.so
+vendor/lib/libasn1cper.so
+vendor/lib/libasn1crt.so
+vendor/lib/libasn1crtx.so
 
 # Sensors
 bin/sensors.qcom
