@@ -182,8 +182,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX510J PRODUCT_NAME=NX510J
 ## Use the latest approved GMS identifiers
 ifneq ($(SIGN_BUILD),true)
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT=nubia/NX510J/NX510J:5.1.1/LMY47V/nubia08261822:user/release-keys \
-    PRIVATE_BUILD_DESC="NX510J-user 5.1.1 LMY47V eng.nubia.20150826.181950 release-keys"
+    BUILD_FINGERPRINT=nubia/NX510J/NX510J:5.1.1/LMY47V/nubia09232240:user/release-keys \
+    PRIVATE_BUILD_DESC="NX510J-user 5.1.1 LMY47V eng.nubia.20150923.223844 release-keys"
 endif
 
 #ANT+ stack
