@@ -67,7 +67,6 @@ AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
 AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
 AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
-AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
 AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
 AUDIO_FEATURE_ENABLED_FLUENCE := true
 
@@ -87,24 +86,26 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 
-# DPM NSRM Feature
-TARGET_LDPRELOAD := libNimsWrap.so
-
 #Enable HW based full disk encryption
 TARGET_HW_DISK_ENCRYPTION := false
 
 # Enable dex pre-opt to speed up initial boot
-ifneq ($(TARGET_USES_AOSP),true)
-  ifeq ($(HOST_OS),linux)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-      ifneq ($(TARGET_BUILD_VARIANT),user)
-        # Retain classes.dex in APK's for non-user builds
-        DEX_PREOPT_DEFAULT := nostripping
-      endif
+ifeq ($(HOST_OS),linux)
+  ifeq ($(WITH_DEXPREOPT),)
+    WITH_DEXPREOPT := true
+    WITH_DEXPREOPT_PIC := true
+    ifneq ($(TARGET_BUILD_VARIANT),user)
+      # Retain classes.dex in APK's for non-user builds
+      DEX_PREOPT_DEFAULT := nostripping
     endif
   endif
 endif
+
+#Enable peripheral manager
+TARGET_PER_MGR_ENABLED := true
+
+# Enable sensor multi HAL
+USE_SENSOR_MULTI_HAL := true
 
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
@@ -122,6 +123,8 @@ USE_OPENGL_RENDERER := true
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
 
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
@@ -166,11 +169,6 @@ BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 
-#Peripheral manager is enabled on this target
-#This flag means that peripheral manager is enabled
-#is controlling the power on/off on certain peripherals.
-TARGET_PER_MGR_ENABLED := true
-
 # Power
 TARGET_POWERHAL_VARIANT := qcom
 
@@ -211,7 +209,7 @@ SIM_COUNT := 2
 TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM
 TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
 # Added to indicate that protobuf-c is supported in this build
-PROTOBUF_SUPPORTED := true
+PROTOBUF_SUPPORTED := false
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk

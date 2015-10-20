@@ -34,15 +34,13 @@ dalvik.vm.heapsize=36m
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 
-#CEC settings
-ro.hdmi.device_type=4
-persist.sys.hdmi.addr.playback=4
-
+ro.sf.lcd_density=560
 ro.hdmi.enable=true
 persist.speaker.prot.enable=false
 #0 is default(30 min)
 persist.spkr.cal.duration=0
 qcom.hw.aac.encoder=true
+
 #
 # system props for the cne module
 #
@@ -112,6 +110,9 @@ ril.ecclist1=112,911,110,122,119,120,000,118
 # System prop to turn on hfp client
 bluetooth.hfp.client=1
 
+# Set Bluetooth transport
+# initialization timeout
+bluetooth.enable_timeout_ms=12000
 
 #Simulate sdcard on /data/media
 #
@@ -120,11 +121,12 @@ persist.fuse_sdcard=true
 #system prop for Bluetooth SOC type
 qcom.bluetooth.soc=rome
 
-#system prop for A4WP profile support
-ro.bluetooth.a4wp=false
-
 #system prop for wipower support
 ro.bluetooth.wipower=false
+
+#Set this true, if ROME is programmed
+#as embedded wipower mode by default
+ro.bluetooth.emb_wp_mode=true
 
 #
 #snapdragon value add features
@@ -151,13 +153,19 @@ audio.offload.gapless.enabled=true
 audio.offload.buffer.size.kb=32
 
 #Enable offload audio video playback by default
-av.offload.enable=true
+audio.offload.video=true
 
 #Disable 16 bit PCM offload by default
 audio.offload.pcm.16bit.enable=false
 
+audio.offload.passthrough=false
+audio.offload.multiple.enabled=false
+
 #Enable 24 bit PCM offload by default
 audio.offload.pcm.24bit.enable=true
+
+#Enable music through deep buffer
+audio.deep_buffer.media=true
 
 #property to enable VDS WFD solution
 persist.hwc.enable_vds=1
@@ -185,7 +193,7 @@ ro.hwui.text_large_cache_height=1024
 use.voice.path.for.pcm.voip=true
 
 #selects CoreSight configuration to enable
-persist.debug.coresight.config=none
+persist.debug.coresight.config=stm-events
 
 #System property for FM transmitter
 ro.fm.transmitter=false
@@ -199,8 +207,5 @@ audio.ds1.metainfo.key=273
 
 #enable property for hard bypass
 audio.dolby.ds2.hardbypass=true
-
-audio.offload.passthrough=false
-audio.offload.multiple.enabled=true
 
 ro.telephony.default_cdma_sub=0

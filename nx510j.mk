@@ -150,6 +150,17 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/Generic.kl:system/usr/keylayout/Generic.kl
 
+# Whitelist
+PRODUCT_COPY_FILES += \
+    device/zte/nx510j/whitelistedapps.xml:system/etc/whitelistedapps.xml
+
+PRODUCT_COPY_FILES += \
+    device/zte/nx510j/sensors/hals.conf:system/etc/sensors/hals.conf
+
+# MIDI feature
+PRODUCT_COPY_FILES += \
+   frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
+
 # Override heap growth limit due to high display density on device
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapgrowthlimit=256m
@@ -356,6 +367,14 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=480 \
     ro.com.android.dataroaming=true \
     persist.sys.usb.config=mtp
+
+# Reduce client buffer size for fast audio output tracks
+PRODUCT_PROPERTY_OVERRIDES += \
+    af.fast_track_multiplier=1
+
+# Low latency audio buffer size in frames
+PRODUCT_PROPERTY_OVERRIDES += \
+    audio_hal.period_size=192
 
 PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
 # never dexopt the keyhandler

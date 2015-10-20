@@ -33,13 +33,22 @@ on early-init
     mkdir /bt_firmware 0771 system system
     symlink /data/tombstones /tombstones
 
+on post-fs
+    export LD_PRELOAD libNimsWrap.so
+
 on fs
+    #wait /dev/block/platform/soc.0/f9824900.sdhci/mmcblk0
+    symlink /dev/block/platform/soc.0/f9824900.sdhci /dev/block/bootdevice
+    #symlink /dev/block/platform/soc.0 /dev/block/bootdevice
+
+
     mount_all fstab.qcom
+    swapon_all fstab.qcom
 
     wait /dev/block/bootdevice/by-name/cache
     mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
 
-    wait /dev/block/bootdevice/by-name/persist
+    wait /dev/block/bootdevice/by-name/persist /persist
     mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
     restorecon_recursive /persist
     mkdir /persist/data 0700 system system
@@ -48,7 +57,7 @@ on fs
     mount vfat /dev/block/bootdevice/by-name/modem /firmware ro shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0
 
     wait /dev/block/bootdevice/by-name/bluetooth
-    mount vfat /dev/block/bootdevice/by-name/bluetooth /bt_firmware ro shortname=lower,uid=1002,gid=1002,dmask=227,fmask=337
+    mount vfat /dev/block/bootdevice/by-name/bluetooth /bt_firmware ro shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0
 
 on post-fs-data
     mkdir /data/tombstones 0771 system system
@@ -62,8 +71,11 @@ on post-fs-data
     mkdir /data/misc/dts 0770 media audio
 
 on boot
+    symlink /dev/block/platform/soc.0 /dev/block/bootdevice
     start rmt_storage
     start rfs_access
+    write /sys/bus/i2c/devices/2-004a/update_fw 1
+    write /sys/bus/i2c/devices/2-004a/update_cfg 1
     write /sys/bus/i2c/devices/2-0020/input/input0/update_fw 1
 # access permission for secure touch
     chmod 0660 /sys/devices/soc.0/f9924000.i2c/i2c-2/2-0020/input/input0/secure_touch_enable
@@ -191,7 +203,7 @@ service qseecomd /system/bin/qseecomd
    user root
    group root
 
-service perfd /system/bin/perfd
+service perfd /system/vendor/bin/perfd
    class main
    user root
    disabled
@@ -222,7 +234,7 @@ on property:sys.shutdown.requested=*
 #   group system
 #   disabled
 #
-service thermal-engine /system/bin/thermal-engine
+service thermal-engine /system/vendor/bin/thermal-engine
    class main
    user root
    socket thermal-send-client stream 0666 system system
@@ -289,16 +301,6 @@ service usf_proximity /system/bin/usf_proximity
     group system inet
     disabled
 
-service usf_pairing /system/bin/usf_pairing
-    user system
-    group system inet
-    disabled
-
-service usf_sw_calib /system/bin/usf_sw_calib
-    user system
-    group system inet
-    disabled
-
 service usf-post-boot /system/bin/sh /system/etc/usf_post_boot.sh
     class late_start
     user root
@@ -312,13 +314,13 @@ service imsqmidaemon /system/bin/imsqmidaemon
     class main
     user system
     socket ims_qmid stream 0660 system radio
-    group radio net_raw log qcom_diag
+    group radio net_raw log diag
 
 service imsdatadaemon /system/bin/imsdatadaemon
     class main
     user system
     socket ims_datad stream 0660 system radio
-    group system wifi radio inet net_raw log qcom_diag net_admin
+    group system wifi radio inet net_raw log diag net_admin
     disabled
 #
 #service wcnss-service /system/bin/wcnss_service
@@ -334,18 +336,16 @@ service ims_rtp_daemon /system/bin/ims_rtp_daemon
    class main
    user system
    socket ims_rtpd stream 0660 system radio
-   group radio net_raw diag qcom_diag log
+   group radio net_raw diag inet log
    disabled
+
+on property:sys.ims.DATA_DAEMON_STATUS=1
+    start ims_rtp_daemon
 
 service imscmservice /system/bin/imscmservice
    class main
    user system
-   group radio net_raw diag qcom_diag log
-   disabled
-
-on property:sys.ims.DATA_DAEMON_STATUS=1
-   start ims_rtp_daemon
-   start imscmservice
+   group radio net_raw diag diag log
 
 service ppd /system/bin/mm-pp-daemon
     class late_start
