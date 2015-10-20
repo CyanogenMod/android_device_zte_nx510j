@@ -34,8 +34,7 @@ dalvik.vm.heapsize=36m
 dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 
-ro.sf.lcd_density=560
-ro.hdmi.enable=true
+ro.hdmi.enable=false
 persist.speaker.prot.enable=false
 #0 is default(30 min)
 persist.spkr.cal.duration=0
@@ -126,7 +125,7 @@ ro.bluetooth.wipower=false
 
 #Set this true, if ROME is programmed
 #as embedded wipower mode by default
-ro.bluetooth.emb_wp_mode=true
+ro.bluetooth.emb_wp_mode=false
 
 #
 #snapdragon value add features
