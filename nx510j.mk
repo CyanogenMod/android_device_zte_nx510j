@@ -204,7 +204,8 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    libboringssl-compat
+    libboringssl-compat \
+    libcam
 
 # Charger
 PRODUCT_PACKAGES += \
