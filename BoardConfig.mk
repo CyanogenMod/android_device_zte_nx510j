@@ -69,6 +69,7 @@ AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
 AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
 AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
 AUDIO_FEATURE_ENABLED_FLUENCE := true
+AUDIO_USE_LL_AS_PRIMARY_OUTPUT := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
@@ -126,6 +127,7 @@ MAX_EGL_CACHE_SIZE := 2048*1024
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
+BOARD_USES_OPENSSL_SYMBOLS := true
 
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
@@ -133,7 +135,7 @@ TARGET_INIT_VENDOR_LIB := libinit_msm
 
 # Kernel
 TARGET_NO_KERNEL := false
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5 androidboot.selinux=disabled
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
@@ -217,8 +219,6 @@ PROTOBUF_SUPPORTED := false
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
-
-BOARD_SEPOLICY_DIRS += device/zte/nx510j/sepolicy
 
 # Time services
 BOARD_USES_QC_TIME_SERVICES := true

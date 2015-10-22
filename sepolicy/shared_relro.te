@@ -1,1 +1,0 @@
-allow shared_relro zygote:netlink_selinux_socket getopt;

@@ -1,1 +1,0 @@
-allow radio zygote:netlink_selinux_socket getopt;

@@ -1,2 +1,0 @@
-allow sensors self:capability { net_raw sys_nice };
-allow sensors sensors_persist_file:file { read open };

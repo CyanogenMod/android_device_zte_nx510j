@@ -1,1 +1,0 @@
-allow system_app zygote:netlink_selinux_socket getopt;

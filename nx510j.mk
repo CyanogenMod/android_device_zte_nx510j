@@ -69,9 +69,7 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
     frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
     frameworks/native/data/etc/android.hardware.sensor.stepcounter.xml:system/etc/permissions/android.hardware.sensor.stepcounter.xml \
-    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml \
-    frameworks/native/data/etc/android.hardware.sensor.ambient_temperature.xml:system/etc/permissions/android.hardware.sensor.ambient_temperature.xml \
-    frameworks/native/data/etc/android.hardware.sensor.relative_humidity.xml:system/etc/permissions/android.hardware.sensor.relative_humidity.xml
+    frameworks/native/data/etc/android.hardware.sensor.stepdetector.xml:system/etc/permissions/android.hardware.sensor.stepdetector.xml
 
 # gps/location secuity configuration file
 PRODUCT_COPY_FILES += \
@@ -356,6 +354,10 @@ PRODUCT_PACKAGES += \
     hostapd.accept \
     dhcpcd.conf
 
+# http://b/15193147
+# TODO(danalbert): Remove this once stlport is dead and gone.
+PRODUCT_PACKAGES +=  libstlport
+
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
 
@@ -370,7 +372,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.sib16_support=1 \
     ro.sf.lcd_density=480 \
     ro.com.android.dataroaming=true \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=adb
 
 # Reduce client buffer size for fast audio output tracks
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -379,6 +381,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Low latency audio buffer size in frames
 PRODUCT_PROPERTY_OVERRIDES += \
     audio_hal.period_size=192
+
+# For debugging
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.secure=0 \
+    ro.adb.secure=0
 
 PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
 # never dexopt the keyhandler
