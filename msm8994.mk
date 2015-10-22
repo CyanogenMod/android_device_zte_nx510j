@@ -126,7 +126,6 @@ PRODUCT_PACKAGES += \
     antradio_app
 
 PRODUCT_SUPPORTS_VERITY := true
-PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/mmcblk0p28
 PRODUCT_AAPT_CONFIG += xlarge large
 
 # Reduce client buffer size for fast audio output tracks
