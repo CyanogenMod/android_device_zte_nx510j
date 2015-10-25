@@ -106,9 +106,6 @@ endif
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
-# Enable sensor multi HAL
-USE_SENSOR_MULTI_HAL := true
-
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 

@@ -152,9 +152,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/zte/nx510j/whitelistedapps.xml:system/etc/whitelistedapps.xml
 
-PRODUCT_COPY_FILES += \
-    device/zte/nx510j/sensors/hals.conf:system/etc/sensors/hals.conf
-
 # MIDI feature
 PRODUCT_COPY_FILES += \
    frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
