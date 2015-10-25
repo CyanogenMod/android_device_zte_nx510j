@@ -1,4 +1,4 @@
-/* Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -35,8 +35,6 @@ extern "C" {
 
 #include <ctype.h>
 #include <stdbool.h>
-#include <stdlib.h>
-#include <string.h>
 #include <hardware/gps.h>
 
 /** Location has valid source information. */
@@ -64,10 +62,7 @@ extern "C" {
 #define ULP_LOCATION_IS_FROM_GEOFENCE 0X0008
 /** Positioin is from Hardware FLP */
 #define ULP_LOCATION_IS_FROM_HW_FLP   0x0010
-/** Position is from NLP */
-#define ULP_LOCATION_IS_FROM_NLP      0x0020
-/** Position is from PIP */
-#define ULP_LOCATION_IS_FROM_PIP      0x0040
+#define ULP_LOCATION_IS_FROM_NLP   0x0020
 
 #define ULP_MIN_INTERVAL_INVALID 0xffffffff
 
@@ -259,20 +254,6 @@ typedef uint16_t GpsLocationExtendedFlags;
 #define GPS_LOCATION_EXTENDED_HAS_VERT_UNC 0x0010
 /** GpsLocationExtended has valid speed uncertainty */
 #define GPS_LOCATION_EXTENDED_HAS_SPEED_UNC 0x0020
-/** GpsLocationExtended has valid heading uncertainty */
-#define GPS_LOCATION_EXTENDED_HAS_BEARING_UNC 0x0040
-/** GpsLocationExtended has valid horizontal reliability */
-#define GPS_LOCATION_EXTENDED_HAS_HOR_RELIABILITY 0x0080
-/** GpsLocationExtended has valid vertical reliability */
-#define GPS_LOCATION_EXTENDED_HAS_VERT_RELIABILITY 0x0100
-
-typedef enum {
-    LOC_RELIABILITY_NOT_SET = 0,
-    LOC_RELIABILITY_VERY_LOW = 1,
-    LOC_RELIABILITY_LOW = 2,
-    LOC_RELIABILITY_MEDIUM = 3,
-    LOC_RELIABILITY_HIGH = 4
-}LocReliability;
 
 /** Represents gps location extended. */
 typedef struct {
@@ -294,12 +275,6 @@ typedef struct {
     float           vert_unc;
     /** speed uncertainty in m/s */
     float           speed_unc;
-    /** heading uncertainty in degrees (0 to 359.999) */
-    float           bearing_unc;
-    /** horizontal reliability. */
-    LocReliability  horizontal_reliability;
-    /** vertical reliability. */
-    LocReliability  vertical_reliability;
 } GpsLocationExtended;
 
 typedef struct GpsExtLocation_s {
@@ -438,7 +413,7 @@ enum loc_api_adapter_event_index {
     LOC_API_ADAPTER_GDT_UPLOAD_BEGIN_REQ,              // GDT upload start request
     LOC_API_ADAPTER_GDT_UPLOAD_END_REQ,                // GDT upload end request
     LOC_API_ADAPTER_GNSS_MEASUREMENT,                  // GNSS Measurement report
-    LOC_API_ADAPTER_REQUEST_TIMEZONE,                  // Timezone injection request
+
     LOC_API_ADAPTER_EVENT_MAX
 };
 
@@ -467,7 +442,6 @@ enum loc_api_adapter_event_index {
 #define LOC_API_ADAPTER_BIT_GDT_UPLOAD_BEGIN_REQ             (1<<LOC_API_ADAPTER_GDT_UPLOAD_BEGIN_REQ)
 #define LOC_API_ADAPTER_BIT_GDT_UPLOAD_END_REQ               (1<<LOC_API_ADAPTER_GDT_UPLOAD_END_REQ)
 #define LOC_API_ADAPTER_BIT_GNSS_MEASUREMENT                 (1<<LOC_API_ADAPTER_GNSS_MEASUREMENT)
-#define LOC_API_ADAPTER_BIT_REQUEST_TIMEZONE                 (1<<LOC_API_ADAPTER_REQUEST_TIMEZONE)
 
 typedef unsigned int LOC_API_ADAPTER_EVENT_MASK_T;
 
@@ -477,8 +451,6 @@ typedef enum loc_api_adapter_msg_to_check_supported {
 
     LOC_API_ADAPTER_MESSAGE_MAX
 } LocCheckingMessagesID;
-
-typedef int IzatDevId_t;
 
 typedef uint32_t LOC_GPS_LOCK_MASK;
 #define isGpsLockNone(lock) ((lock) == 0)
@@ -491,3 +463,4 @@ typedef uint32_t LOC_GPS_LOCK_MASK;
 #endif /* __cplusplus */
 
 #endif /* GPS_EXTENDED_C_H */
+

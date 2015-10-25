@@ -72,7 +72,6 @@ void LocAdapterBase::
                    LocPosTechMask loc_technology_mask) {
     if (mLocAdapterProxyBase == NULL ||
         !mLocAdapterProxyBase->reportPosition(location,
-                                              locationExtended,
                                               status,
                                               loc_technology_mask)) {
         DEFAULT_IMPL()
@@ -135,6 +134,10 @@ DEFAULT_IMPL(false)
 bool LocAdapterBase::
     requestNiNotify(GpsNiNotification &notify, const void* data)
 DEFAULT_IMPL(false)
+
+void LocAdapterBase::
+    shutdown()
+DEFAULT_IMPL()
 
 void LocAdapterBase::
     reportGpsMeasurementData(GpsData &gpsMeasurementData)

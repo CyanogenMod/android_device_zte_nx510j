@@ -205,6 +205,7 @@ static void loc_eng_handle_engine_up(loc_eng_data_s_type &loc_eng_data) ;
 static int loc_eng_start_handler(loc_eng_data_s_type &loc_eng_data);
 static int loc_eng_stop_handler(loc_eng_data_s_type &loc_eng_data);
 static int loc_eng_get_zpp_handler(loc_eng_data_s_type &loc_eng_data);
+static void loc_eng_handle_shutdown(loc_eng_data_s_type &loc_eng_data);
 static void deleteAidingData(loc_eng_data_s_type &logEng);
 static AgpsStateMachine*
 getAgpsStateMachine(loc_eng_data_s_type& logEng, AGpsExtType agpsType);
@@ -222,6 +223,7 @@ static void* noProc(void* data)
 {
     return NULL;
 }
+
 
 /*********************************************************************
  * definitions of the static messages used in the file
@@ -343,6 +345,28 @@ void LocEngGetZpp::send() const {
     mAdapter->sendMsg(this);
 }
 
+
+LocEngShutdown::LocEngShutdown(LocEngAdapter* adapter) :
+    LocMsg(), mAdapter(adapter)
+{
+    locallog();
+}
+inline void LocEngShutdown::proc() const
+{
+    loc_eng_data_s_type* locEng = (loc_eng_data_s_type*)mAdapter->getOwner();
+    LOC_LOGD("%s:%d]: Calling loc_eng_handle_shutdown", __func__, __LINE__);
+    loc_eng_handle_shutdown(*locEng);
+}
+inline void LocEngShutdown::locallog() const
+{
+    LOC_LOGV("LocEngShutdown");
+}
+inline void LocEngShutdown::log() const
+{
+    locallog();
+}
+
+//        case LOC_ENG_MSG_SET_TIME:
 struct LocEngSetTime : public LocMsg {
     LocEngAdapter* mAdapter;
     const GpsUtcTime mTime;
@@ -1752,6 +1776,7 @@ int loc_eng_init(loc_eng_data_s_type &loc_eng_data, LocCallbacks* callbacks,
     loc_eng_data.sv_ext_parser = callbacks->sv_ext_parser ?
         callbacks->sv_ext_parser : noProc;
     loc_eng_data.intermediateFix = gps_conf.INTERMEDIATE_POS;
+    loc_eng_data.shutdown_cb = callbacks->shutdown_cb;
     // initial states taken care of by the memset above
     // loc_eng_data.engine_status -- GPS_STATUS_NONE;
     // loc_eng_data.fix_session_status -- GPS_STATUS_NONE;
@@ -1769,7 +1794,7 @@ int loc_eng_init(loc_eng_data_s_type &loc_eng_data, LocCallbacks* callbacks,
 
     loc_eng_data.adapter =
         new LocEngAdapter(event, &loc_eng_data, context,
-                          (LocThread::tCreate)callbacks->create_thread_cb);
+                          (MsgTask::tCreate)callbacks->create_thread_cb);
 
     LOC_LOGD("loc_eng_init created client, id = %p\n",
              loc_eng_data.adapter);
@@ -2029,12 +2054,14 @@ int loc_eng_set_position_mode(loc_eng_data_s_type &loc_eng_data,
     ENTRY_LOG_CALLFLOW();
     INIT_CHECK(loc_eng_data.adapter, return -1);
 
-    // The position mode for AUTO/GSS/QCA1530 can only be standalone
-    if (!(gps_conf.CAPABILITIES & GPS_CAPABILITY_MSB) &&
-        !(gps_conf.CAPABILITIES & GPS_CAPABILITY_MSA) &&
-        (params.mode != LOC_POSITION_MODE_STANDALONE)) {
+    int gnssType = getTargetGnssType(loc_get_target());
+
+    // The position mode for GSS/QCA1530 can only be standalone
+    bool is1530 = gnssType == GNSS_QCA1530;
+    bool isAPQ = gnssType == GNSS_GSS;
+    if ((isAPQ || is1530) && params.mode != LOC_POSITION_MODE_STANDALONE) {
         params.mode = LOC_POSITION_MODE_STANDALONE;
-        LOC_LOGD("Position mode changed to standalone for target with AUTO/GSS/qca1530.");
+        LOC_LOGD("Position mode changed to standalone for target with GSS/qca1530.");
     }
 
     if(! loc_eng_data.adapter->getUlpProxy()->sendFixMode(params))
@@ -2306,8 +2333,10 @@ void loc_eng_agps_init(loc_eng_data_s_type &loc_eng_data, AGpsExtCallbacks* call
                                                  AGPS_TYPE_WIFI,
                                                  true);
 
-    if ((gps_conf.CAPABILITIES & GPS_CAPABILITY_MSA) ||
-        (gps_conf.CAPABILITIES & GPS_CAPABILITY_MSB)) {
+    int gnssType = getTargetGnssType(loc_get_target());
+    bool isAPQ = (gnssType == GNSS_GSS);
+    bool is1530 = (gnssType == GNSS_QCA1530);
+    if (!isAPQ && !is1530) {
         loc_eng_data.agnss_nif = new AgpsStateMachine(servicerTypeAgps,
                                                       (void *)loc_eng_data.agps_status_cb,
                                                       AGPS_TYPE_SUPL,
@@ -2587,29 +2616,29 @@ int loc_eng_set_server_proxy(loc_eng_data_s_type &loc_eng_data,
     ENTRY_LOG_CALLFLOW();
     int ret_val = 0;
 
-    LOC_LOGV("save the address, type: %d, hostname: %s, port: %d",
-             (int) type, hostname, port);
-    switch (type)
-    {
-    case LOC_AGPS_SUPL_SERVER:
-        strlcpy(loc_eng_data.supl_host_buf, hostname,
-                sizeof(loc_eng_data.supl_host_buf));
-        loc_eng_data.supl_port_buf = port;
-        loc_eng_data.supl_host_set = 1;
-        break;
-    case LOC_AGPS_CDMA_PDE_SERVER:
-        strlcpy(loc_eng_data.c2k_host_buf, hostname,
-                sizeof(loc_eng_data.c2k_host_buf));
-        loc_eng_data.c2k_port_buf = port;
-        loc_eng_data.c2k_host_set = 1;
-        break;
-    default:
-        LOC_LOGE("loc_eng_set_server_proxy, unknown server type = %d", (int) type);
-    }
-
     if (NULL != loc_eng_data.adapter)
     {
         ret_val = loc_eng_set_server(loc_eng_data, type, hostname, port);
+    } else {
+        LOC_LOGW("set_server called before init. save the address, type: %d, hostname: %s, port: %d",
+                 (int) type, hostname, port);
+        switch (type)
+        {
+        case LOC_AGPS_SUPL_SERVER:
+            strlcpy(loc_eng_data.supl_host_buf, hostname,
+                    sizeof(loc_eng_data.supl_host_buf));
+            loc_eng_data.supl_port_buf = port;
+            loc_eng_data.supl_host_set = 1;
+            break;
+        case LOC_AGPS_CDMA_PDE_SERVER:
+            strlcpy(loc_eng_data.c2k_host_buf, hostname,
+                    sizeof(loc_eng_data.c2k_host_buf));
+            loc_eng_data.c2k_port_buf = port;
+            loc_eng_data.c2k_host_set = 1;
+            break;
+        default:
+            LOC_LOGE("loc_eng_set_server_proxy, unknown server type = %d", (int) type);
+        }
     }
 
     EXIT_LOG(%d, ret_val);
@@ -2856,8 +2885,9 @@ void loc_eng_handle_engine_up(loc_eng_data_s_type &loc_eng_data)
     // modem is back up.  If we crashed in the middle of navigating, we restart.
     if (loc_eng_data.adapter->isInSession()) {
         // This sets the copy in adapter to modem
+        loc_eng_data.adapter->setPositionMode(NULL);
         loc_eng_data.adapter->setInSession(false);
-        loc_eng_data.adapter->sendMsg(new LocEngStartFix(loc_eng_data.adapter));
+        loc_eng_start_handler(loc_eng_data);
     }
     EXIT_LOG(%s, VOID_RET);
 }
@@ -2919,6 +2949,30 @@ int loc_eng_read_config(void)
 
     EXIT_LOG(%d, 0);
     return 0;
+}
+
+/*===========================================================================
+FUNCTION    loc_eng_handle_shutdown
+
+DESCRIPTION
+   Calls the shutdown callback function in the loc interface to close
+   the modem node
+
+DEPENDENCIES
+   None
+
+RETURN VALUE
+   0: success
+
+SIDE EFFECTS
+   N/A
+
+===========================================================================*/
+void loc_eng_handle_shutdown(loc_eng_data_s_type &locEng)
+{
+    ENTRY_LOG();
+    locEng.shutdown_cb();
+    EXIT_LOG(%d, 0);
 }
 
 /*===========================================================================
