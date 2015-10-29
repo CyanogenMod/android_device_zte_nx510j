@@ -154,6 +154,9 @@ bin/time_daemon
 -vendor/lib64/libTimeService.so
 
 # Widevine
+vendor/lib/libwvm.so
+vendor/lib/drm/libdrmwvmplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
 vendor/lib/qcdrm/playready/lib/libprdrmdecrypt_customer.so
 vendor/lib/qcdrm/playready/lib/libtzplayready_customer.so
 vendor/lib/qcdrm/playready/lib/drm/libdrmprplugin_customer.so
