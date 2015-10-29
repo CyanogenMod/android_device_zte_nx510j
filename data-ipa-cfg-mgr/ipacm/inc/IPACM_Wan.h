@@ -96,18 +96,43 @@ public:
 	static bool wan_up_v6;
 	/* IPACM interface name */
 	static char wan_up_dev_name[IF_NAME_LEN];
-
 	IPACM_Wan(int, ipacm_wan_iface_type, uint8_t *);
 	virtual ~IPACM_Wan();
 
-	static bool isWanUP()
+	static bool isWanUP(int ipa_if_num_tether)
 	{
+#ifdef FEATURE_IPA_ANDROID
+		int i;
+		for (i=1; i < ipa_if_num_tether_v4_total;i++)
+		{
+			if (ipa_if_num_tether_v4[i] == ipa_if_num_tether)
+			{
+				return wan_up;
+				break;
+			}
+		}
+		return false;
+#else
 		return wan_up;
+#endif
 	}
 
-	static bool isWanUP_V6()
+	static bool isWanUP_V6(int ipa_if_num_tether)
 	{
+#ifdef FEATURE_IPA_ANDROID
+		int i;
+		for (i=1; i < ipa_if_num_tether_v6_total;i++)
+		{
+			if (ipa_if_num_tether_v6[i] == ipa_if_num_tether)
+			{
+				return wan_up_v6;
+				break;
+			}
+		}
+		return false;
+#else
 		return wan_up_v6;
+#endif
 	}
 
 
@@ -126,6 +151,13 @@ public:
 	static uint32_t backhaul_ipv6_prefix[2];
 
 	static bool embms_is_on;
+#ifdef FEATURE_IPA_ANDROID
+	/* IPACM interface id */
+	static int ipa_if_num_tether_v4_total;
+	static int ipa_if_num_tether_v4[IPA_MAX_IFACE_ENTRIES];
+	static int ipa_if_num_tether_v6_total;
+	static int ipa_if_num_tether_v6[IPA_MAX_IFACE_ENTRIES];
+#endif
 
 private:
 
@@ -291,6 +323,8 @@ private:
 
 	/* construct complete ethernet header */
 	int handle_header_add_evt(uint8_t *mac_addr);
+	/* wan posting supported tether_iface */
+	int post_wan_up_tether_evt(ipa_ip_type iptype, int ipa_if_num_tether);
 
 	int config_dft_firewall_rules(ipa_ip_type iptype);
 
@@ -298,6 +332,8 @@ private:
 	int config_dft_embms_rules(ipa_ioc_add_flt_rule *pFilteringTable_v4, ipa_ioc_add_flt_rule *pFilteringTable_v6);
 
 	int handle_route_del_evt(ipa_ip_type iptype);
+
+	int post_wan_down_tether_evt(ipa_ip_type iptype, int ipa_if_num_tether);
 
 	int del_dft_firewall_rules(ipa_ip_type iptype);
 
