@@ -1,6 +1,5 @@
 ifneq (,$(filter $(QCOM_BOARD_PLATFORMS),$(TARGET_BOARD_PLATFORM)))
 ifneq (, $(filter aarch64 arm arm64, $(TARGET_ARCH)))
-ifneq ($(TARGET_USES_AOSP),true)
 
 LOCAL_PATH := $(call my-dir)
 
@@ -15,7 +14,6 @@ else
 LOCAL_C_INCLUDES += external/icu4c/common
 endif
 LOCAL_C_INCLUDES += external/dhcpcd
-LOCAL_C_INCLUDES += bionic/libstdc++/include
 LOCAL_C_INCLUDES += external/libxml2/include
 LOCAL_C_INCLUDES += external/libnetfilter_conntrack/include
 LOCAL_C_INCLUDES += external/libnfnetlink/include
@@ -60,7 +58,6 @@ LOCAL_SHARED_LIBRARIES := libipanat
 LOCAL_SHARED_LIBRARIES += libxml2
 LOCAL_SHARED_LIBRARIES += libnfnetlink
 LOCAL_SHARED_LIBRARIES += libnetfilter_conntrack
-LOCAL_SHARED_LIBRARIES += libicuuc
 LOCAL_SHARED_LIBRARIES += libdhcpcd
 include $(BUILD_EXECUTABLE)
 
@@ -87,6 +84,5 @@ LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_OWNER := ipacm
 include $(BUILD_PREBUILT)
 
-endif # not (TARGET_USES_AOSP)
 endif # $(TARGET_ARCH)
 endif
