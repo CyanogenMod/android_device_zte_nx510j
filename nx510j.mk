@@ -153,6 +153,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/Generic.kl:system/usr/keylayout/Generic.kl
 
+# AP config
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/telephony/NX510J_Z0-0.xml:system/etc/telephony/NX510J_Z0-0.xml \
+    $(LOCAL_PATH)/configs/telephony/default_static_config.xml:system/etc/telephony/default_static_config.xml
+
 # Override heap growth limit due to high display density on device
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapgrowthlimit=256m
@@ -185,8 +190,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX510J PRODUCT_NAME=NX510J
 ## Use the latest approved GMS identifiers
 ifneq ($(SIGN_BUILD),true)
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT=nubia/NX510J/NX510J:5.1.1/LMY47V/nubia09232240:user/release-keys \
-    PRIVATE_BUILD_DESC="NX510J-user 5.1.1 LMY47V eng.nubia.20150923.223844 release-keys"
+    BUILD_FINGERPRINT=nubia/NX510J/NX510J:5.1.1/LMY47V/eng.nubia.20151028.122334:user/release-keys \
+    PRIVATE_BUILD_DESC="NX510J-user 5.1.1 LMY47V eng.nubia.20151028.122334 release-keys"
 endif
 
 #ANT+ stack
