@@ -113,7 +113,7 @@ public class KeyHandler implements DeviceKeyHandler {
         boolean isKeySupported = (event.getScanCode() == KEY_DOUBLE_TAP);
         if (isKeySupported) {
             if (event.getScanCode() == KEY_DOUBLE_TAP && !mPowerManager.isScreenOn()) {
-                mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis());
+                mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis(), "wakeup-gesture-proximity");
                 return true;
             }
             Message msg = getMessageForKeyEvent(event);
