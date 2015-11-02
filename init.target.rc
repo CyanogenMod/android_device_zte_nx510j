@@ -157,6 +157,9 @@ on boot
     chown system system /sys/class/leds/nubia_led/outn
     chown system system /sys/class/leds/nubia_led/blink_mode
 
+# add for ndt force-key
+    chmod 666 /dev/i2c-1
+
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
