@@ -90,6 +90,9 @@ on boot
     write /proc/sys/vm/dirty_ratio 5
     write /proc/sys/vm/dirty_background_ratio 1
 
+    # Tuxera exFAT kernel module
+    insmod /system/lib/modules/texfat.ko
+
 # ADDED BY ZTEMT ZhuBing
 # add the sensor sysfs permission
     #hall_device
@@ -168,6 +171,9 @@ on boot
     chown system system /sys/class/leds/nubia_led/duty_pcts
     chown system system /sys/class/leds/nubia_led/outn
     chown system system /sys/class/leds/nubia_led/blink_mode
+
+# add for ndt force-key
+    chmod 666 /dev/i2c-1
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon

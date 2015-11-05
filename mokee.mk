@@ -21,6 +21,9 @@ $(call inherit-product, vendor/mk/config/nfc_enhanced.mk)
 # Inherit some common MK stuff.
 $(call inherit-product, vendor/mk/config/common_full_phone.mk)
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.mk.maintainer=dianlujitao
+
 BOARD_HARDWARE_CLASS := device/zte/nx510j/mkhw
 
 PRODUCT_NAME := mk_nx510j

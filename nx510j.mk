@@ -81,7 +81,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/gps/etc/gps.conf:system/etc/gps.conf \
     $(LOCAL_PATH)/gps/etc/izat.conf:system/etc/izat.conf \
     $(LOCAL_PATH)/gps/etc/quipc.conf:system/etc/quipc.conf \
-    $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf
+    $(LOCAL_PATH)/gps/etc/sap.conf:system/etc/sap.conf \
+    $(LOCAL_PATH)/gps/etc/lowi.conf:system/etc/lowi.conf \
+    $(LOCAL_PATH)/gps/etc/xtwifi.conf:system/etc/xtwifi.conf
+
 
 # Sensors
 PRODUCT_COPY_FILES += \
@@ -116,30 +119,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
     $(LOCAL_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml
 
-# Audio calibration
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Bluetooth_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Bluetooth_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_General_cal.acdb:system/etc/acdbdata/Fluid/Fluid_General_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Global_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Global_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Handset_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Handset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Hdmi_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Hdmi_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Headset_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Headset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Fluid/Fluid_Speaker_cal.acdb:system/etc/acdbdata/Fluid/Fluid_Speaker_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Bluetooth_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Bluetooth_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_General_cal.acdb:system/etc/acdbdata/Liquid/Liquid_General_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Global_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Global_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Handset_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Handset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Hdmi_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Hdmi_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Headset_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Headset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/Liquid/Liquid_Speaker_cal.acdb:system/etc/acdbdata/Liquid/Liquid_Speaker_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Bluetooth_cal.acdb:system/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP/MTP_General_cal.acdb:system/etc/acdbdata/MTP/MTP_General_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Global_cal.acdb:system/etc/acdbdata/MTP/MTP_Global_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Handset_cal.acdb:system/etc/acdbdata/MTP/MTP_Handset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Hdmi_cal.acdb:system/etc/acdbdata/MTP/MTP_Hdmi_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Headset_cal.acdb:system/etc/acdbdata/MTP/MTP_Headset_cal.acdb \
-    $(LOCAL_PATH)/audio/acdb/MTP/MTP_Speaker_cal.acdb:system/etc/acdbdata/MTP/MTP_Speaker_cal.acdb
-
 # Dolby
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/dolby/ds1-default.xml:system/vendor/etc/dolby/ds1-default.xml
@@ -147,6 +126,11 @@ PRODUCT_COPY_FILES += \
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/Generic.kl:system/usr/keylayout/Generic.kl
+
+# AP config
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/telephony/NX510J_Z0-0.xml:system/etc/telephony/NX510J_Z0-0.xml \
+    $(LOCAL_PATH)/configs/telephony/default_static_config.xml:system/etc/telephony/default_static_config.xml
 
 # Whitelist
 PRODUCT_COPY_FILES += \
@@ -188,8 +172,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX510J PRODUCT_NAME=NX510J
 ## Use the latest approved GMS identifiers
 ifneq ($(SIGN_BUILD),true)
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT=nubia/NX510J/NX510J:5.1.1/LMY47V/nubia08261822:user/release-keys \
-    PRIVATE_BUILD_DESC="NX510J-user 5.1.1 LMY47V eng.nubia.20150826.181950 release-keys"
+    BUILD_FINGERPRINT=nubia/NX510J/NX510J:5.1.1/LMY47V/eng.nubia.20151028.122334:user/release-keys \
+    PRIVATE_BUILD_DESC="NX510J-user 5.1.1 LMY47V eng.nubia.20151028.122334 release-keys"
 endif
 
 #ANT+ stack

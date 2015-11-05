@@ -16,3 +16,6 @@ on init
     mkdir /recovery2
     mkdir /misc
     mkdir /persist
+
+service tp_node /sbin/sh /tp_node.sh
+    oneshot
