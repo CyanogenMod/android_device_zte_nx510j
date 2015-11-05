@@ -226,8 +226,8 @@ PRODUCT_PACKAGES += \
     setup_fs
 
 # GPS
-#PRODUCT_PACKAGES += \
-#    gps.msm8994
+PRODUCT_PACKAGES += \
+    gps.msm8994
 
 # Graphics
 PRODUCT_PACKAGES += \
