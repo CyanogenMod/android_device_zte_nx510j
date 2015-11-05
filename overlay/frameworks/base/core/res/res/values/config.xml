@@ -29,42 +29,6 @@
 -->
 
 <resources>
-   <!-- Whether cpu boost is enabled for overscroller fling. -->
-   <!-- Whether cpu boost is enabled for application's 1st launch. -->
-    <bool name="config_enableCpuBoostForAppLaunch">true</bool>
-    <integer name="launchboost_timeout_param">2000</integer>
-    <integer-array name="launchboost_param_value">
-        <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
-        <item>0x1</item>        <!-- SCHEDBOOST resource value-->
-        <item>0x40800100</item> <!-- CPUBOOST_MIN_FREQ LITTEL Core resource opcode-->
-        <item>0x1300</item>     <!-- CPUBOOST MIN_FREQ resource value-->
-     </integer-array>
-
-   <!-- Whether cpu boost is enabled for horizontal scroll. -->
-<!--   <bool name="config_enableCpuBoostForScroller">false</bool>
-   <integer name="scrollboost_timeout_param">0</integer>
-   <integer name="scrollboost_schedboost_param">0</integer>
-   <integer name="scrollboost_cpuboost_param">0</integer>
-   <integer name="scrollboost_pcdisbl_param">0</integer>
-   <integer name="scrollboost_ksmboost_param">0</integer> -->
-
-   <!-- Whether cpu boost is enabled for application's 1st launch. -->
-<!--   <bool name="config_enableCpuBoostForAppLaunch">true</bool>
-   <integer name="launchboost_timeout_param">2000</integer>
-   <integer name="launchboost_schedboost_param">0x1E01</integer>
-   <integer name="launchboost_cpuboost_param">0x20D</integer>
-   <integer name="launchboost_pcdisbl_param">0</integer>
-   <integer name="launchboost_ksmboost_param">0</integer> -->
-
-   <!-- monitor locale change -->
- <!--  <bool name="config_monitor_locale_change">true</bool> -->
-
-   <!-- display for radio tech -->
-<!--   <bool name="config_display_rat">true</bool> -->
-
-   <!-- spn display control -->
-<!--   <bool name="config_spn_display_control">true</bool> -->
-
    <!-- Configure wifi tcp buffersizes in the form:
         rmem_min,rmem_def,rmem_max,wmem_min,wmem_def,wmem_max -->
    <string name="config_wifi_tcp_buffers" translatable="false">524288,2097152,4194304,262144,524288,1048576</string>
@@ -252,9 +216,6 @@
     -->
     <!-- Flag indicating if the speed up audio on mt call code should be executed -->
     <bool name="config_speed_up_audio_on_mt_calls">true</bool>
-
-    <!-- Configuration to enable non-default PDP during IWLAN 
-    <bool name="config_feature_iwlan_enabled">true</bool>-->
 
     <!-- Flag specifying whether VoLTE is available on device -->
     <bool name="config_device_volte_available">true</bool>
