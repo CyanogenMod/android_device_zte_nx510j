@@ -91,6 +91,9 @@ BOARD_CHARGER_SHOW_PERCENTAGE := true
 #Enable HW based full disk encryption
 TARGET_HW_DISK_ENCRYPTION := false
 
+# Enable keymaster app checking
+TARGET_KEYMASTER_WAIT_FOR_QSEE := true
+
 # Enable dex pre-opt to speed up initial boot
 ifeq ($(HOST_OS),linux)
   ifeq ($(WITH_DEXPREOPT),)
