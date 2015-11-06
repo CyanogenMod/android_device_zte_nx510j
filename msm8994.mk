@@ -49,6 +49,7 @@ PRODUCT_BOOT_JARS += WfdCommon
 PRODUCT_BOOT_JARS += oem-services
 PRODUCT_BOOT_JARS += com.qti.dpmframework
 PRODUCT_BOOT_JARS += dpmapi
+PRODUCT_BOOT_JARS += com.qti.location.sdk
 endif
 
 PRODUCT_BOOT_JARS += qcmediaplayer
