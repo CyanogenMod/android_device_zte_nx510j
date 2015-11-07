@@ -21,14 +21,15 @@ import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -48,9 +49,10 @@ public class KeyHandler implements DeviceKeyHandler {
     private LockPatternUtils mLockPatternUtils;
     private final Context mContext;
     private final PowerManager mPowerManager;
-    private EventHandler mEventHandler;
+    private Handler mHandler;
     private SensorManager mSensorManager;
     private Sensor mProximitySensor;
+    WakeLock mProximityWakeLock;
 
     public KeyHandler(Context context) {
         mContext = context;
@@ -61,9 +63,11 @@ public class KeyHandler implements DeviceKeyHandler {
         filter.addAction(Intent.ACTION_USER_PRESENT);
         filter.addAction(Intent.ACTION_SCREEN_OFF);
         context.registerReceiver(mReceiver, filter);
-        mEventHandler = new EventHandler();
+        mHandler = new Handler();
         mSensorManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         mProximitySensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        mProximityWakeLock = mPowerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK,
+                "ProximityWakeLock");
     }
 
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
@@ -87,54 +91,49 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     };
 
-    private class EventHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            KeyEvent event = (KeyEvent) msg.obj;
-            if (event.getScanCode() == KEY_DOUBLE_TAP && !mPowerManager.isScreenOn()) {
-                mPowerManager.wakeUp(SystemClock.uptimeMillis());
-            }
-        }
-    }
-
     public boolean handleKeyEvent(KeyEvent event) {
         if (event.getAction() != KeyEvent.ACTION_UP) {
             return false;
         }
         boolean isKeySupported = (event.getScanCode() == KEY_DOUBLE_TAP);
-        if (isKeySupported && !mEventHandler.hasMessages(GESTURE_REQUEST)) {
+        if (isKeySupported) {
+            if (event.getScanCode() == KEY_DOUBLE_TAP && !mPowerManager.isScreenOn()) {
+                mPowerManager.wakeUpWithProximityCheck(SystemClock.uptimeMillis());
+                return true;
+            }
             Message msg = getMessageForKeyEvent(event);
             if (mProximitySensor != null) {
-                mEventHandler.sendMessageDelayed(msg, 200);
+                mHandler.sendMessageDelayed(msg, 200);
                 processEvent(event);
             } else {
-                mEventHandler.sendMessage(msg);
+                mHandler.sendMessage(msg);
             }
         }
         return isKeySupported;
     }
 
     private Message getMessageForKeyEvent(KeyEvent keyEvent) {
-        Message msg = mEventHandler.obtainMessage(GESTURE_REQUEST);
+        Message msg = mHandler.obtainMessage(GESTURE_REQUEST);
         msg.obj = keyEvent;
         return msg;
     }
 
     private void processEvent(final KeyEvent keyEvent) {
+        mProximityWakeLock.acquire();
         mSensorManager.registerListener(new SensorEventListener() {
-
             @Override
             public void onSensorChanged(SensorEvent event) {
-                if (!mEventHandler.hasMessages(GESTURE_REQUEST)) {
+                mProximityWakeLock.release();
+                mSensorManager.unregisterListener(this);
+                if (!mHandler.hasMessages(GESTURE_REQUEST)) {
                     // The sensor took to long, ignoring.
                     return;
                 }
-                mEventHandler.removeMessages(GESTURE_REQUEST);
+                mHandler.removeMessages(GESTURE_REQUEST);
                 if (event.values[0] == mProximitySensor.getMaximumRange()) {
                     Message msg = getMessageForKeyEvent(keyEvent);
-                    mEventHandler.sendMessage(msg);
+                    mHandler.sendMessage(msg);
                 }
-                mSensorManager.unregisterListener(this);
             }
 
             @Override
