@@ -617,7 +617,7 @@ vendor/firmware/BCM20795A2_001.003.025.0005.0035_Generic_I2C_NCD_Unsigned_config
 # Perf
 bin/energy-awareness
 bin/msm_irqbalance
-bin/perfd
+vendor/bin/perfd
 vendor/lib64/libqti-perfd-client.so
 vendor/lib64/libqti-at.so
 vendor/lib64/libqti-gt.so
@@ -700,7 +700,7 @@ vendor/lib/libsensor1.so
 vendor/lib/libsensor_reg.so
 
 # Thermal
-bin/thermal-engine
+vendor/bin/thermal-engine
 vendor/lib64/libthermalclient.so
 vendor/lib64/libthermalioctl.so
 vendor/lib/libthermalclient.so
