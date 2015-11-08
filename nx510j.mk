@@ -339,7 +339,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.apm_sim_not_pwdn=1 \
     ro.sf.lcd_density=480 \
     ro.com.android.dataroaming=true \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=mtp \
+    persist.sys.isUsbOtgEnabled=true
 
 PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
 # never dexopt the keyhandler
