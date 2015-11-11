@@ -349,8 +349,8 @@ PRODUCT_BOOT_JARS += \
     qcmediaplayer
 
 # Live Wallpapers
-PRODUCT_PACKAGES += \
-    com.cyanogenmod.keyhandler
+#PRODUCT_PACKAGES += \
+#    com.cyanogenmod.keyhandler
 
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -378,6 +378,6 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
     ro.adb.secure=0
 
-PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
+#PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
 # never dexopt the keyhandler
-$(call add-product-dex-preopt-module-config,com.cyanogenmod.keyhandler,disable)
+#$(call add-product-dex-preopt-module-config,com.cyanogenmod.keyhandler,disable)
