@@ -312,7 +312,7 @@ set_breath_light_locked(int event_source,
 	}
 	state = &g_buttons;
 	light_template = BREATH_LED_BRIGHTNESS_BUTTONS;
-	lut_flags = PM_PWM_LUT_REVERSE;
+	lut_flags = PM_PWM_LUT_RAMP_UP;
 	last_state = BREATH_SOURCE_BUTTONS;
     } else if(active_states & BREATH_SOURCE_ATTENTION) {
 	state = &g_attention;
