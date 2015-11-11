@@ -69,7 +69,7 @@ static int last_state = BREATH_SOURCE_NONE;
 
 static int g_breathing = 0;
 
-static int have_init = 0;
+static int initialized = 0;
 
 char const*const LCD_FILE
         = "/sys/class/leds/lcd-backlight/brightness";
@@ -217,15 +217,13 @@ set_breath_light_locked(int event_source,
     int blink;
     int onMS, offMS, ramp;
     unsigned int colorRGB, event_colorRGB;
-    int brightness, event_brightness;
+    int brightness;
 
     event_colorRGB = state->color;
 
-    event_brightness = ((77 * ((event_colorRGB >> 16) & 0xFF)) +
-                      (150 * ((event_colorRGB >> 8) & 0xFF)) +
-                      (29 * (event_colorRGB & 0xFF))) >> 8;
+    brightness = rgb_to_brightness(state);
 
-    if(event_brightness > 0) {
+    if(brightness > 0) {
 	active_states |= event_source;
     } else {
 	active_states &= ~event_source;
@@ -242,9 +240,6 @@ set_breath_light_locked(int event_source,
     }
 
     colorRGB = state->color;
-    brightness = ((77 * ((colorRGB >> 16) & 0xFF)) +
-                      (150 * ((colorRGB >> 8) & 0xFF)) +
-                      (29 * (colorRGB & 0xFF))) >> 8;
     
     switch (state->flashMode) {
         case LIGHT_FLASH_TIMED:
@@ -314,18 +309,14 @@ set_breath_light_locked(int event_source,
 	light_template = BREATH_LED_BRIGHTNESS_BUTTONS;
 	lut_flags = PM_PWM_LUT_RAMP_UP;
 	last_state = BREATH_SOURCE_BUTTONS;
-    } else if(active_states & BREATH_SOURCE_ATTENTION) {
-	state = &g_attention;
-	light_template = BREATH_LED_BRIGHTNESS_NOTIFICATION;
-	last_state = BREATH_SOURCE_ATTENTION;
     } else {
       last_state = BREATH_SOURCE_NONE;
       ALOGD("Unknown state");
       return 0;
     }
 
-    if (!have_init) {
-        have_init = 1;
+    if (!initialized) {
+        initialized = 1;
         write_int(BREATH_LED_OUTN, (int)8);
         write_int(BREATH_LED_BLINK_MODE, (int)6);
         write_int(BREATH_LED, (int)255);
@@ -367,20 +358,6 @@ set_light_notifications(struct light_device_t* dev,
     pthread_mutex_lock(&g_lock);
     g_notification = *state;
     set_breath_light_locked(BREATH_SOURCE_NOTIFICATION, &g_notification);
-    pthread_mutex_unlock(&g_lock);
-    return 0;
-}
-
-static int
-set_light_attention(struct light_device_t* dev,
-        struct light_state_t const* state)
-{
-    if(!dev) {
-        return -1;
-    }
-    pthread_mutex_lock(&g_lock);
-    g_attention = *state;
-    //set_breath_light_locked(BREATH_SOURCE_ATTENTION, &g_attention);
     pthread_mutex_unlock(&g_lock);
     return 0;
 }
@@ -434,8 +411,6 @@ static int open_lights(const struct hw_module_t* module, char const* name,
         set_light = set_light_notifications;
     else if (0 == strcmp(LIGHT_ID_BUTTONS, name))
         set_light = set_light_buttons;
-    else if (0 == strcmp(LIGHT_ID_ATTENTION, name))
-        set_light = set_light_attention;
     else
         return -EINVAL;
 
