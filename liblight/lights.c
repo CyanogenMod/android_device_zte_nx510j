@@ -199,7 +199,7 @@ set_light_backlight(struct light_device_t* dev,
         struct light_state_t const* state)
 {
     int err = 0;
-    if(!dev) {
+    if (!dev) {
         return -1;
     }
     int brightness = rgb_to_brightness(state);
@@ -223,24 +223,24 @@ set_breath_light_locked(int event_source,
 
     brightness = rgb_to_brightness(state);
 
-    if(brightness > 0) {
-	active_states |= event_source;
+    if (brightness > 0) {
+        active_states |= event_source;
     } else {
-	active_states &= ~event_source;
-	if(active_states == 0) {
-	    ALOGV("disabling buttons backlight\n");
-	    write_int(BREATH_LED_LUT_FLAGS, (int)PM_PWM_LUT_NO_TABLE); // smoothly turn led off
-	    last_state = BREATH_SOURCE_NONE;
-	    return 0;
-	}
+        active_states &= ~event_source;
+        if (active_states == 0) {
+            ALOGV("disabling buttons backlight\n");
+            write_int(BREATH_LED_LUT_FLAGS, (int)PM_PWM_LUT_NO_TABLE); // smoothly turn led off
+            last_state = BREATH_SOURCE_NONE;
+            return 0;
+        }
     }
-    
-    if(last_state < event_source) {
-      return 0;
+
+    if (last_state < event_source) {
+        return 0;
     }
 
     colorRGB = state->color;
-    
+
     switch (state->flashMode) {
         case LIGHT_FLASH_TIMED:
             onMS = state->flashOnMS;
@@ -252,67 +252,67 @@ set_breath_light_locked(int event_source,
             offMS = 0;
             break;
     }
-    
+
     blink = (onMS+offMS)?1:0;
 
     char* light_template;
     int lut_flags = 0;
-    if(active_states & BREATH_SOURCE_NOTIFICATION) {
-	state = &g_notification;
-	light_template = BREATH_LED_BRIGHTNESS_NOTIFICATION;
-	lut_flags = PM_PWM_LUT_RAMP_UP;
-	if(blink) {
-	  lut_flags |= PM_PWM_LUT_LOOP|PM_PWM_LUT_REVERSE|PM_PWM_LUT_PAUSE_HI_EN|PM_PWM_LUT_PAUSE_LO_EN;
-	}
-	last_state = BREATH_SOURCE_NOTIFICATION;
-    } else if(active_states & BREATH_SOURCE_BATTERY) {
-	state = &g_battery;
-	// can't get battery info from state, getting it from sysfs
-	int is_charging = 0;
-	int capacity = 0;
-	char charging_status[15];
-	FILE* fp = fopen(BATTERY_CHARGING_STATUS, "rb");
-	fgets(charging_status, 14, fp);
-	fclose(fp);
-	if (strstr(charging_status, "Discharging") != NULL)
-		is_charging = 0;
-	else
-		is_charging = 1;
-	read_int(BATTERY_CAPACITY, &capacity);
-	if(is_charging == 0) {
-	    // battery low
-	    light_template = BREATH_LED_BRIGHTNESS_BATTERY;
-	    lut_flags = PM_PWM_LUT_LOOP|PM_PWM_LUT_RAMP_UP|PM_PWM_LUT_REVERSE|PM_PWM_LUT_PAUSE_HI_EN|PM_PWM_LUT_PAUSE_LO_EN;
-	    onMS = 300;
-	    offMS = 1500;
-	} else {
-	    if(capacity < 90) { // see batteryService.java:978
-		// battery chagring
-		light_template = BREATH_LED_BRIGHTNESS_CHARGING;
-		lut_flags = PM_PWM_LUT_LOOP|PM_PWM_LUT_RAMP_UP|PM_PWM_LUT_REVERSE|PM_PWM_LUT_PAUSE_HI_EN|PM_PWM_LUT_PAUSE_LO_EN;
-		onMS = 500;
-		offMS = 500;
-	    } else {
-		// battery full
-		light_template = BREATH_LED_BRIGHTNESS_CHARGING;
-		lut_flags = PM_PWM_LUT_RAMP_UP;
-		onMS = 0;
-		offMS = 0;
-	    }
-	}
-	last_state = BREATH_SOURCE_BATTERY;
-    } else if(active_states & BREATH_SOURCE_BUTTONS) {
-	if(last_state == BREATH_SOURCE_BUTTONS) {
-	  return 0;
-	}
-	state = &g_buttons;
-	light_template = BREATH_LED_BRIGHTNESS_BUTTONS;
-	lut_flags = PM_PWM_LUT_RAMP_UP;
-	last_state = BREATH_SOURCE_BUTTONS;
+    if (active_states & BREATH_SOURCE_NOTIFICATION) {
+        state = &g_notification;
+        light_template = BREATH_LED_BRIGHTNESS_NOTIFICATION;
+        lut_flags = PM_PWM_LUT_RAMP_UP;
+        if (blink) {
+            lut_flags |= PM_PWM_LUT_LOOP|PM_PWM_LUT_REVERSE|PM_PWM_LUT_PAUSE_HI_EN|PM_PWM_LUT_PAUSE_LO_EN;
+        }
+        last_state = BREATH_SOURCE_NOTIFICATION;
+    } else if (active_states & BREATH_SOURCE_BATTERY) {
+        state = &g_battery;
+        // can't get battery info from state, getting it from sysfs
+        int is_charging = 0;
+        int capacity = 0;
+        char charging_status[15];
+        FILE* fp = fopen(BATTERY_CHARGING_STATUS, "rb");
+        fgets(charging_status, 14, fp);
+        fclose(fp);
+        if (strstr(charging_status, "Discharging") != NULL)
+            is_charging = 0;
+        else
+            is_charging = 1;
+        read_int(BATTERY_CAPACITY, &capacity);
+        if (is_charging == 0) {
+            // battery low
+            light_template = BREATH_LED_BRIGHTNESS_BATTERY;
+            lut_flags = PM_PWM_LUT_LOOP|PM_PWM_LUT_RAMP_UP|PM_PWM_LUT_REVERSE|PM_PWM_LUT_PAUSE_HI_EN|PM_PWM_LUT_PAUSE_LO_EN;
+            onMS = 300;
+            offMS = 1500;
+        } else {
+            if (capacity < 90) { // see batteryService.java:978
+                // battery chagring
+                light_template = BREATH_LED_BRIGHTNESS_CHARGING;
+                lut_flags = PM_PWM_LUT_LOOP|PM_PWM_LUT_RAMP_UP|PM_PWM_LUT_REVERSE|PM_PWM_LUT_PAUSE_HI_EN|PM_PWM_LUT_PAUSE_LO_EN;
+                onMS = 500;
+                offMS = 500;
+            } else {
+                // battery full
+                light_template = BREATH_LED_BRIGHTNESS_CHARGING;
+                lut_flags = PM_PWM_LUT_RAMP_UP;
+                onMS = 0;
+                offMS = 0;
+            }
+        }
+        last_state = BREATH_SOURCE_BATTERY;
+    } else if (active_states & BREATH_SOURCE_BUTTONS) {
+        if (last_state == BREATH_SOURCE_BUTTONS) {
+            return 0;
+        }
+        state = &g_buttons;
+        light_template = BREATH_LED_BRIGHTNESS_BUTTONS;
+        lut_flags = PM_PWM_LUT_RAMP_UP;
+        last_state = BREATH_SOURCE_BUTTONS;
     } else {
-      last_state = BREATH_SOURCE_NONE;
-      ALOGD("Unknown state");
-      return 0;
+        last_state = BREATH_SOURCE_NONE;
+        ALOGD("Unknown state");
+        return 0;
     }
 
     if (!initialized) {
@@ -325,10 +325,10 @@ set_breath_light_locked(int event_source,
     ALOGV("writing values: pause_lo=%d, pause_hi=%d, lut_flags=%d\n", offMS, onMS, lut_flags);
     write_str(BREATH_LED_DUTY_PCTS, light_template);
     write_int(BREATH_LED_RAMP_STEP_MS, (int)20);
-    if(offMS > 0)
-	write_int(BREATH_LED_PAUSE_LO, (int)offMS);
-    if(onMS > 0)
-	write_int(BREATH_LED_PAUSE_HI, (int)onMS);
+    if (offMS > 0)
+        write_int(BREATH_LED_PAUSE_LO, (int)offMS);
+    if (onMS > 0)
+        write_int(BREATH_LED_PAUSE_HI, (int)onMS);
     write_int(BREATH_LED_LUT_FLAGS, lut_flags);
 
     return 0;
@@ -338,7 +338,7 @@ static int
 set_light_battery(struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    if(!dev) {
+    if (!dev) {
         return -1;
     }
     pthread_mutex_lock(&g_lock);
@@ -352,7 +352,7 @@ static int
 set_light_notifications(struct light_device_t* dev,
         struct light_state_t const* state)
 {
-    if(!dev) {
+    if (!dev) {
         return -1;
     }
     pthread_mutex_lock(&g_lock);
@@ -368,7 +368,7 @@ set_light_buttons(struct light_device_t* dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
-    if(!dev) {
+    if (!dev) {
         return -1;
     }
     pthread_mutex_lock(&g_lock);
@@ -418,7 +418,7 @@ static int open_lights(const struct hw_module_t* module, char const* name,
 
     struct light_device_t *dev = malloc(sizeof(struct light_device_t));
 
-    if(!dev)
+    if (!dev)
         return -ENOMEM;
 
     memset(dev, 0, sizeof(*dev));
