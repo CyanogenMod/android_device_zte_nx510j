@@ -1374,7 +1374,7 @@ int IPACM_Wan::post_wan_down_tether_evt(ipa_ip_type iptype, int ipa_if_num_tethe
 	{
 		evt_data.event = IPA_HANDLE_WAN_DOWN_TETHER;
 		/* delete support tether ifaces to its array*/
-		for (i=0; i < IPACM_Wan::ipa_if_num_tether_v4_total; i++) //sky
+		for (i=0; i < IPACM_Wan::ipa_if_num_tether_v4_total; i++)
 		{
 			if(IPACM_Wan::ipa_if_num_tether_v4[i] == ipa_if_num_tether)
 			{
@@ -1399,7 +1399,7 @@ int IPACM_Wan::post_wan_down_tether_evt(ipa_ip_type iptype, int ipa_if_num_tethe
 	{
 		evt_data.event = IPA_HANDLE_WAN_DOWN_V6_TETHER;
 		/* delete support tether ifaces to its array*/
-		for (i=0; i < IPACM_Wan::ipa_if_num_tether_v6_total; i++) //sky
+		for (i=0; i < IPACM_Wan::ipa_if_num_tether_v6_total; i++)
 		{
 			if(IPACM_Wan::ipa_if_num_tether_v6[i] == ipa_if_num_tether)
 			{
@@ -4160,7 +4160,8 @@ fail:
 int IPACM_Wan::handle_down_evt_ex()
 {
 	int res = IPACM_SUCCESS;
-	int i;
+	int i, tether_total;
+	int ipa_if_num_tether_tmp[IPA_MAX_IFACE_ENTRIES];
 
 	IPACMDBG_H(" wan handle_down_evt \n");
 
@@ -4201,6 +4202,20 @@ int IPACM_Wan::handle_down_evt_ex()
 			del_wan_firewall_rule(IPA_IP_v4);
 			install_wan_filtering_rule(false);
 			handle_route_del_evt_ex(IPA_IP_v4);
+#ifdef FEATURE_IPA_ANDROID
+			/* posting wan_down_tether for all lan clients */
+			for (i=0; i < IPACM_Wan::ipa_if_num_tether_v4_total; i++)
+			{
+				ipa_if_num_tether_tmp[i] = IPACM_Wan::ipa_if_num_tether_v4[i];
+			}
+			tether_total = IPACM_Wan::ipa_if_num_tether_v4_total;
+			for (i=0; i < tether_total; i++)
+			{
+				post_wan_down_tether_evt(IPA_IP_v4, ipa_if_num_tether_tmp[i]);
+				IPACMDBG_H("post_wan_down_tether_v4 iface(%d: %s)\n",
+					i, IPACM_Iface::ipacmcfg->iface_table[ipa_if_num_tether_tmp[i]].iface_name);
+			}
+#endif
 			if(IPACM_Wan::wan_up_v6)
 			{
 				IPACMDBG_H("modem v6-call still up(%s), not reset\n", IPACM_Wan::wan_up_dev_name);
@@ -4229,7 +4244,8 @@ int IPACM_Wan::handle_down_evt_ex()
 	}
 	else if(ip_type == IPA_IP_v6)
 	{
-		num_ipv6_modem_pdn--;
+	    if (num_dft_rt_v6 > 1)
+			num_ipv6_modem_pdn--;
 		IPACMDBG_H("Now the number of ipv6 modem pdn is %d.\n", num_ipv6_modem_pdn);
 		/* only when default gw goes down we post WAN_DOWN event*/
 		if(is_default_gateway == true)
@@ -4238,6 +4254,20 @@ int IPACM_Wan::handle_down_evt_ex()
 			del_wan_firewall_rule(IPA_IP_v6);
 			install_wan_filtering_rule(false);
 			handle_route_del_evt_ex(IPA_IP_v6);
+#ifdef FEATURE_IPA_ANDROID //sky
+			/* posting wan_down_tether for all lan clients */
+			for (i=0; i < IPACM_Wan::ipa_if_num_tether_v6_total; i++)
+			{
+				ipa_if_num_tether_tmp[i] = IPACM_Wan::ipa_if_num_tether_v6[i];
+			}
+			tether_total = IPACM_Wan::ipa_if_num_tether_v6_total;
+			for (i=0; i < tether_total; i++)
+			{
+				post_wan_down_tether_evt(IPA_IP_v6, ipa_if_num_tether_tmp[i]);
+				IPACMDBG_H("post_wan_down_tether_v6 iface(%d: %s)\n",
+					i, IPACM_Iface::ipacmcfg->iface_table[ipa_if_num_tether_tmp[i]].iface_name);
+			}
+#endif
 			if(IPACM_Wan::wan_up)
 			{
 				IPACMDBG_H("modem v4-call still up(%s), not reset\n", IPACM_Wan::wan_up_dev_name);
@@ -4271,7 +4301,8 @@ int IPACM_Wan::handle_down_evt_ex()
 	{
 		num_ipv4_modem_pdn--;
 		IPACMDBG_H("Now the number of ipv4 modem pdn is %d.\n", num_ipv4_modem_pdn);
-		num_ipv6_modem_pdn--;
+	    if (num_dft_rt_v6 > 1)
+			num_ipv6_modem_pdn--;
 		IPACMDBG_H("Now the number of ipv6 modem pdn is %d.\n", num_ipv6_modem_pdn);
 		/* only when default gw goes down we post WAN_DOWN event*/
 		if(is_default_gateway == true)
@@ -4279,10 +4310,37 @@ int IPACM_Wan::handle_down_evt_ex()
 			IPACM_Wan::wan_up = false;
 			del_wan_firewall_rule(IPA_IP_v4);
 			handle_route_del_evt_ex(IPA_IP_v4);
-
+#ifdef FEATURE_IPA_ANDROID
+			/* posting wan_down_tether for all lan clients */
+			for (i=0; i < IPACM_Wan::ipa_if_num_tether_v4_total; i++)
+			{
+				ipa_if_num_tether_tmp[i] = IPACM_Wan::ipa_if_num_tether_v4[i];
+			}
+			tether_total = IPACM_Wan::ipa_if_num_tether_v4_total;
+			for (i=0; i < tether_total; i++)
+			{
+				post_wan_down_tether_evt(IPA_IP_v4, ipa_if_num_tether_tmp[i]);
+				IPACMDBG_H("post_wan_down_tether_v4 iface(%d: %s)\n",
+					i, IPACM_Iface::ipacmcfg->iface_table[ipa_if_num_tether_tmp[i]].iface_name);
+			}
+#endif
 			IPACM_Wan::wan_up_v6 = false;
 			del_wan_firewall_rule(IPA_IP_v6);
 			handle_route_del_evt_ex(IPA_IP_v6);
+#ifdef FEATURE_IPA_ANDROID
+			/* posting wan_down_tether for all lan clients */
+			for (i=0; i < IPACM_Wan::ipa_if_num_tether_v6_total; i++)
+			{
+				ipa_if_num_tether_tmp[i] = IPACM_Wan::ipa_if_num_tether_v6[i];
+			}
+			tether_total = IPACM_Wan::ipa_if_num_tether_v6_total;
+			for (i=0; i < tether_total; i++)
+			{
+				post_wan_down_tether_evt(IPA_IP_v6, ipa_if_num_tether_tmp[i]);
+				IPACMDBG_H("post_wan_down_tether_v6 iface(%d: %s)\n",
+					i, IPACM_Iface::ipacmcfg->iface_table[ipa_if_num_tether_tmp[i]].iface_name);
+			}
+#endif
 			memset(IPACM_Wan::wan_up_dev_name, 0, sizeof(IPACM_Wan::wan_up_dev_name));
 
 			install_wan_filtering_rule(false);
@@ -4300,9 +4358,9 @@ int IPACM_Wan::handle_down_evt_ex()
 		if(num_ipv6_modem_pdn == 0)
 		{
 			IPACMDBG_H("Now the number of modem ipv6 interface is 0, delete default flt rules.\n");
-		IPACM_Wan::num_v6_flt_rule = 0;
-		memset(IPACM_Wan::flt_rule_v6, 0, IPA_MAX_FLT_RULE * sizeof(struct ipa_flt_rule_add));
-		install_wan_filtering_rule(false);
+			IPACM_Wan::num_v6_flt_rule = 0;
+			memset(IPACM_Wan::flt_rule_v6, 0, IPA_MAX_FLT_RULE * sizeof(struct ipa_flt_rule_add));
+			install_wan_filtering_rule(false);
 		}
 
 		if (m_routing.DeleteRoutingHdl(dft_rt_rule_hdl[0], IPA_IP_v4) == false)
