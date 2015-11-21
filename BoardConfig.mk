@@ -88,7 +88,8 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # CM Hardware
-BOARD_HARDWARE_CLASS := device/zte/nx510j/cmhw
+BOARD_HARDWARE_CLASS := device/zte/nx510j/cmhw \
+    hardware/cyanogen/cmhw
 
 # DPM NSRM Feature
 TARGET_LDPRELOAD := libNimsWrap.so
