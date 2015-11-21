@@ -38,6 +38,7 @@ on fs
 
     wait /dev/block/bootdevice/by-name/cache
     mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
+    mount f2fs /dev/block/bootdevice/by-name/cache /cache rw discard nosuid nodev noatime nodiratime inline_xattr
 
     wait /dev/block/bootdevice/by-name/persist
     mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
