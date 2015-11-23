@@ -233,6 +233,7 @@ BOARD_SEPOLICY_UNION += \
     init_shell.te \
     irsc_util.te \
     mediaserver.te \
+    mm-qcamerad.te \
     netmgrd.te \
     nfc.te \
     platform_app.te \
