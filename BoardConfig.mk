@@ -89,8 +89,8 @@ BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_SHOW_PERCENTAGE := true
 
 # CM Hardware
-BOARD_HARDWARE_CLASS := device/zte/nx510j/cmhw \
-    hardware/cyanogen/cmhw
+BOARD_HARDWARE_CLASS := hardware/cyanogen/cmhw
+TARGET_TAP_TO_WAKE_NODE := "/data/tp/easy_wakeup_gesture"
 
 #Enable HW based full disk encryption
 TARGET_HW_DISK_ENCRYPTION := false

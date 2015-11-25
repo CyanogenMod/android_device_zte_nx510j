@@ -329,10 +329,6 @@ PRODUCT_PACKAGES +=  libstlport
 PRODUCT_BOOT_JARS += \
     qcmediaplayer
 
-# Live Wallpapers
-PRODUCT_PACKAGES += \
-    com.cyanogenmod.keyhandler
-
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
@@ -358,7 +354,3 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
 # IO Scheduler
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.io.scheduler=bfq
-
-PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
-# never dexopt the keyhandler
-$(call add-product-dex-preopt-module-config,com.cyanogenmod.keyhandler,disable)
