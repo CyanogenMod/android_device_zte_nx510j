@@ -201,6 +201,13 @@ PRODUCT_PACKAGES += \
     libcurl \
     curl
 
+# DataServices
+PRODUCT_PACKAGES += \
+    librmnetctl \
+    rmnetcli \
+    sockev \
+    datatop
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     e2fsck \

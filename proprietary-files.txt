@@ -682,7 +682,6 @@ bin/qmuxd
 bin/radish
 bin/rfs_access
 bin/rmt_storage
-lib64/librmnetctl.so
 vendor/lib64/libconfigdb.so
 vendor/lib64/libmdmdetect.so
 vendor/lib64/libnetmgr.so
