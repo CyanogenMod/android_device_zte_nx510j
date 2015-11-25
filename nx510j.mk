@@ -185,7 +185,6 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8994 \
     libboringssl-compat \
     libcam
 
