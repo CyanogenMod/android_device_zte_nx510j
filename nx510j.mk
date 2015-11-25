@@ -186,7 +186,7 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     libboringssl-compat \
-    libcam
+    libzte_camera
 
 # Charger
 PRODUCT_PACKAGES += \
