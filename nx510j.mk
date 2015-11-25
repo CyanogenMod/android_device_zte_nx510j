@@ -370,10 +370,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     audio_hal.period_size=192
 
-# Camera
-PRODUCT_PROPERTY_OVERRIDES += \
-    camera2.portability.force_api=1
-
 # For debugging
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
