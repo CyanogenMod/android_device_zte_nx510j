@@ -106,8 +106,8 @@ PRODUCT_COPY_FILES += \
 
 # WLAN driver configuration files
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/WCNSS_cfg.dat:system/etc/firmware/wlan/qca_cld/WCNSS_cfg.dat \
-    $(LOCAL_PATH)/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
+    kernel/zte/msm8994/drivers/staging/qcacld-2.0/firmware_bin/WCNSS_cfg.dat:system/etc/firmware/wlan/qca_cld/WCNSS_cfg.dat \
+    kernel/zte/msm8994/drivers/staging/qcacld-2.0/firmware_bin/WCNSS_qcom_cfg.ini:system/etc/wifi/WCNSS_qcom_cfg.ini \
     $(LOCAL_PATH)/WCNSS_qcom_wlan_nv.bin:system/etc/wifi/WCNSS_qcom_wlan_nv.bin
 
 #FEATURE_OPENGLES_EXTENSION_PACK support string config file
@@ -156,26 +156,6 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
-
-PRODUCT_NAME := full_nx510j
-PRODUCT_DEVICE := nx510j
-PRODUCT_MANUFACTURER := nubia
-PRODUCT_MODEL := NX510J
-
-PRODUCT_GMS_CLIENTID_BASE := android-zte
-
-PRODUCT_BRAND := nubia
-TARGET_VENDOR := nubia
-TARGET_VENDOR_PRODUCT_NAME := NX510J
-TARGET_VENDOR_DEVICE_NAME := NX510J
-PRODUCT_BUILD_PROP_OVERRIDES += TARGET_DEVICE=NX510J PRODUCT_NAME=NX510J
-
-## Use the latest approved GMS identifiers
-ifneq ($(SIGN_BUILD),true)
-PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT=nubia/NX510J/NX510J:5.1.1/LMY47V/eng.nubia.20151028.122334:user/release-keys \
-    PRIVATE_BUILD_DESC="NX510J-user 5.1.1 LMY47V eng.nubia.20151028.122334 release-keys"
-endif
 
 #ANT+ stack
 PRODUCT_PACKAGES += \
@@ -374,6 +354,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
     ro.adb.secure=0
+
+# IO Scheduler
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.io.scheduler=bfq
 
 PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
 # never dexopt the keyhandler

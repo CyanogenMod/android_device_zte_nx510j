@@ -16,8 +16,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-include kernel/zte/msm8994/AndroidKernel.mk
-
 #----------------------------------------------------------------------
 # Copy additional target-specific files
 #----------------------------------------------------------------------
@@ -134,25 +132,6 @@ $(call add-radio-file,images/hyp.mbn)
 $(call add-radio-file,images/pmic.mbn)
 $(call add-radio-file,images/splash.img)
 endif
-
-#----------------------------------------------------------------------
-# ultrasound support
-#----------------------------------------------------------------------
-include $(CLEAR_VARS)
-LOCAL_MODULE       := usf_post_boot.sh
-LOCAL_MODULE_TAGS  := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := $(LOCAL_MODULE)
-LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)
-include $(BUILD_PREBUILT)
-
-include $(CLEAR_VARS)
-LOCAL_MODULE       := usf_settings.sh
-LOCAL_MODULE_TAGS  := optional
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := $(LOCAL_MODULE)
-LOCAL_MODULE_PATH  := $(TARGET_OUT_ETC)
-include $(BUILD_PREBUILT)
 
 $(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wcd9320; \
         ln -sf /data/misc/audio/wcd9320_anc.bin \
