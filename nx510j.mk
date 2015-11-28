@@ -278,7 +278,6 @@ PRODUCT_PACKAGES += \
 # OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
-    libdashplayer \
     libdivxdrmdecrypt \
     libmm-omxcore \
     libOmxAacEnc \
@@ -293,9 +292,6 @@ PRODUCT_PACKAGES += \
     libOmxVenc \
     libOmxVidcCommon \
     libstagefrighthw \
-    qcmediaplayer \
-    libqcmediaplayer \
-    libextmedia_jni \
     libstagefright_soft_flacdec
 
 # Power
@@ -331,9 +327,6 @@ PRODUCT_PACKAGES += \
 # http://b/15193147
 # TODO(danalbert): Remove this once stlport is dead and gone.
 PRODUCT_PACKAGES +=  libstlport
-
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer
 
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
