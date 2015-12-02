@@ -34,7 +34,6 @@ on early-init
     symlink /data/tombstones /tombstones
 
 on post-fs
-    export LD_PRELOAD "libNimsWrap.so"
     export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libzte_camera.so"
 
 on fs

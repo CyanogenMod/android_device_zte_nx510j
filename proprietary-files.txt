@@ -436,38 +436,6 @@ vendor/lib/libmmcamera_s5k3m2xx.so
 vendor/lib/libmmcamera_sony_imx214_eeprom.so
 vendor/lib/libmmcamera_sonyimx135_eeprom.so
 
-# CNE
-bin/cnd
-vendor/lib64/libcne.so
-vendor/lib64/libcneapiclient.so
-vendor/lib64/libcneconn.so
-vendor/lib64/libcneqmiutils.so
-vendor/lib64/libdpencalib.so
-vendor/lib64/libmasc.so
-vendor/lib64/libNimsWrap.so
-vendor/lib64/libvendorconn.so
-vendor/lib64/libwqe.so
-vendor/lib64/libxml.so
-vendor/lib/libcne.so
-vendor/lib/libcneapiclient.so
-vendor/lib/libcneconn.so
-vendor/lib/libcneqmiutils.so
-vendor/lib/libmasc.so
-vendor/lib/libNimsWrap.so
-vendor/lib/libvendorconn.so
-vendor/lib/libwqe.so
-vendor/lib/libxml.so
-
-# DPM
-vendor/lib64/libdpmctmgr.so
-vendor/lib64/libdpmfdmgr.so
-vendor/lib64/libdpmframework.so
-vendor/lib64/libdpmnsrm.so
-vendor/lib/libdpmctmgr.so
-vendor/lib/libdpmfdmgr.so
-vendor/lib/libdpmframework.so
-vendor/lib/libdpmnsrm.so
-
 # DRM
 bin/qseecomd
 lib/drm/libdrmwvmplugin.so
@@ -679,6 +647,7 @@ bin/qmuxd
 bin/radish
 bin/rfs_access
 bin/rmt_storage
+vendor/lib64/libcneapiclient.so
 vendor/lib64/libconfigdb.so
 vendor/lib64/libmdmdetect.so
 vendor/lib64/libnetmgr.so
