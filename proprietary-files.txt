@@ -65,7 +65,7 @@ vendor/lib/libbtnv.so
 
 # Camera
 bin/mm-qcamera-daemon
-lib/hw/camera.msm8994.so
+lib/hw/camera.vendor.msm8994.so
 lib/libImageAlogrithm.so
 lib/libmmcamera_interface.so
 lib/libmmcamera_nubiacustpro.so
