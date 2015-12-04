@@ -654,7 +654,7 @@ service ftm_ffbm /system/bin/ftmdaemon
     disabled
     oneshot
 
-service cnss_diag /system/bin/cnss_diag --q -f -d
+service cnss_diag /system/bin/cnss_diag -q -f
     class main
     user root
     group root
