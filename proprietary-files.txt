@@ -588,7 +588,6 @@ vendor/lib/hw/sound_trigger.primary.msm8994.so
 
 # Media
 vendor/lib/libDivxDrm.so
-vendor/lib/libFlacSwDec.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmmosal.so
 vendor/lib/libmm-color-convertor.so
