@@ -8,20 +8,12 @@
     "target_path": "device/qcom/common"
   },
   {
-    "repository": "android_external_mm-dash",
-    "target_path": "external/mm-dash"
-  },
-  {
     "repository": "android_external_stlport",
     "target_path": "external/stlport"
   },
   {
     "repository": "android_external_sony_boringssl-compat",
     "target_path": "external/sony/boringssl-compat"
-  },
-  {
-    "repository": "android_external_connectivity",
-    "target_path": "external/connectivity"
   },
   {
     "repository": "android_vendor_qcom_opensource_dataservices",
