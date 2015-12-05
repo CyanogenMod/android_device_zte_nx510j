@@ -1,0 +1,38 @@
+#
+## Contexts
+#
+
+# Proximity sensor
+/sys/class/proximity/proximity/prox_offset_cal_start                u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_data_safe_range_min             u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_data_safe_range_max             u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_data_max                        u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_offset_cal                      u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_offset_cal_verify               u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_thres_min                       u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_thres_max                       u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_thres                           u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_calibrate_start                 u:object_r:sysfs_prox_cal:s0
+/sys/class/proximity/proximity/prox_calibrate_verify                u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_offset_cal_start      u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_data_safe_range_min   u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_data_safe_range_max   u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_data_max              u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_offset_cal            u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_offset_cal_verify     u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_thres_min             u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_thres_max             u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_thres                 u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_calibrate_start       u:object_r:sysfs_prox_cal:s0
+/sys/devices/virtual/proximity/proximity/prox_calibrate_verify      u:object_r:sysfs_prox_cal:s0
+
+# Proximity calibration
+/persist/proxdata/threshold			                    u:object_r:persist_proxcal_file:s0
+
+# Nfc
+/dev/bcm2079x                                                       u:object_r:nfc_device:s0
+
+# Touchpanel
+/sys/bus/i2c/devices/2-004a/easy_wakeup_gesture                     u:object_r:touchpanel_sysfs:s0
+/sys/bus/i2c/devices/2-005d/wakeup_gesture                          u:object_r:touchpanel_sysfs:s0
+/sys/bus/i2c/devices/2-0024/easy_wakeup_gesture                     u:object_r:touchpanel_sysfs:s0
