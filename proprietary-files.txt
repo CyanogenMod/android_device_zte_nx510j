@@ -587,14 +587,19 @@ etc/firmware/a420_pm4.fw
 vendor/lib/hw/sound_trigger.primary.msm8994.so
 
 # Media
+vendor/lib/libDivxDrm.so
+vendor/lib/libExtendedExtractor.so
 vendor/lib/libFlacSwDec.so
 vendor/lib/libI420colorconvert.so
+vendor/lib/libmmosal.so
+vendor/lib/libmmparser.so
 vendor/lib/libmm-color-convertor.so
 vendor/lib/libOmxAacDec.so
 vendor/lib/libOmxAmrwbplusDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
 vendor/lib/libOmxWmaDec.so
+vendor/lib/libSHIMDivxDrm.so
 
 # Media firmware
 etc/firmware/venus.b00
