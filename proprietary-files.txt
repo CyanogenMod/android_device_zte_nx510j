@@ -5,6 +5,26 @@ vendor/lib/libadsprpc.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
 
+# ADSP firmware
+etc/firmware/adsp.b00
+etc/firmware/adsp.b01
+etc/firmware/adsp.b02
+etc/firmware/adsp.b03
+etc/firmware/adsp.b04
+etc/firmware/adsp.b05
+etc/firmware/adsp.b06
+etc/firmware/adsp.b07
+etc/firmware/adsp.b08
+etc/firmware/adsp.b09
+etc/firmware/adsp.b10
+etc/firmware/adsp.b11
+etc/firmware/adsp.b12
+etc/firmware/adsp.b13
+etc/firmware/adsp.b14
+etc/firmware/adsp.b15
+etc/firmware/adsp.mbn
+etc/firmware/adsp.mdt
+
 # Audio ACDB
 etc/acdbdata/Fluid/Fluid_Bluetooth_cal.acdb
 etc/acdbdata/Fluid/Fluid_General_cal.acdb
