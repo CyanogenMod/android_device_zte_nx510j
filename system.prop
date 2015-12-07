@@ -128,6 +128,7 @@ ro.bluetooth.emb_wp_mode=false
 #snapdragon value add features
 #
 ro.qc.sdk.audio.ssr=false
+persist.audio.ssr.3mic=false
 ##fluencetype can be "fluence" or "fluencepro" or "none"
 ro.qc.sdk.audio.fluencetype=fluence
 persist.audio.fluence.voicecall=true
