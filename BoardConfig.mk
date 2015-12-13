@@ -106,6 +106,10 @@ endif
 #Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
+# Filesystem
+TARGET_KERNEL_HAVE_EXFAT := true
+TARGET_KERNEL_HAVE_NTFS := true
+
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
