@@ -1,0 +1,3 @@
+allow init self:capability2 block_suspend;
+allow init self:netlink_kobject_uevent_socket { create setopt bind };
+allow init graphics_device:chr_file { write ioctl };
