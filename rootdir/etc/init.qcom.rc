@@ -839,6 +839,7 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
 
 service charger /charger
     class charger
+    seclabel u:r:healthd:s0
 
 service ssr_diag /system/bin/ssr_diag
     class late_start
@@ -865,6 +866,7 @@ service charger_monitor /system/bin/charger_monitor
 service qbcharger /charger -m 1
     disabled
     oneshot
+    seclabel u:r:healthd:s0
 
 on property:sys.qbcharger.enable=true
     start qbcharger
