@@ -19,3 +19,7 @@ on init
 
 service tp_node /sbin/sh /tp_node.sh
     oneshot
+    disabled
+
+on property:init.svc.recovery=running
+    start tp_node
