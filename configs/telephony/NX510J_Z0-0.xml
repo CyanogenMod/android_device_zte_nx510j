@@ -17,6 +17,8 @@
         [srlte          <support>      1
                         <notsupport>   0],
         [mbn            <support>      1
+                        <notsupport>   0],
+        [lte_c          <support>      1
                         <notsupport>   0]
     }
 
@@ -35,5 +37,6 @@
            ims="0"
            srlte="1"
            mbn="1"
+           lte_c="1"
   />
 </ap-config>
