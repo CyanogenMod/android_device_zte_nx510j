@@ -321,8 +321,8 @@
     <!-- Disable Manual Network Selection in Global Mode -->
     <string translatable="false" name="prohibit_manual_network_selection_in_gobal_mode">true</string>
 
-    <!-- Enable doze powersaving -->
-    <bool name="config_enableAutoPowerModes">true</bool>
+    <!-- Enable doze powersaving
+    <bool name="config_enableAutoPowerModes">true</bool> -->
 
     <!-- Whether device supports double tap to wake -->
     <bool name="config_supportDoubleTapWake">true</bool>
