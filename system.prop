@@ -58,6 +58,7 @@ media.stagefright.enable-scan=true
 mmp.enable.3g2=true
 mm.enable.smoothstreaming=true
 media.aac_51_output_enabled=true
+av.debug.disable.pers.cache=true
 
 # Enable AwesomePlayer stats
 persist.debug.sf.statistics=1
