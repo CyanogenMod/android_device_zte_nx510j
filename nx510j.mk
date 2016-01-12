@@ -190,8 +190,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libboringssl-compat \
     libzte_camera \
-    camera.msm8994 \
-    Snap
+    camera.msm8994
 
 # Charger
 PRODUCT_PACKAGES += \
