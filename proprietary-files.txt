@@ -594,6 +594,10 @@ etc/modem_ota/CM/mcfg_sw.mbn
 etc/modem_ota/CT/mcfg_sw.mbn
 etc/modem_ota/CU/mcfg_sw.mbn
 
+# Network
+vendor/lib/libconnctrl.so
+vendor/lib64/libconnctrl.so
+
 # NFC
 vendor/firmware/BCM20795A1_001.002.012.0003.0078_Generic_I2C_NCD_Unsigned_configdata.ncd
 vendor/firmware/BCM20795A1_001.002.012.0003.0090_Generic_I2C_NCD_Unsigned_configdata.ncd
