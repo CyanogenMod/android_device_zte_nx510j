@@ -403,3 +403,5 @@ service tp_node /system/bin/sh /tp_node.sh
 
 on property:dev.bootcomplete=1
     setprop sys.io.scheduler "bfq"
+    # Temp hack to fix torch not being registered on boot
+    restart media
