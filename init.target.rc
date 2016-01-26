@@ -397,3 +397,6 @@ service tp_node /system/bin/sh /tp_node.sh
     user root
     group root
     oneshot
+
+on property:dev.bootcomplete=1
+    setprop sys.io.scheduler "bfq"

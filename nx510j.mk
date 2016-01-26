@@ -357,10 +357,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     audio_hal.period_size=192
 
-# IO Scheduler
-PRODUCT_PROPERTY_OVERRIDES += \
-    sys.io.scheduler=bfq
-
 PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
 # never dexopt the keyhandler
 $(call add-product-dex-preopt-module-config,com.cyanogenmod.keyhandler,disable)
