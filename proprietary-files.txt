@@ -2,7 +2,6 @@
 bin/adsprpcd
 vendor/lib64/libadsprpc.so
 vendor/lib/libadsprpc.so
-vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
 
 # Audio ACDB
@@ -72,9 +71,7 @@ lib/libmmcamera_nubiacustpro.so
 lib/libmmjpeg_interface.so
 lib/libmm-qcamera.so
 lib/libqomx_core.so
-vendor/lib64/libmmcamera2_q3a_core.so
-vendor/lib64/libmmcamera2_sensor_debug.so
-vendor/lib64/libmmcamera2_stats_algorithm.so
+vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libflash_pmic.so
 vendor/lib/libjpegdhw.so
 vendor/lib/libjpegdmahw.so
@@ -157,6 +154,7 @@ vendor/lib/libois_lc898122.so
 vendor/lib/libqomx_jpegdec.so
 vendor/lib/libqomx_jpegenc_pipe.so
 vendor/lib/libqomx_jpegenc.so
+vendor/lib/libsensor1.so
 
 # Camera actuators
 vendor/lib/libactuator_ad5823_camcorder.so
@@ -411,7 +409,6 @@ etc/firmware/cpp_firmware_v1_6_0.fw
 etc/firmware/cpp_firmware_v1_8_0.fw
 
 # Camera sensors
-vendor/lib64/libmmcamera_ov5645.so
 vendor/lib/libmmcamera_dw9761b_eeprom.so
 vendor/lib/libmmcamera_imx132.so
 vendor/lib/libmmcamera_imx135.so
@@ -594,11 +591,7 @@ bin/energy-awareness
 bin/msm_irqbalance
 vendor/bin/perfd
 vendor/lib64/libqti-perfd-client.so
-vendor/lib64/libqti-at.so
-vendor/lib64/libqti-gt.so
 vendor/lib/libqti-perfd-client.so
-vendor/lib/libqti-at.so
-vendor/lib/libqti-gt.so
 
 # Peripheral manager
 bin/pm-proxy
@@ -669,10 +662,6 @@ vendor/lib64/hw/sensors.msm8994.so
 vendor/lib64/hw/activity_recognition.msm8994.so
 vendor/lib64/libsensor1.so
 vendor/lib64/libsensor_reg.so
-vendor/lib/hw/sensors.msm8994.so
-vendor/lib/hw/activity_recognition.msm8994.so
-vendor/lib/libsensor1.so
-vendor/lib/libsensor_reg.so
 
 # Thermal
 vendor/bin/thermal-engine
