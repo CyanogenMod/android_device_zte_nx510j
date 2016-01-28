@@ -87,7 +87,9 @@ BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
 # CM Hardware
-BOARD_HARDWARE_CLASS := hardware/cyanogen/cmhw
+BOARD_HARDWARE_CLASS := \
+    hardware/cyanogen/cmhw \
+    $(LOCAL_PATH)/cmhw
 TARGET_TAP_TO_WAKE_NODE := "/data/tp/easy_wakeup_gesture"
 
 #Enable HW based full disk encryption
