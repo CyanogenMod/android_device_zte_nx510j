@@ -55,3 +55,8 @@ void _ZN7android13SensorManagerC1Ev(void *sensorMgr)
     _ZN7android13SensorManagerC1ERKNS_8String16E(sensorMgr, &string);
     _ZN7android8String16D1Ev(&string);
 }
+
+extern "C" int _ZN7android5Fence4waitEi(int);
+extern "C" int _ZN7android5Fence4waitEj(unsigned int timeout) {
+    return _ZN7android5Fence4waitEi(timeout);
+}
