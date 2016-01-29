@@ -2,7 +2,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_SHARED_LIBRARIES := liblog libcutils libgui libbinder libutils
+LOCAL_SHARED_LIBRARIES := liblog libcutils libgui libbinder libutils libui
 
 LOCAL_SRC_FILES := \
     zte_camera.c
