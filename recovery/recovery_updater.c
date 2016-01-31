@@ -33,8 +33,8 @@
 #define KB 1024
 
 #define BASEBAND_PART_PATH "/dev/block/bootdevice/by-name/modem"
-#define BASEBAND_VER_STR_START "NX510J_Z0_CN_"
-#define BASEBAND_VER_STR_START_LEN 13
+#define BASEBAND_VER_STR_START "NX510J_Z0_CN_LSZOO1JF11K"
+#define BASEBAND_VER_STR_START_LEN 24
 #define BASEBAND_VER_BUF_LEN 255
 #define BASEBAND_SZ 80000 * KB    /* MMAP 80M of BASEBAND, BASEBAND partition is 80M */
 
@@ -174,7 +174,7 @@ Value * VerifyBasebandFn(const char *name, State *state, int argc, Expr *argv[])
         baseband_version = strtok(NULL, ":");
 
         uiPrintf(state, "Checking for BASEBAND version %s", baseband_short_version);
-        if (strncmp(baseband_version, current_baseband_version, strlen(baseband_version)) == 0) {
+        if (strncmp(baseband_version, current_baseband_version + BASEBAND_VER_STR_START_LEN, strlen(baseband_version) - BASEBAND_VER_STR_START_LEN) == 0) {
             return StringValue(strdup("1"));
         }
     }
