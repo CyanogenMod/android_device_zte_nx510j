@@ -204,7 +204,7 @@ TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
 TW_TARGET_USES_QCOM_BSP := true
-#TW_BUILD_ZH_CN_SUPPORT := true
+TW_EXTRA_LANGUAGES := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 endif
