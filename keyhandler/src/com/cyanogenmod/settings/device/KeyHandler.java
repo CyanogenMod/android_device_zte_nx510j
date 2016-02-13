@@ -108,6 +108,12 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     };
 
+    @Override
+    public boolean handleKeyEvent(KeyEvent event) {
+        return handleKeyEvent(event, null);
+    }
+
+    @Override
     public boolean handleKeyEvent(KeyEvent event, DeviceHandlerCallback callback) {
         if (event.getAction() != KeyEvent.ACTION_UP) {
             return false;
