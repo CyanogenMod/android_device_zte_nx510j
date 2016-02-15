@@ -50,6 +50,11 @@ if [ -e "/sys/bus/i2c/devices/2-004a/c_zone" ]; then
     ln -s /sys/bus/i2c/devices/2-004a/c_zone /data/tp/c_zone
 fi
 
+if [ -e "/sys/bus/i2c/devices/2-004a/keypad_enable" ]; then
+	chown system:system /sys/bus/i2c/devices/2-004a/keypad_enable
+    ln -s /sys/bus/i2c/devices/2-004a/keypad_enable /data/tp/keypad_enable
+fi
+
 # ==============================================================================
 # Goodix GT915L
 
@@ -108,4 +113,9 @@ fi
 if [ -e "/sys/bus/i2c/devices/2-0024/hall_mode" ]; then
 	chown system:system /sys/bus/i2c/devices/2-0024/hall_mode
 	ln -s /sys/bus/i2c/devices/2-0024/hall_mode /data/tp/hall_mode
+fi
+
+if [ -e "/sys/bus/i2c/devices/2-0024/keypad_enable" ]; then
+	chown system:system /sys/bus/i2c/devices/2-0024/keypad_enable
+	ln -s /sys/bus/i2c/devices/2-0024/keypad_enable /data/tp/keypad_enable
 fi
