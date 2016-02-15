@@ -105,6 +105,9 @@ char const*const BATTERY_CAPACITY
 char const*const BATTERY_CHARGING_STATUS
         = "/sys/class/power_supply/battery/status";
 
+char const*const KEYPAD_ENABLE
+        = "/data/tp/keypad_enable";
+
 /**
  * device methods
  */
@@ -369,12 +372,20 @@ set_light_buttons(struct light_device_t* dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
+    int keypad_enable;
+    FILE* fp;
     if (!dev) {
         return -1;
     }
+    fp = fopen(KEYPAD_ENABLE, "rb");
+    fscanf(fp, "%d", &keypad_enable);
+    fclose(fp);
     pthread_mutex_lock(&g_lock);
     g_buttons = *state;
-    err = write_int(BREATH_LED_BLINK_MODE, brightness?6:2);
+    if (brightness && keypad_enable)
+        err = write_int(BREATH_LED_BLINK_MODE, 6);
+    else
+        err = write_int(BREATH_LED_BLINK_MODE, 2);
     err = set_breath_light_locked(BREATH_SOURCE_BUTTONS, &g_buttons);
     pthread_mutex_unlock(&g_lock);
     return err;
