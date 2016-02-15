@@ -348,7 +348,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.radio.sib16_support=1 \
     ro.sf.lcd_density=480 \
     ro.com.android.dataroaming=true \
-    persist.camera.cpp.duplication=false
+    persist.camera.cpp.duplication=false \
+    ro.min_freq_0=384000 \
+    ro.min_freq_4=384000
 
 # Reduce client buffer size for fast audio output tracks
 PRODUCT_PROPERTY_OVERRIDES += \
