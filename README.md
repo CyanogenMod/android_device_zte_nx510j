@@ -1,4 +1,4 @@
-Copyright 2015 - The CyanogenMod Project
+Copyright 2016 - The CyanogenMod Project
 
 Device configuration for ZTE Nubia Z9 Max.
 =====================================

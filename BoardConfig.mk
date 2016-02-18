@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2016 The CyanogenMod Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,12 +19,12 @@
 # Product-specific compile-time definitions.
 #
 
-LOCAL_PATH := device/zte/nx510j
+DEVICE_PATH := device/zte/nx510j
 
 PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl , $(PRODUCT_COPY_FILES))
 
 # Assertions
-TARGET_BOARD_INFO_FILE ?= $(LOCAL_PATH)/board-info.txt
+TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8994
@@ -41,17 +41,18 @@ TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
 TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := generic
+
 TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv7-a-neon
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
+
 TARGET_CPU_CORTEX_A53 := true
-TARGET_USE_QCOM_BIONIC_OPTIMIZATION := true
 TARGET_USES_64_BIT_BINDER := true
 
 # ANT+
-BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
 
 # Audio
 BOARD_USES_ALSA_AUDIO := true
@@ -69,9 +70,13 @@ AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
 USE_CUSTOM_AUDIO_POLICY := 1
 
 # Bluetooth
-BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 BOARD_HAS_QCA_BT_ROME := true
-BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(LOCAL_PATH)/bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+QCOM_BT_USE_BTNV := true
+QCOM_BT_USE_SMD_TTY := true
+WCNSS_FILTER_USES_SIBS := true
 
 # Camera
 USE_DEVICE_SPECIFIC_CAMERA := true
@@ -83,7 +88,6 @@ COMMON_GLOBAL_CFLAGS += -DCAMERA_VENDOR_L_COMPAT
 
 # Charger
 BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_HAL_STATIC_LIBRARIES := \
     libhealthd.msm8994
@@ -91,11 +95,23 @@ BOARD_HAL_STATIC_LIBRARIES := \
 # CM Hardware
 BOARD_HARDWARE_CLASS := \
     hardware/cyanogen/cmhw \
-    $(LOCAL_PATH)/cmhw
+    $(DEVICE_PATH)/cmhw
 TARGET_TAP_TO_WAKE_NODE := "/data/tp/easy_wakeup_gesture"
 
-#Enable HW based full disk encryption
-TARGET_HW_DISK_ENCRYPTION := false
+# Crypto
+TARGET_HW_DISK_ENCRYPTION := true
+
+# Display
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_USES_ION := true
+USE_OPENGL_RENDERER := true
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+TARGET_USES_C2D_COMPOSITION := true
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
+BOARD_USES_OPENSSL_SYMBOLS := true
 
 # Enable keymaster app checking
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
@@ -112,9 +128,6 @@ ifeq ($(HOST_OS),linux)
   endif
 endif
 
-#Enable peripheral manager
-TARGET_PER_MGR_ENABLED := true
-
 # Fonts
 EXTENDED_FONT_FOOTPRINT := true
 
@@ -122,27 +135,12 @@ EXTENDED_FONT_FOOTPRINT := true
 TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
 
-# Graphics
-NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
-TARGET_USES_ION := true
-TARGET_USES_NEW_ION_API :=true
-TARGET_USES_OVERLAY := true
-USE_OPENGL_RENDERER := true
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
-MAX_EGL_CACHE_SIZE := 2048*1024
-OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
-TARGET_USES_C2D_COMPOSITION := true
-TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
-MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
-BOARD_USES_OPENSSL_SYMBOLS := true
-
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 TARGET_INIT_VENDOR_LIB := libinit_msm
 
 # Kernel
-TARGET_NO_KERNEL := false
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-3
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 boot_cpus=0-5
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_BASE        := 0x00000000
 BOARD_KERNEL_PAGESIZE    := 4096
@@ -169,7 +167,9 @@ TARGET_PROVIDES_LIBLIGHT := true
 
 # Partitions
 TARGET_USERIMAGES_USE_EXT4 := true
+ifneq (,$(filter linux darwin, $(HOST_OS)))
 TARGET_USERIMAGES_USE_F2FS := true
+endif
 BOARD_BOOTIMAGE_PARTITION_SIZE := 0x04000000
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x04000000
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2684354560
@@ -179,6 +179,9 @@ BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
+
+# Peripheral manager
+TARGET_PER_MGR_ENABLED := true
 
 # Power
 TARGET_POWERHAL_VARIANT := qcom
@@ -190,11 +193,12 @@ BOARD_USES_QCOM_HARDWARE := true
 ADD_RADIO_FILES := true
 
 # Recovery
+TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_nx510j
 #RECOVERY_VARIANT := twrp
 ifneq ($(RECOVERY_VARIANT),twrp)
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/recovery.fstab
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/recovery.fstab
 else
-TARGET_RECOVERY_FSTAB := $(LOCAL_PATH)/twrp/twrp.fstab
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/twrp/twrp.fstab
 RECOVERY_GRAPHICS_FORCE_USE_LINELENGTH := true
 DEVICE_RESOLUTION := 1080x1920
 RECOVERY_SDCARD_ON_DATA := true
@@ -207,16 +211,11 @@ BOARD_SUPPRESS_SECURE_ERASE := true
 endif
 
 # Releasetools
-TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_nx510j
-TARGET_RELEASETOOLS_EXTENSIONS := $(LOCAL_PATH)
+TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
-# Ril
+# RIL
+FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 TARGET_RIL_VARIANT := caf
-SIM_COUNT := 2
-TARGET_GLOBAL_CFLAGS += -DANDROID_MULTI_SIM
-TARGET_GLOBAL_CPPFLAGS += -DANDROID_MULTI_SIM
-# Added to indicate that protobuf-c is supported in this build
-PROTOBUF_SUPPORTED := false
 
 # SELinux
 include device/qcom/sepolicy/sepolicy.mk
@@ -238,11 +237,14 @@ BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_qcwcn
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+HOSTAPD_VERSION := VER_0_8_X
 TARGET_USES_WCNSS_CTRL := true
-WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
-WIFI_DRIVER_MODULE_NAME := "wlan"
 WIFI_DRIVER_FW_PATH_AP := "ap"
 WIFI_DRIVER_FW_PATH_STA := "sta"
+WIFI_DRIVER_FW_PATH_P2P := "p2p"
+# The device fails to boot unless wifi is built as a module
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/wlan.ko"
+WIFI_DRIVER_MODULE_NAME := "wlan"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
