@@ -1,1 +1,1 @@
-require version-baseband=V3.68:368|V3.74:374|V3.78:378
+require version-baseband=V3.68:368|V3.74:374|V3.78:378|V3.80:380
