@@ -47,6 +47,16 @@ qcom.hw.aac.encoder=true
 #
 persist.cne.feature=1
 
+# Data Power Manager (DPM)
+persist.dpm.feature=7
+persist.env.fastdorm.enabled=true
+persist.sys.dpmd.nsrm=3
+
+# Debug logging for DPM & CNE can be enabled via:
+# Push libdpmlog.so to system/vendor/lib|64
+#persist.dpm.nsrm.bkg.evt=3955
+#persist.dpm.loglevel=7825
+
 #system props for the MM modules
 
 media.stagefright.enable-player=true
