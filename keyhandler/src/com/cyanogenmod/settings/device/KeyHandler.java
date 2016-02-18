@@ -108,7 +108,7 @@ public class KeyHandler implements DeviceKeyHandler {
         }
     };
 
-    public boolean handleKeyEvent(KeyEvent event, DeviceHandlerCallback callback) {
+    public boolean handleKeyEvent(KeyEvent event) {
         if (event.getAction() != KeyEvent.ACTION_UP) {
             return false;
         }
