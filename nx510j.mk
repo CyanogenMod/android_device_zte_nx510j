@@ -255,10 +255,6 @@ PRODUCT_PACKAGES += \
     ethertypes \
     libebtc
 
-# Keyhandler
-PRODUCT_PACKAGES += \
-    com.cyanogenmod.keyhandler
-
 # Keypad
 PRODUCT_PACKAGES += \
     gpio-keys.kl \
@@ -355,7 +351,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # IO Scheduler
 PRODUCT_PROPERTY_OVERRIDES += \
     sys.io.scheduler=bfq
-
-PRODUCT_SYSTEM_SERVER_JARS += com.cyanogenmod.keyhandler
-# never dexopt the keyhandler
-$(call add-product-dex-preopt-module-config,com.cyanogenmod.keyhandler,disable)
