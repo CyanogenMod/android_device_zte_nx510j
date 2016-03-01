@@ -67,6 +67,12 @@ on post-fs-data
     mkdir /data/misc/dts 0770 media audio
 
 on boot
+    # update foreground cpuset now that processors are up
+    write /dev/cpuset/foreground/cpus 0-7
+    write /dev/cpuset/foreground/boost/cpus 4-7
+    write /dev/cpuset/background/cpus 0
+    write /dev/cpuset/system-background/cpus 0-3
+
     symlink /dev/block/platform/soc.0 /dev/block/bootdevice
     start rmt_storage
     start rfs_access
@@ -176,6 +182,7 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start
     user camera
     group camera system inet input graphics
+    writepid /dev/cpuset/system-background/tasks
 
 ## Allow usb charging to be disabled persistently
 #on property:persist.usb.chgdisabled=1
@@ -208,6 +215,7 @@ service qseecomd /system/bin/qseecomd
 service perfd /system/vendor/bin/perfd
    class main
    user root
+   writepid /dev/cpuset/system-background/tasks
    disabled
 
 #service mpdecision /system/bin/mpdecision --avg_comp

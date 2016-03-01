@@ -95,6 +95,7 @@ echo "85 1500000:90 1800000:70" > /sys/devices/system/cpu/cpu4/cpufreq/interacti
 echo 40000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time
 echo 80000 > /sys/devices/system/cpu/cpu4/cpufreq/interactive/max_freq_hysteresis
 echo 384000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
+
 # insert core_ctl module and use conservative paremeters
 insmod /system/lib/modules/core_ctl.ko
 echo 1 > /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
@@ -135,6 +136,10 @@ echo 95 > /proc/sys/kernel/sched_upmigrate
 echo 85 > /proc/sys/kernel/sched_downmigrate
 echo 2 > /proc/sys/kernel/sched_window_stats_policy
 echo 5 > /proc/sys/kernel/sched_ravg_hist_size
+
+# android background processes are set to nice 10. Never schedule these on the a57s.
+echo 9 > /proc/sys/kernel/sched_upmigrate_min_nice
+
 for i in cpu0 cpu1 cpu2 cpu3 cpu4 cpu5 cpu6 cpu7
 do
     echo 20 > /sys/devices/system/cpu/$i/sched_mostly_idle_load
@@ -161,6 +166,9 @@ for devfreq_gov in /sys/class/devfreq/qcom,mincpubw*/governor
 do
     echo "cpufreq" > $devfreq_gov
 done
+
+# change GPU initial power level from 305MHz(level 4) to 180MHz(level 5) for power savings
+echo 5 > /sys/class/kgsl/kgsl-3d0/default_pwrlevel
 
 rm /data/system/perfd/default_values
 start perfd
