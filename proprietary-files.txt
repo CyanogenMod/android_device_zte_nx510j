@@ -28,8 +28,6 @@ etc/acdbdata/MTP/MTP_Headset_cal.acdb
 etc/acdbdata/MTP/MTP_Speaker_cal.acdb
 
 # Audio libraries
-lib/soundfx/libhwdap.so
-lib/soundfx/libswdap.so
 vendor/lib64/libacdb-fts.so
 vendor/lib64/libacdbloader.so
 vendor/lib64/libacdbrtac.so
@@ -64,10 +62,9 @@ vendor/lib/libbtnv.so
 
 # Camera
 bin/mm-qcamera-daemon
-lib/hw/camera.vendor.msm8994.so
+lib/hw/camera.msm8994.so
 lib/libImageAlogrithm.so
 lib/libmmcamera_interface.so
-lib/libmmcamera_nubiacustpro.so
 lib/libmmjpeg_interface.so
 lib/libmm-qcamera.so
 lib/libqomx_core.so
@@ -482,6 +479,10 @@ vendor/lib64/libdrmtime.so
 vendor/lib64/librpmb.so
 vendor/lib64/libssd.so
 
+# Gatekeeper
+vendor/lib/hw/gatekeeper.msm8994.so
+vendor/lib64/hw/gatekeeper.msm8994.so
+
 # GPS
 -lib/libloc_api_v02.so
 -lib/libloc_ds_api.so
@@ -548,17 +549,19 @@ vendor/lib64/libscale.so
 etc/firmware/a420_pfp.fw
 etc/firmware/a420_pm4.fw
 
+# Keystore
+vendor/lib/hw/keystore.msm8994.so
+vendor/lib64/hw/keystore.msm8994.so
+
 # Media
 vendor/lib/libDivxDrm.so
 vendor/lib/libI420colorconvert.so
-vendor/lib/libmmosal.so
-vendor/lib/libmm-color-convertor.so
 vendor/lib/libOmxAacDec.so
-vendor/lib/libOmxAmrwbplusDec.so
 vendor/lib/libOmxEvrcDec.so
 vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libOmxWmaDec.so
 vendor/lib/libSHIMDivxDrm.so
+vendor/lib/libmm-color-convertor.so
+vendor/lib/libmmosal.so
 
 # Media firmware
 etc/firmware/venus.b00
@@ -568,12 +571,6 @@ etc/firmware/venus.b03
 etc/firmware/venus.b04
 etc/firmware/venus.mbn
 etc/firmware/venus.mdt
-
-# Modem data
-etc/modem_ota/ROW/mcfg_sw.mbn
-etc/modem_ota/CM/mcfg_sw.mbn
-etc/modem_ota/CT/mcfg_sw.mbn
-etc/modem_ota/CU/mcfg_sw.mbn
 
 # Network
 vendor/lib/libconnctrl.so
@@ -591,8 +588,10 @@ vendor/firmware/BCM20795A2_001.003.025.0005.0035_Generic_I2C_NCD_Unsigned_config
 bin/energy-awareness
 bin/msm_irqbalance
 vendor/bin/perfd
-vendor/lib64/libqti-perfd-client.so
+vendor/lib/libqc-opt.so
+vendor/lib64/libqc-opt.so
 vendor/lib/libqti-perfd-client.so
+vendor/lib64/libqti-perfd-client.so
 
 # Peripheral manager
 bin/pm-proxy
@@ -601,29 +600,19 @@ vendor/lib64/libperipheral_client.so
 vendor/lib/libperipheral_client.so
 
 # Postprocessing
-vendor/lib64/libmm-als.so
-vendor/lib64/libmm-qdcm.so
+vendor/lib/libdisp-aba.so
+vendor/lib/libmm-abl-oem.so
+vendor/lib/libmm-abl.so
 vendor/lib/libmm-als.so
 vendor/lib/libmm-qdcm.so
+vendor/lib64/libdisp-aba.so
+vendor/lib64/libmm-abl-oem.so
+vendor/lib64/libmm-abl.so
+vendor/lib64/libmm-als.so
+vendor/lib64/libmm-qdcm.so
 
 # QMI
 bin/irsc_util
-vendor/lib64/libdiag.so
-vendor/lib64/libdsi_netctrl.so
-vendor/lib64/libdsutils.so
-vendor/lib64/libidl.so
-vendor/lib64/libqcci_legacy.so
-vendor/lib64/libqdi.so
-vendor/lib64/libqdp.so
-vendor/lib64/libqmi_cci.so
-vendor/lib64/libqmi_client_helper.so
-vendor/lib64/libqmi_client_qmux.so
-vendor/lib64/libqmi_common_so.so
-vendor/lib64/libqmi_csi.so
-vendor/lib64/libqmi_encdec.so
-vendor/lib64/libqmiservices.so
-vendor/lib64/libqmi.so
-vendor/lib64/libsmemlog.so
 vendor/lib/libdiag.so
 vendor/lib/libdsi_netctrl.so
 vendor/lib/libdsutils.so
@@ -631,6 +620,7 @@ vendor/lib/libidl.so
 vendor/lib/libqcci_legacy.so
 vendor/lib/libqdi.so
 vendor/lib/libqdp.so
+vendor/lib/libqmi.so
 vendor/lib/libqmi_cci.so
 vendor/lib/libqmi_client_helper.so
 vendor/lib/libqmi_client_qmux.so
@@ -638,10 +628,26 @@ vendor/lib/libqmi_common_so.so
 vendor/lib/libqmi_csi.so
 vendor/lib/libqmi_encdec.so
 vendor/lib/libqmiservices.so
-vendor/lib/libqmi.so
 vendor/lib/libsmemlog.so
+vendor/lib64/libdiag.so
+vendor/lib64/libdsi_netctrl.so
+vendor/lib64/libdsutils.so
+vendor/lib64/libidl.so
+vendor/lib64/libqcci_legacy.so
+vendor/lib64/libqdi.so
+vendor/lib64/libqdp.so
+vendor/lib64/libqmi.so
+vendor/lib64/libqmi_cci.so
+vendor/lib64/libqmi_client_helper.so
+vendor/lib64/libqmi_client_qmux.so
+vendor/lib64/libqmi_common_so.so
+vendor/lib64/libqmi_csi.so
+vendor/lib64/libqmi_encdec.so
+vendor/lib64/libqmiservices.so
+vendor/lib64/libsmemlog.so
 
 # Radio
+-app/shutdownlistener/shutdownlistener.apk
 bin/ipacm-diag
 bin/netmgrd
 bin/qmuxd
@@ -651,20 +657,35 @@ bin/rmt_storage
 etc/data/dsi_config.xml
 etc/data/netmgr_config.xml
 etc/data/qmi_config.xml
+etc/permissions/qcnvitems.xml
+etc/permissions/qcrilhook.xml
+-framework/qcnvitems.jar
+-framework/qcrilhook.jar
+vendor/lib/liblqe.so
+vendor/lib/libmdmdetect.so
+vendor/lib64/libcneapiclient.so
 vendor/lib64/libconfigdb.so
+vendor/lib64/liblqe.so
 vendor/lib64/libmdmdetect.so
 vendor/lib64/libnetmgr.so
+vendor/lib64/libperipheral_client.so
 vendor/lib64/libril-qc-qmi-1.so
+vendor/lib64/libril-qc-radioconfig.so
 vendor/lib64/libril-qcril-hook-oem.so
 vendor/lib64/libsystem_health_mon.so
+vendor/lib64/libxml.so
 
 # Sensors
 bin/sensors.qcom
 lib64/hw/sensors.oem.so
-vendor/lib64/hw/sensors.msm8994.so
+lib64/hw/sensors.msm8994.so
 vendor/lib64/hw/activity_recognition.msm8994.so
+vendor/lib64/libdataitems.so
+vendor/lib64/liblowi_client.so
 vendor/lib64/libsensor1.so
 vendor/lib64/libsensor_reg.so
+vendor/lib64/libulp2.so
+vendor/lib64/sensors.ssc.so
 
 # Thermal
 vendor/bin/thermal-engine
