@@ -33,9 +33,6 @@ on early-init
     mkdir /bt_firmware 0771 system system
     symlink /data/tombstones /tombstones
 
-on post-fs
-    export LD_SHIM_LIBS "/system/lib/libcrypto.so|libboringssl-compat.so:/system/vendor/lib/libmmcamera2_stats_modules.so|libzte_camera.so:/system/lib/hw/camera.vendor.msm8994.so|libzte_camera.so"
-
 on fs
     mount_all fstab.qcom
     swapon_all fstab.qcom
