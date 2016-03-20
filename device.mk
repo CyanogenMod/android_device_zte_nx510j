@@ -92,18 +92,11 @@ PRODUCT_PACKAGES += \
 
 # Camera
 PRODUCT_PACKAGES += \
-    camera.msm8994 \
     Snap
 
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
-
-# Compat symbols
-PRODUCT_PACKAGES += \
-    libboringssl-compat \
-    libstlport \
-    libzte_camera
 
 # Connectivity Engine support (CNE)
 PRODUCT_PACKAGES += \
