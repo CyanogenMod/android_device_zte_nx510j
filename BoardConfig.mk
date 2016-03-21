@@ -23,9 +23,6 @@ DEVICE_PATH := device/zte/nx510j
 
 PRODUCT_COPY_FILES := $(filter-out frameworks/base/data/keyboards/Generic.kl:system/usr/keylayout/Generic.kl , $(PRODUCT_COPY_FILES))
 
-# Assertions
-TARGET_BOARD_INFO_FILE ?= $(DEVICE_PATH)/board-info.txt
-
 # Platform
 TARGET_BOARD_PLATFORM := msm8994
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno430
@@ -181,9 +178,6 @@ TARGET_POWERHAL_VARIANT := qcom
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
-# Radio
-ADD_RADIO_FILES := true
-
 # Recovery
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_nx510j
 #RECOVERY_VARIANT := twrp
@@ -201,9 +195,6 @@ TW_EXTRA_LANGUAGES := true
 TARGET_RECOVERY_QCOM_RTC_FIX := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 endif
-
-# Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := $(DEVICE_PATH)
 
 # RIL
 FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
