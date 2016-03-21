@@ -269,6 +269,7 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.extension_library=libqti-perfd-client.so \
     persist.radio.apm_sim_not_pwdn=1 \
+    persist.radio.custom_ecc=1 \
     persist.radio.sib16_support=1 \
     ro.sf.lcd_density=480 \
     persist.camera.cpp.duplication=false \
