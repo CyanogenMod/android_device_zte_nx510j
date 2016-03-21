@@ -219,10 +219,6 @@ PRODUCT_PACKAGES += \
     init.recovery.qcom.rc \
     tp_node.sh
 
-# Recovery
-PRODUCT_PACKAGES += \
-    librecovery_updater_nx510j
-
 # Ril
 PRODUCT_PACKAGES += \
     libxml2
