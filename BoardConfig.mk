@@ -123,7 +123,6 @@ OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
 TARGET_USES_C2D_COMPOSITION := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
-BOARD_USES_OPENSSL_SYMBOLS := true
 
 # Enable dex pre-opt to speed up initial boot
 ifeq ($(HOST_OS),linux)
@@ -136,9 +135,6 @@ ifeq ($(HOST_OS),linux)
     endif
   endif
 endif
-
-# Fonts
-EXTENDED_FONT_FOOTPRINT := true
 
 # GPS
 TARGET_NO_RPC := true
