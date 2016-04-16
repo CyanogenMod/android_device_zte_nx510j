@@ -277,7 +277,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=480 \
     persist.camera.cpp.duplication=false \
     ro.min_freq_0=384000 \
-    ro.min_freq_4=384000
+    ro.min_freq_4=384000 \
+    persist.camera.HAL3.enabled=1
 
 # Reduce client buffer size for fast audio output tracks
 PRODUCT_PROPERTY_OVERRIDES += \
