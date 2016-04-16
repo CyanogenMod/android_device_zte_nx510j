@@ -679,7 +679,6 @@ vendor/lib64/libxml.so
 # Sensors
 bin/sensors.qcom
 lib64/hw/sensors.oem.so
-lib64/hw/sensors.msm8994.so
 vendor/lib64/hw/activity_recognition.msm8994.so
 vendor/lib64/libdataitems.so
 vendor/lib64/liblocationservice.so
