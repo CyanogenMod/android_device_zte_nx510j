@@ -611,7 +611,7 @@ vendor/lib64/libmm-abl.so
 vendor/lib64/libmm-als.so
 vendor/lib64/libmm-qdcm.so
 
-# Qualcomm framework (From sambar)
+# Qualcomm framework (From v3.82)
 bin/irsc_util
 -lib64/libwpa_qmi_eap_proxy.so
 -vendor/lib/libdiag.so
@@ -647,7 +647,7 @@ vendor/lib64/libqmi_encdec.so
 -vendor/lib64/libqmiservices.so
 vendor/lib64/libsmemlog.so
 
-# Radio (From sambar)
+# Radio (From v3.82)
 -app/shutdownlistener/shutdownlistener.apk
 bin/ipacm-diag
 bin/netmgrd
@@ -662,16 +662,13 @@ etc/permissions/qcnvitems.xml
 etc/permissions/qcrilhook.xml
 -framework/qcnvitems.jar
 -framework/qcrilhook.jar
-vendor/lib/liblqe.so
 -vendor/lib/libmdmdetect.so
 vendor/lib64/libcneapiclient.so
 vendor/lib64/libconfigdb.so
-vendor/lib64/liblqe.so
 -vendor/lib64/libmdmdetect.so
 vendor/lib64/libnetmgr.so
 vendor/lib64/libperipheral_client.so
 vendor/lib64/libril-qc-qmi-1.so
-vendor/lib64/libril-qc-radioconfig.so
 vendor/lib64/libril-qcril-hook-oem.so
 vendor/lib64/libsystem_health_mon.so
 vendor/lib64/libxml.so
