@@ -184,9 +184,6 @@ TARGET_POWERHAL_VARIANT := qcom
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 
-# Radio
-ADD_RADIO_FILES := true
-
 # Recovery
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_nx510j
 #RECOVERY_VARIANT := twrp
