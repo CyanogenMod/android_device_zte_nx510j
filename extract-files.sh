@@ -5,6 +5,8 @@ set -e
 export VENDOR=zte
 export DEVICE=nx510j
 
+export RADIO_IMAGES="BTFM.bin emmc_appsboot.mbn hyp.mbn NON-HLOS.bin pmic.mbn rpm.mbn sbl1.mbn sdi.mbn splash.img tz.mbn"
+
 function extract() {
     for FILE in `egrep -v '(^#|^$)' $1`; do
         OLDIFS=$IFS IFS=":" PARSING_ARRAY=($FILE) IFS=$OLDIFS
@@ -35,15 +37,27 @@ function extract() {
     done
 }
 
+function extract_radio() {
+    if [ ! -d $1 ]; then
+        mkdir -p $1
+    fi
+    for FILE in $RADIO_IMAGES; do
+	      cp $RADIO_SRC/$FILE $1/$FILE
+    done
+}
+
 if [ $# -eq 0 ]; then
   SRC=adb
 else
   if [ $# -eq 1 ]; then
     SRC=$1
+  elif [ $# -eq 2 ]; then
+    SRC=$1
+    RADIO_SRC=$2
   else
     echo "$0: bad number of arguments"
     echo ""
-    echo "usage: $0 [PATH_TO_EXPANDED_ROM]"
+    echo "usage: $0 [PATH_TO_EXPANDED_ROM (PATH_TO_EXPANDED_RADIO)]"
     echo ""
     echo "If PATH_TO_EXPANDED_ROM is not specified, blobs will be extracted from"
     echo "the device using adb pull."
@@ -54,10 +68,12 @@ fi
 BASE=../../../vendor/$VENDOR/$DEVICE/proprietary
 rm -rf $BASE/*
 
-#DEVBASE=../../../vendor/$VENDOR/$DEVICE/proprietary
-#rm -rf $DEVBASE/*
-
 extract ../../$VENDOR/$DEVICE/proprietary-files.txt $BASE
-#extract ../../$VENDOR/$DEVICE/proprietary-files.txt $DEVBASE
+
+if [ -n "$RADIO_SRC" ]; then
+    BASE=../../../vendor/$VENDOR/$DEVICE/radio
+    rm -rf $BASE/*
+    extract_radio $BASE
+fi
 
 ./setup-makefiles.sh
