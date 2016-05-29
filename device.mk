@@ -126,6 +126,10 @@ PRODUCT_PACKAGES += \
     com.qti.dpmframework \
     dpmapi
 
+# Gello
+PRODUCT_PACKAGES += \
+    Gello
+
 # GPS
 PRODUCT_PACKAGES += \
     gps.msm8994
