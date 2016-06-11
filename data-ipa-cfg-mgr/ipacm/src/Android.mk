@@ -1,3 +1,6 @@
+BOARD_PLATFORM_LIST := msm8916
+BOARD_PLATFORM_LIST += msm8909
+ifneq ($(call is-board-platform-in-list,$(BOARD_PLATFORM_LIST)),true)
 ifneq (,$(filter $(QCOM_BOARD_PLATFORMS),$(TARGET_BOARD_PLATFORM)))
 ifneq (, $(filter aarch64 arm arm64, $(TARGET_ARCH)))
 
@@ -24,12 +27,15 @@ LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 LOCAL_CFLAGS := -v
 LOCAL_CFLAGS += -DFEATURE_IPA_ANDROID
-LOCAL_CFLAGS += -DDEBUG
 
-ifeq ($(TARGET_ARCH),arm)
-LOCAL_CFLAGS += -include bionic/libc/kernel/arch-arm/asm/posix_types.h
-LOCAL_CFLAGS += -include bionic/libc/kernel/arch-arm/asm/byteorder.h
+ifeq ($(TARGET_BOARD_PLATFORM),msm8998)
+LOCAL_CFLAGS += -DFEATURE_IPA_V3
 endif
+
+filetoadd = bionic/libc/kernel/arch-arm/asm/posix_types.h
+LOCAL_CFLAGS += $(shell if [ -a $(filetoadd) ] ; then echo -include $(filetoadd) ; fi ;)
+filetoadd = bionic/libc/kernel/arch-arm/asm/byteorder.h
+LOCAL_CFLAGS += $(shell if [ -a $(filetoadd) ] ; then echo -include $(filetoadd) ; fi ;)
 
 LOCAL_SRC_FILES := IPACM_Main.cpp \
 		IPACM_EvtDispatcher.cpp \
@@ -52,6 +58,7 @@ LOCAL_SRC_FILES := IPACM_Main.cpp \
                 IPACM_Log.cpp
 
 LOCAL_MODULE := ipacm
+LOCAL_CLANG := false
 LOCAL_MODULE_TAGS := optional
 
 LOCAL_SHARED_LIBRARIES := libipanat
@@ -59,6 +66,7 @@ LOCAL_SHARED_LIBRARIES += libxml2
 LOCAL_SHARED_LIBRARIES += libnfnetlink
 LOCAL_SHARED_LIBRARIES += libnetfilter_conntrack
 LOCAL_SHARED_LIBRARIES += libdhcpcd
+LOCAL_CLANG := true
 include $(BUILD_EXECUTABLE)
 
 ################################################################################
@@ -85,4 +93,5 @@ LOCAL_MODULE_OWNER := ipacm
 include $(BUILD_PREBUILT)
 
 endif # $(TARGET_ARCH)
+endif
 endif
