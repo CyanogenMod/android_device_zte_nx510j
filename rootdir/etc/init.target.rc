@@ -209,12 +209,6 @@ service qseecomd /system/bin/qseecomd
    user root
    group root
 
-service perfd /system/vendor/bin/perfd
-   class main
-   user root
-   writepid /dev/cpuset/system-background/tasks
-   disabled
-
 #service mpdecision /system/bin/mpdecision --avg_comp
 #   user root
 #   disabled
