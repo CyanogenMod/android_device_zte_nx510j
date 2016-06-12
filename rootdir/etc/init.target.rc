@@ -38,8 +38,8 @@ on fs
     swapon_all fstab.qcom
 
     wait /dev/block/bootdevice/by-name/cache
-    mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev barrier=1
-    mount f2fs /dev/block/bootdevice/by-name/cache /cache rw discard nosuid nodev noatime nodiratime inline_xattr
+    mount f2fs /dev/block/bootdevice/by-name/cache /cache nosuid nodev noatime nodiratime inline_xattr flush_merge data_flush
+    mount ext4 /dev/block/bootdevice/by-name/cache /cache nosuid nodev noatime nodiratime barrier=1
 
     wait /dev/block/bootdevice/by-name/persist /persist
     mount ext4 /dev/block/bootdevice/by-name/persist /persist nosuid nodev barrier=1
