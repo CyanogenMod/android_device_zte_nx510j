@@ -98,6 +98,9 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_HAL_STATIC_LIBRARIES += \
     libhealthd.msm8994
 
+# Clang
+USE_CLANG_PLATFORM_BUILD := true
+
 # CM Hardware
 BOARD_HARDWARE_CLASS := \
     hardware/cyanogen/cmhw \
