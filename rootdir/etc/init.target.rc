@@ -171,9 +171,6 @@ on boot
 # add for ndt force-key
     chmod 666 /dev/i2c-1
 
-    # Vibrator intensity
-    chown system system /sys/devices/virtual/timed_output/vibrator/vmax_mv
-
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
     class late_start

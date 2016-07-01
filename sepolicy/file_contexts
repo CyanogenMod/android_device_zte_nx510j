@@ -36,6 +36,3 @@
 /sys/bus/i2c/devices/2-004a/easy_wakeup_gesture                     u:object_r:touchpanel_sysfs:s0
 /sys/bus/i2c/devices/2-005d/wakeup_gesture                          u:object_r:touchpanel_sysfs:s0
 /sys/bus/i2c/devices/2-0024/easy_wakeup_gesture                     u:object_r:touchpanel_sysfs:s0
-
-# Vibrator
-/sys/devices/virtual/timed_output/vibrator/vmax_mv                  u:object_r:sysfs_vibrator:s0
