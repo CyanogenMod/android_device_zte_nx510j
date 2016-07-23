@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2013-2014, The Linux Foundation. All rights reserved.
+# Copyright (c) 2009-2015, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -27,63 +27,45 @@
 #
 
 #
-# start ril-daemon only for targets on which radio is present
+# Function to start sensors for DSPS enabled platforms
 #
-baseband=`getprop ro.baseband`
-sgltecsfb=`getprop persist.radio.sglte_csfb`
-datamode=`getprop persist.data.mode`
-netmgr=`getprop ro.use_data_netmgrd`
+start_sensors()
+{
+    if [ -c /dev/msm_dsps -o -c /dev/sensors ]; then
+        chmod -h 775 /persist/sensors
+        chmod -h 664 /persist/sensors/sensors_settings
+        chown -h system.root /persist/sensors/sensors_settings
 
-case "$baseband" in
-    "apq")
-    setprop ro.radio.noril yes
-    stop ril-daemon
-esac
+        mkdir -p /data/misc/sensors
+        chmod -h 775 /data/misc/sensors
 
-case "$baseband" in
-    "msm" | "csfb" | "svlte2a" | "mdm" | "mdm2" | "sglte" | "sglte2" | "dsda2" | "unknown" | "dsda3")
-    start qmuxd
-    start ipacm-diag
-    start ipacm
-    case "$baseband" in
-        "svlte2a" | "csfb")
-          start qmiproxy
-        ;;
-        "sglte" | "sglte2" )
-          if [ "x$sgltecsfb" != "xtrue" ]; then
-              start qmiproxy
-          else
-              setprop persist.radio.voice.modem.index 0
-          fi
-        ;;
-        "dsda2")
-          setprop persist.radio.multisim.config dsda
-    esac
-
-    multisim=`getprop persist.radio.multisim.config`
-
-    if [ "$multisim" = "dsds" ] || [ "$multisim" = "dsda" ]; then
-        start ril-daemon2
-    elif [ "$multisim" = "tsts" ]; then
-        start ril-daemon2
-        start ril-daemon3
+        start sensors
     fi
+}
 
-    case "$datamode" in
-        "tethered")
-            start qti
-            start port-bridge
-            ;;
-        "concurrent")
-            start qti
-            if [ "$netmgr" = "true" ]; then
-                start netmgrd
-            fi
-            ;;
-        *)
-            if [ "$netmgr" = "true" ]; then
-                start netmgrd
-            fi
-            ;;
-    esac
+start_copying_prebuilt_qcril_db()
+{
+    if [ -f /system/vendor/qcril.db -a ! -f /data/misc/radio/qcril.db ]; then
+        cp /system/vendor/qcril.db /data/misc/radio/qcril.db
+        chown -h radio.radio /data/misc/radio/qcril.db
+    fi
+}
+
+case "$baseband" in
+        "svlte2a")
+        start bridgemgrd
+        ;;
 esac
+
+start_sensors
+start_copying_prebuilt_qcril_db
+
+#
+# Make modem config folder and copy firmware config to that folder
+#
+rm -rf /data/misc/radio/modem_config
+mkdir /data/misc/radio/modem_config
+chmod 770 /data/misc/radio/modem_config
+cp -r /firmware/image/mdm/modem_pr/mcfg/configs/* /data/misc/radio/modem_config
+chown -hR radio.radio /data/misc/radio/modem_config
+echo 1 > /data/misc/radio/copy_complete

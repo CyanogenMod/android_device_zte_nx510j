@@ -1,0 +1,9 @@
+on post-fs-data
+    chown system system /sys/class/leds/nubia_led/brightness
+    chown system system /sys/class/leds/nubia_led/lut_flags
+    chown system system /sys/class/leds/nubia_led/pause_hi
+    chown system system /sys/class/leds/nubia_led/pause_lo
+    chown system system /sys/class/leds/nubia_led/ramp_step_ms
+    chown system system /sys/class/leds/nubia_led/duty_pcts
+    chown system system /sys/class/leds/nubia_led/outn
+    chown system system /sys/class/leds/nubia_led/blink_mode
