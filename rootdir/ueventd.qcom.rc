@@ -210,7 +210,6 @@
 #nfc permissions
 /dev/nfc-nci              0660    nfc         nfc
 /dev/assd                 0660    nfc         nfc
-/dev/bcm2079x             0660    nfc         nfc
 
 # UIO devices
 /dev/uio0                 0660   system     system
@@ -226,3 +225,6 @@
 # Ramdump devices
 /dev/ramdump*             0640   system     system
 
+# Add device block for FRP
+/dev/block/bootdevice/by-name/config    0660   system     system
+/dev/block/platform/soc.0/f9824900.sdhci/by-name/config   0660   system     system

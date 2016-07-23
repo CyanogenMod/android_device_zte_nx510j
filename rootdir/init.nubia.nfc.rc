@@ -1,0 +1,11 @@
+
+# msm specific files that need to be created on /data
+on post-fs-data
+    mkdir /data/nfc
+    mkdir /etc/param
+    start nfc-default-sh
+
+# permissions for NFC
+on boot
+    chmod 0660 /dev/bcm2079x
+    chown nfc nfc /dev/bcm2079x

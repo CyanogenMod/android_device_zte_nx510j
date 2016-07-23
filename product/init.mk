@@ -1,11 +1,12 @@
 PRODUCT_PACKAGES += \
-    init.class_main.sh \
-    init.qcom.early_boot.sh \
-    init.qcom.post_boot.sh \
+    init.nubia.charger.rc \
+    init.nubia.led.rc \
+    init.nubia.nfc.rc \
+    init.nubia.poweroff_charging.rc \
+    init.nubia.sensors.rc \
+    init.nubia.target.rc \
+    init.qcom.fs.rc \
+    init.qcom.rc \
     init.qcom.sh \
-    init.qcom.uicc.sh \
     init.qcom.usb.rc \
-    init.qcom.usb.sh \
-    init.recovery.qcom.rc \
-    init.target.rc \
-    tp_node.sh
+    init.target.rc
