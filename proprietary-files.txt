@@ -389,72 +389,8 @@ vendor/lib/libmmcamera_s5k3m2xx.so
 vendor/lib/libmmcamera_sony_imx214_eeprom.so
 vendor/lib/libmmcamera_sonyimx135_eeprom.so
 
-# Modem data
-etc/modem_ota/ROW/mcfg_sw.mbn
-etc/modem_ota/CM/mcfg_sw.mbn
-etc/modem_ota/CT/mcfg_sw.mbn
-etc/modem_ota/CU/mcfg_sw.mbn
-
 # BCM NFC firmware
 vendor/firmware/BCM20795A1_001.002.012.0003.0112_Generic_I2C_NCD_Unsigned_configdata.ncd
-
-# Qualcomm framework (factory lolipop version)
-bin/irsc_util
-vendor/lib/libdiag.so
-vendor/lib/libdsi_netctrl.so
-vendor/lib/libdsutils.so
-vendor/lib/libidl.so
-vendor/lib/libqcci_legacy.so
-vendor/lib/libqdi.so
-vendor/lib/libqdp.so
-vendor/lib/libqmi.so
-vendor/lib/libqmi_cci.so
-vendor/lib/libqmi_client_helper.so
-vendor/lib/libqmi_client_qmux.so
-vendor/lib/libqmi_common_so.so
-vendor/lib/libqmi_csi.so
-vendor/lib/libqmi_encdec.so
-vendor/lib/libqmiservices.so
-vendor/lib/libsmemlog.so
-vendor/lib64/libdiag.so
-vendor/lib64/libdsi_netctrl.so
-vendor/lib64/libdsutils.so
-vendor/lib64/libidl.so
-vendor/lib64/libqcci_legacy.so
-vendor/lib64/libqdi.so
-vendor/lib64/libqdp.so
-vendor/lib64/libqmi.so
-vendor/lib64/libqmi_cci.so
-vendor/lib64/libqmi_client_helper.so
-vendor/lib64/libqmi_client_qmux.so
-vendor/lib64/libqmi_common_so.so
-vendor/lib64/libqmi_csi.so
-vendor/lib64/libqmi_encdec.so
-vendor/lib64/libqmiservices.so
-vendor/lib64/libsmemlog.so
-
-# Radio (factory lolipop version)
--app/shutdownlistener/shutdownlistener.apk
-bin/ipacm-diag
-bin/netmgrd
-bin/qmuxd
-bin/radish
-bin/rfs_access
-bin/rmt_storage
-etc/data/dsi_config.xml
-etc/data/netmgr_config.xml
-etc/data/qmi_config.xml
-etc/permissions/qcnvitems.xml
-etc/permissions/qcrilhook.xml
--framework/qcnvitems.jar
--framework/qcrilhook.jar
-vendor/lib/libmdmdetect.so
-vendor/lib64/libconfigdb.so
-vendor/lib64/libmdmdetect.so
-vendor/lib64/libnetmgr.so
-vendor/lib64/libril-qc-qmi-1.so
-vendor/lib64/libril-qcril-hook-oem.so
-vendor/lib64/libsystem_health_mon.so
 
 # Sensors
 bin/sensors.qcom
