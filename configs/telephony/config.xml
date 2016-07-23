@@ -7,6 +7,7 @@
                        <CHINA_UNICOM>  2
                        <CHINA_TELECOM> 3
                        <CM_CU_CHANNEL> 4],
+
         [mobilepattern  <DSDS>         0
                         <DSDA>         1
                         <TSTS>         2
@@ -16,9 +17,11 @@
         [srlte          <support>      1
                         <notsupport>   0],
         [mbn            <support>      1
+                        <notsupport>   0],
+        [lte_c          <support>      1
                         <notsupport>   0]
     }
-    
+
     example:
     <config  custom="1"
          mobilepattern="0"
@@ -34,5 +37,6 @@
            ims="1"
            srlte="1"
            mbn="1"
+           lte_c="1"
   />
 </ap-config>

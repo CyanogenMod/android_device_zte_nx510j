@@ -14,9 +14,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.default_network=22,22 \
     persist.radio.multisim.config=dsds \
     persist.data.qmi.adb_logmask=0 \
-    ro.telephony.ril.config=simactivation \
     telephony.lteOnCdmaDevice=1 \
-    ro.telephony.default_cdma_sub=0
+    ro.telephony.default_cdma_sub=0 \
+    persist.radio.flex_map_inactive=true
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/telephony/config.xml:system/etc/telephony/config.xml
 
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml
