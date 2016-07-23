@@ -1,0 +1,10 @@
+type init-tp-sh, domain;
+type init-tp-sh_exec, exec_type, file_type;
+
+init_daemon_domain(init-tp-sh)
+
+allow init-tp-sh shell_exec:file r_file_perms;
+allow init-tp-sh system_data_file:dir { setattr create rw_file_perms add_name remove_name };
+allow init-tp-sh system_data_file:lnk_file { create unlink };
+allow init-tp-sh sysfs:file { rw_file_perms setattr };
+allow init-tp-sh self:capability chown;
