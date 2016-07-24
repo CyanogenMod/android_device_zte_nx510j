@@ -39,7 +39,3 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.voicerec=false \
     persist.audio.fluence.speaker=true \
     persist.audio.fluence.mode=broadside
-
-# low audio flinger standby delay to reduce power consumption
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.audio.flinger_standbytime_ms=300
