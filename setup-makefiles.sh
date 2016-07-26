@@ -79,6 +79,7 @@ ifeq (\$(LOCAL_PATH)/radio, \$(wildcard \$(LOCAL_PATH)/radio))
 RADIO_FILES := \$(shell cd \$(LOCAL_PATH)/radio ; ls)
 \$(foreach f, \$(RADIO_FILES), \\
     \$(call add-radio-file,radio/\$(f)))
+\$(call add-radio-file,../../../device/$VENDOR/$DEVICE/radio/filesmap)
 endif
 
 EOF
