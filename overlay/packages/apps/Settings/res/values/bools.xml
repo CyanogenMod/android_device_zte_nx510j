@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2015 The CyanogenMod Project
+<!-- Copyright 2015 The Android Open Source Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,6 +15,6 @@
 -->
 
 <resources>
-    <!-- Volume Rocker Wake -->
-    <bool name="config_show_volumeRockerWake">true</bool>
+    <!-- Whether to show a preference item for mobile plan -->
+    <bool name="config_show_mobile_plan">false</bool>
 </resources>
