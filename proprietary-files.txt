@@ -1,3 +1,7 @@
+# Audio
+vendor/lib/libhwdaphal.so
+vendor/lib64/libhwdaphal.so
+
 # Audio ACDB
 etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
 etc/acdbdata/MTP/MTP_General_cal.acdb

@@ -39,3 +39,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.fluence.voicerec=false \
     persist.audio.fluence.speaker=true \
     persist.audio.fluence.mode=broadside
+
+# Dolby
+PRODUCT_PROPERTY_OVERRIDES += \
+    audio.dolby.ds2.enabled=true \
+    audio.dolby.ds2.hardbypass=true \
+    audio.ds1.metainfo.key=273 \
+    dmid=3067269873
