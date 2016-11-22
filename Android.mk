@@ -67,7 +67,7 @@ $(LOCAL_BUILT_MODULE):
 	$(hide) ln -sf $(ACTUAL_MAC_FILE) $(WCNSS_MAC_SYMLINK)
 	$(hide) touch $@
 
-include $(call all-makefiles-under,$(LOCAL_PATH))
+include $(call all-subdir-makefiles,$(LOCAL_PATH))
 
 IMS_LIBS := libimscamera_jni.so libimsmedia_jni.so
 

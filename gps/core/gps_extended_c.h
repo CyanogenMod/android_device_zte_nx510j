@@ -293,7 +293,7 @@ typedef struct {
      */
     uint64_t    bds_used_in_fix_mask;
 
-} GnssSvStatus;
+} QcomSvStatus;
 
 enum loc_sess_status {
     LOC_SESS_SUCCESS,
