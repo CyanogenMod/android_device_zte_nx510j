@@ -61,17 +61,15 @@ public:
 	bool Reset(enum ipa_ip_type ip);
 
 	bool GetRoutingTable(struct ipa_ioc_get_rt_tbl *routingTable);
+	bool PutRoutingTable(uint32_t routingTableHandle);
 
 	bool DeviceNodeIsOpened();
 	bool DeleteRoutingHdl(uint32_t rt_rule_hdl, ipa_ip_type ip);
-
-	bool ModifyRoutingRule(struct ipa_ioc_mdfy_rt_rule *);
 
 private:
 	static const char *DEVICE_NAME;
 	int m_fd; /* File descriptor of the IPA device node /dev/ipa */
 
-	bool PutRoutingTable(uint32_t routingTableHandle);
 };
 
 #endif //IPACM_ROUTING_H

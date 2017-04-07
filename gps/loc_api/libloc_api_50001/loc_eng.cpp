@@ -828,7 +828,7 @@ void LocEngReportPosition::send() const {
 
 //        case LOC_ENG_MSG_REPORT_SV:
 LocEngReportSv::LocEngReportSv(LocAdapterBase* adapter,
-                               GnssSvStatus &sv,
+                               QcomSvStatus &sv,
                                GpsLocationExtended &locExtended,
                                void* svExt) :
     LocMsg(), mAdapter(adapter), mSvStatus(sv),
@@ -2997,3 +2997,4 @@ void loc_eng_gps_measurement_close(loc_eng_data_s_type &loc_eng_data)
     loc_eng_data.gps_measurement_cb = NULL;
     EXIT_LOG(%d, 0);
 }
+
